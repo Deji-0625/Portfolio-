@@ -6,16 +6,15 @@
 
 body {
     background-color: #050505; color: #ffffff; overflow-x: hidden;
-    /* We make the body tall so there is actual room to scroll */
     min-height: 200vh; 
 }
 
-/* --- Ambient Rainbow Streaks --- */
+/* --- Ambient Rainbow Streaks (Updated Colors) --- */
 .bg-streaks {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: radial-gradient(ellipse at top left, rgba(255,0,127,0.08), transparent 50%),
+    background: radial-gradient(ellipse at top left, rgba(157,0,255,0.08), transparent 50%),
                 radial-gradient(ellipse at bottom right, rgba(0,255,170,0.06), transparent 50%),
-                radial-gradient(ellipse at center, rgba(181,0,255,0.05), transparent 60%);
+                radial-gradient(ellipse at center, rgba(255,0,127,0.05), transparent 60%);
     z-index: -1; pointer-events: none;
 }
 
@@ -33,7 +32,7 @@ body {
 /* Typewriter Effect */
 .type-text {
     display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
-    border-right: 2px solid #fff; /* Cursor */
+    border-right: 2px solid #fff; 
     animation: typing 1.5s steps(15, end) forwards, blink 0.5s step-end 6 forwards;
 }
 
@@ -47,15 +46,20 @@ body {
 .draw-8 path {
     stroke-dasharray: 400; stroke-dashoffset: 400;
     animation: trace 1.5s ease-in-out forwards;
-    animation-delay: 1.5s; /* Starts after typing finishes */
+    animation-delay: 1.5s; 
 }
 @keyframes trace { to { stroke-dashoffset: 0; } }
 
-/* Final 'or' fade in */
+/* Final 'or' fade in (FIXED: Added the @keyframes) */
 .type-text-end {
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
-    animation-delay: 2.8s; /* Starts after '8' finishes */
+    animation-delay: 2.8s; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Scroll Prompt */
@@ -69,7 +73,7 @@ body {
     50% { transform: translate(-50%, 10px); }
 }
 
-/* --- Main Navigation (Hidden on Load) --- */
+/* --- Main Navigation --- */
 #nav-menu {
     position: fixed; top: 35px; right: 8vw;
     opacity: 0; pointer-events: none; z-index: 99;
@@ -79,9 +83,9 @@ body {
 .nav-links a { color: #ffffff; text-decoration: none; font-size: 16px; font-weight: bold; transition: color 0.3s; }
 .nav-links a:hover { color: #00ffcc; }
 
-/* --- Main Hero Content (Pushed Down) --- */
+/* --- Main Hero Content --- */
 #main-content {
-    margin-top: 100vh; /* Sits exactly one screen below */
+    margin-top: 100vh;
     padding: 20px;
     display: flex; justify-content: center;
 }
@@ -89,10 +93,10 @@ body {
     display: flex; flex-direction: column; align-items: center; text-align: center; gap: 25px;
 }
 
-/* Previous Hero Styles (Untouched) */
+/* Updated ISAAC Text Gradient */
 .main-title { font-size: 4rem; font-weight: 900; letter-spacing: 2px; line-height: 1.1; }
 .gradient-text {
-    background: linear-gradient(to bottom, #ff007f, #ffaa00, #00ffaa, #00d4ff, #b500ff);
+    background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 .software-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
@@ -109,38 +113,29 @@ body {
 .social-links a { color: #888888; text-decoration: none; font-size: 0.95rem; transition: color 0.3s ease; }
 .social-links a:hover { color: #00ffcc; }
 
-/* ========================================= */
-/* THE SCROLL MAGIC (Activated by JS)        */
-/* ========================================= */
+/* THE SCROLL MAGIC */
 body.scrolled #dynamic-logo {
-    /* Moves to top left and shrinks */
     top: 30px; left: 8vw;
     transform: translate(0, 0) scale(0.85);
 }
 body.scrolled #nav-menu {
-    /* Fades in links */
     opacity: 1; pointer-events: auto;
 }
 body.scrolled .scroll-prompt {
     opacity: 0;
 }
 
-/* --- Mobile Responsiveness --- */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .main-title { font-size: 2.8rem; }
     #dynamic-logo { transform: translate(-50%, -50%) scale(1.2); }
-    
-    /* On mobile, center the logo at top when scrolled */
     body.scrolled #dynamic-logo {
         top: 20px; left: 50%;
         transform: translate(-50%, 0) scale(0.8);
     }
-    
-    /* Hide nav text links on mobile, or move them below */
     #nav-menu { top: 60px; right: 50%; transform: translateX(50%); }
     .nav-links { gap: 15px; }
     .nav-links a { font-size: 14px; }
-    
     .button-group { flex-direction: column; width: 100%; max-width: 300px; }
     .btn { width: 100%; text-align: center; }
 }
