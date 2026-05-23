@@ -1,191 +1,146 @@
 /* --- Global Settings --- */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif; 
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
 }
 
 body {
-    background-color: #050505;
-    color: #ffffff;
-    overflow-x: hidden;
+    background-color: #050505; color: #ffffff; overflow-x: hidden;
+    /* We make the body tall so there is actual room to scroll */
+    min-height: 200vh; 
 }
 
-/* --- Navigation Bar --- */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 8vw;
+/* --- Ambient Rainbow Streaks --- */
+.bg-streaks {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: radial-gradient(ellipse at top left, rgba(255,0,127,0.08), transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(0,255,170,0.06), transparent 50%),
+                radial-gradient(ellipse at center, rgba(181,0,255,0.05), transparent 60%);
+    z-index: -1; pointer-events: none;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 900;
-    letter-spacing: 1px;
+/* --- Dynamic Loading Logo --- */
+#dynamic-logo {
+    position: fixed;
+    top: 45%; left: 50%;
+    transform: translate(-50%, -50%) scale(1.8);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 900; letter-spacing: 1px;
+    z-index: 100;
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 35px;
+/* Typewriter Effect */
+.type-text {
+    display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
+    border-right: 2px solid #fff; /* Cursor */
+    animation: typing 1.5s steps(15, end) forwards, blink 0.5s step-end 6 forwards;
 }
 
-.nav-links a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    transition: color 0.3s ease;
+@keyframes typing { to { max-width: 250px; } }
+@keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
+
+/* SVG '8' Animation */
+.draw-8 {
+    width: 25px; height: 42px; margin: 0 2px;
+}
+.draw-8 path {
+    stroke-dasharray: 400; stroke-dashoffset: 400;
+    animation: trace 1.5s ease-in-out forwards;
+    animation-delay: 1.5s; /* Starts after typing finishes */
+}
+@keyframes trace { to { stroke-dashoffset: 0; } }
+
+/* Final 'or' fade in */
+.type-text-end {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 2.8s; /* Starts after '8' finishes */
 }
 
-.nav-links a:hover {
-    color: #00ffcc;
+/* Scroll Prompt */
+.scroll-prompt {
+    position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%);
+    text-align: center; font-size: 14px; color: #888;
+    animation: bounce 2s infinite; transition: opacity 0.4s ease;
+}
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 10px); }
 }
 
-/* --- Hero Section --- */
+/* --- Main Navigation (Hidden on Load) --- */
+#nav-menu {
+    position: fixed; top: 35px; right: 8vw;
+    opacity: 0; pointer-events: none; z-index: 99;
+    transition: opacity 0.8s ease;
+}
+.nav-links { list-style: none; display: flex; gap: 35px; }
+.nav-links a { color: #ffffff; text-decoration: none; font-size: 16px; font-weight: bold; transition: color 0.3s; }
+.nav-links a:hover { color: #00ffcc; }
+
+/* --- Main Hero Content (Pushed Down) --- */
+#main-content {
+    margin-top: 100vh; /* Sits exactly one screen below */
+    padding: 20px;
+    display: flex; justify-content: center;
+}
 .hero {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 25px;
-    padding: 40px 20px;
+    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 25px;
 }
 
-/* Massive Title Styling */
-.main-title {
-    font-size: 4rem;
-    font-weight: 900;
-    letter-spacing: 2px;
-    line-height: 1.1;
-}
-
-/* The Rainbow Gradient applied only to ISAAC */
+/* Previous Hero Styles (Untouched) */
+.main-title { font-size: 4rem; font-weight: 900; letter-spacing: 2px; line-height: 1.1; }
 .gradient-text {
     background: linear-gradient(to bottom, #ff007f, #ffaa00, #00ffaa, #00d4ff, #b500ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
+.software-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+.software-tags span { background-color: #1a1a1a; padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; color: #e0e0e0; border: 1px solid #333; }
+.bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 700px; line-height: 1.6; margin-top: 10px; }
+.bio-text strong { color: #ffffff; }
+.button-group { display: flex; gap: 20px; margin-top: 20px; }
+.btn { padding: 16px 40px; text-decoration: none; font-weight: bold; font-size: 1.1rem; border-radius: 50px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.primary-btn { background-color: #ffffff; color: #000000; }
+.primary-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 255, 255, 0.25); }
+.secondary-btn { background-color: transparent; color: #ffffff; border: 2px solid #ffffff; }
+.secondary-btn:hover { background-color: #ffffff; color: #000000; transform: scale(1.05); }
+.social-links { display: flex; gap: 25px; margin-top: 30px; flex-wrap: wrap; justify-content: center; }
+.social-links a { color: #888888; text-decoration: none; font-size: 0.95rem; transition: color 0.3s ease; }
+.social-links a:hover { color: #00ffcc; }
 
-/* Bubbly Role Tags */
-.software-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+/* ========================================= */
+/* THE SCROLL MAGIC (Activated by JS)        */
+/* ========================================= */
+body.scrolled #dynamic-logo {
+    /* Moves to top left and shrinks */
+    top: 30px; left: 8vw;
+    transform: translate(0, 0) scale(0.85);
 }
-
-.software-tags span {
-    background-color: #1a1a1a;
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: #e0e0e0;
-    border: 1px solid #333;
+body.scrolled #nav-menu {
+    /* Fades in links */
+    opacity: 1; pointer-events: auto;
 }
-
-/* Bio Text Styling */
-.bio-text {
-    font-size: 1.15rem;
-    color: #b3b3b3;
-    max-width: 700px; /* Keeps the text from stretching too far */
-    line-height: 1.6;
-    margin-top: 10px;
-}
-
-.bio-text strong {
-    color: #ffffff;
-}
-
-/* --- Call to Action Buttons --- */
-.button-group {
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.btn {
-    padding: 16px 40px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
-    border-radius: 50px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.primary-btn {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-.primary-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.25);
-}
-
-.secondary-btn {
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px solid #ffffff;
-}
-
-.secondary-btn:hover {
-    background-color: #ffffff;
-    color: #000000;
-    transform: scale(1.05);
-}
-
-/* --- Social Links Bar --- */
-.social-links {
-    display: flex;
-    gap: 25px;
-    margin-top: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.social-links a {
-    color: #888888;
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.social-links a:hover {
-    color: #00ffcc;
+body.scrolled .scroll-prompt {
+    opacity: 0;
 }
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-    .main-title {
-        font-size: 2.8rem;
+    .main-title { font-size: 2.8rem; }
+    #dynamic-logo { transform: translate(-50%, -50%) scale(1.2); }
+    
+    /* On mobile, center the logo at top when scrolled */
+    body.scrolled #dynamic-logo {
+        top: 20px; left: 50%;
+        transform: translate(-50%, 0) scale(0.8);
     }
     
-    .nav-links {
-        display: none;
-    }
+    /* Hide nav text links on mobile, or move them below */
+    #nav-menu { top: 60px; right: 50%; transform: translateX(50%); }
+    .nav-links { gap: 15px; }
+    .nav-links a { font-size: 14px; }
     
-    .bio-text {
-        font-size: 1rem;
-    }
-    
-    .button-group {
-        flex-direction: column;
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    .btn {
-        width: 100%;
-        text-align: center;
-    }
+    .button-group { flex-direction: column; width: 100%; max-width: 300px; }
+    .btn { width: 100%; text-align: center; }
 }
