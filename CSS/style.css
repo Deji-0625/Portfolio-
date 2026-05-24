@@ -1,5 +1,5 @@
-/* --- Import Premium Google Font --- */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+/* --- Import Thinner Premium Google Fonts (Light 300 & Regular 400) --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
 
 /* --- Global Settings --- */
 * {
@@ -26,7 +26,7 @@ body {
 /* --- The Giant Glassmorphic 8 --- */
 #glass-8 {
     position: fixed;
-    top: 45%; left: 65%; /* Shifted right to contrast beautifully against the left text */
+    top: 45%; left: 65%; 
     transform: translate(-50%, -50%) scale(5);
     opacity: 0.12; 
     filter: blur(12px); 
@@ -122,32 +122,41 @@ body {
 /* --- Main Hero Content (Left-Aligned Structure) --- */
 #main-content {
     margin-top: 100vh;
-    padding: 20px 8vw; /* Generous padding on desktop to seat text beautifully */
+    padding: 20px 8vw; 
     display: flex; 
-    justify-content: flex-start; /* Aligns container to the left */
+    justify-content: flex-start; 
 }
 .hero { 
     display: flex; 
     flex-direction: column; 
-    align-items: flex-start; /* Aligns all sub-elements to the left spine */
-    text-align: left; /* Forces text left alignment */
+    align-items: flex-start; 
+    text-align: left; 
     gap: 30px; 
 }
 
-/* The Left-Aligned Statement Typography */
+/* The New Elegant, Thin Layout Rules */
 .main-title { 
     font-family: 'Montserrat', sans-serif; 
     font-size: 3.2rem; 
-    font-weight: 900; 
-    letter-spacing: -1px; 
-    line-height: 1.2; 
-    max-width: 900px; 
+    font-weight: 300; /* Shifted to ultra-clean Light weight */
+    letter-spacing: 0px; /* Neutral track for modern thin layouts */
+    line-height: 1.25; 
+    max-width: 950px; 
+    color: #e5e5e5; /* Softened slightly so pure white text options pop */
+}
+
+/* Gives your name a slightly cleaner structural emphasis inside the sentence */
+.name-inline {
+    font-weight: 400; /* Regular weight to subtly anchor the text string */
+    color: #ffffff;
 }
 
 .gradient-text {
     background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    font-weight: 400; /* Let the rainbow have just a hair more presence */
 }
+
 .software-tags { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 12px; }
 .software-tags span { background-color: #1a1a1a; padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; color: #e0e0e0; border: 1px solid #333; }
 .bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 650px; line-height: 1.6; }
@@ -182,7 +191,7 @@ body {
 
 .secondary-btn { 
     background-color: transparent; color: #ffffff; border: none; 
-    padding: 16px 20px; /* Slimmer horizontal area since there are no borders */
+    padding: 16px 20px; 
 }
 .secondary-btn:hover {
     transform: scale(1.05); 
@@ -214,7 +223,6 @@ body.scrolled #glass-8 {
     transform: translate(-50%, -50%) scale(4); 
 }
 
-/* Desktop Left-Aligned Logo */
 body.scrolled #dynamic-logo {
     top: 45px; left: 4vw; 
     transform: translate(0, -50%) scale(0.6); 
@@ -248,13 +256,14 @@ body.scrolled .scroll-prompt { opacity: 0; }
 @media (max-width: 768px) {
     #main-content { 
         margin-top: 50vh; 
-        padding: 20px 24px; /* Tighter margins on mobile viewports */
+        padding: 20px 24px; 
     }
     
+    /* Thin, high-end scaling rules for mobile layout columns */
     .main-title { 
-        font-size: 3.4rem; 
-        line-height: 1.1; 
-        letter-spacing: -1.5px;
+        font-size: 2.6rem; /* Scaled down slightly to stop long words from feeling cramped when thin */
+        line-height: 1.2; 
+        letter-spacing: 0px;
     }
     
     #nav-backdrop { height: 75px; } 
@@ -315,5 +324,5 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .scroll-prompt { display: none; }
     .button-group { flex-direction: column; width: 100%; max-width: 300px; align-items: flex-start; }
     .btn { width: 100%; text-align: center; }
-    .secondary-btn { padding: 16px 40px; } /* Restores full width tap target on mobile column stacks */
+    .secondary-btn { padding: 16px 40px; } 
 }
