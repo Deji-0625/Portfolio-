@@ -40,52 +40,47 @@ body {
     transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- Dynamic Loading Logo Engine --- */
+/* --- Dynamic Loading Logo Engine (Multi-Line Grid System) --- */
 #dynamic-logo {
     position: fixed; top: 45%; left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
-    display: flex; align-items: center; justify-content: center;
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
     z-index: 100; white-space: nowrap; 
     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 54px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 54px;
 }
 
-/* Typing Sequence Rules */
-.type-text {
+/* Space injected physically on desktop so it seamlessly collapses on mobile */
+.logo-top-line { margin-right: 12px; }
+
+/* Sequenced Typing Animations */
+.type-text-1 {
     display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
-    letter-spacing: -2px; color: #ffffff;
-    border-right: 2px solid #fff; 
-    animation: typing 1.5s steps(13, end) forwards, blink 0.5s step-end 6 forwards;
+    letter-spacing: -2px; color: #ffffff; border-right: 2px solid #fff; 
+    animation: typing-1 0.9s steps(8, end) forwards;
 }
 
-@keyframes typing { to { max-width: 320px; } }
-@keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
+.type-text-2 {
+    display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
+    letter-spacing: -2px; color: #ffffff; border-right: 2px solid #fff; 
+    animation: typing-2 0.4s steps(3, end) forwards;
+    animation-delay: 0.9s; /* Triggers exactly when part 1 finishes */
+}
 
-/* --- SPACING-MATCHED NATIVE IMAGE GRID --- */
+@keyframes typing-1 { to { max-width: 170px; border-color: transparent; } }
+@keyframes typing-2 { to { max-width: 90px; border-color: transparent; } }
+
+/* SPACING-MATCHED NATIVE IMAGE GRID */
 .crystal-8 {
-    display: inline-block;
-    height: 120%; 
-    max-height: 52px; 
-    width: auto; 
-    object-fit: contain;
-    vertical-align: middle; 
-    
-    /* EXTRA COMPRESSED TRACKING: Pulls letters tight to cancel asset padding */
-    margin-left: -5px;  
-    margin-right: -8px; 
-    
-    opacity: 0;
-    transform: translateY(-2px); 
-    animation: fadeIn 0.8s ease forwards; 
-    animation-delay: 1.5s;
+    display: inline-block; height: 120%; max-height: 52px; width: auto; 
+    object-fit: contain; vertical-align: middle; 
+    margin-left: -5px; margin-right: -8px; opacity: 0; transform: translateY(-2px); 
+    animation: fadeIn 0.8s ease forwards; animation-delay: 1.4s;
 }
 
 .type-text-end {
-    opacity: 0; 
-    letter-spacing: -2px; /* Pulls O and R matching internal word tracking */
-    color: #ffffff;
-    animation: fadeIn 0.5s ease forwards; animation-delay: 2.3s;
+    opacity: 0; letter-spacing: -2px; color: #ffffff;
+    animation: fadeIn 0.5s ease forwards; animation-delay: 1.9s;
 }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -109,9 +104,7 @@ body {
 .nav-links a:hover { color: #00ffcc; }
 
 /* --- Main Hero Content --- */
-#main-content {
-    margin-top: 100vh; padding: 20px 8vw; display: flex; justify-content: flex-start;
-}
+#main-content { margin-top: 100vh; padding: 20px 8vw; display: flex; justify-content: flex-start; }
 .hero { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 25px; }
 
 /* Tall & Tight Headline */
@@ -121,70 +114,22 @@ body {
 }
 .name-part { display: inline-block; letter-spacing: -6px; }
 .name-italic { transform: skewX(-15deg); transform-origin: center; margin-right: 15px; }
-
-.gradient-text {
-    background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
+.gradient-text { background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
 /* Software Tags */
 .software-tags { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 12px; }
-.software-tags span { 
-    background-color: #1a1a1a; padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; 
-    font-weight: bold; color: #e0e0e0; border: 1px solid #333; letter-spacing: 1px; 
-}
+.software-tags span { background-color: #1a1a1a; padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; color: #e0e0e0; border: 1px solid #333; letter-spacing: 1px; }
 .bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 700px; line-height: 1.6; margin-top: 10px; }
 .bio-text strong { color: #ffffff; }
 
-/* ========================================= */
-/* BUTTONS: SUBTLE NATIVE STYLE              */
-/* ========================================= */
-.button-group { 
-    display: flex; 
-    gap: 16px; /* Tighter gap for a more app-like layout */
-    align-items: center; 
-}
-
-.btn { 
-    position: relative; 
-    padding: 16px 32px; 
-    text-decoration: none; 
-    font-weight: bold; 
-    font-size: 1.1rem; 
-    border-radius: 50px; 
-    z-index: 1;
-    /* Clean, fast transitions for color, and a very snappy transform for clicks */
-    transition: background-color 0.2s ease, transform 0.1s ease; 
-}
-
-/* Primary Button: Solid White to Light Gray */
-.primary-btn { 
-    background-color: #ffffff; 
-    color: #111111; 
-    border: none; 
-}
-
-.primary-btn:hover { 
-    background-color: #e2e2e2; /* Subtle dimming on hover */
-    color: #111111;
-}
-
-/* Secondary Button: Transparent to Muted Highlight */
-.secondary-btn { 
-    background-color: transparent; 
-    color: #ffffff; 
-    border: none; 
-}
-
-.secondary-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Subtle Pinterest dark-mode wash */
-    color: #ffffff;
-}
-
-/* The Pinterest "Press" Effect */
-.btn:active {
-    transform: scale(0.96); /* Button presses physically inward when clicked */
-}
+/* --- Pinterest-Style Flat Buttons --- */
+.button-group { display: flex; gap: 16px; align-items: center; }
+.btn { position: relative; padding: 16px 32px; text-decoration: none; font-weight: bold; font-size: 1.1rem; border-radius: 50px; z-index: 1; transition: background-color 0.2s ease, transform 0.1s ease; }
+.primary-btn { background-color: #ffffff; color: #111111; border: none; }
+.primary-btn:hover { background-color: #e2e2e2; color: #111111; }
+.secondary-btn { background-color: transparent; color: #ffffff; border: none; }
+.secondary-btn:hover { background-color: rgba(255, 255, 255, 0.1); color: #ffffff; }
+.btn:active { transform: scale(0.96); }
 
 /* --- Social Links --- */
 .social-links { display: flex; gap: 25px; flex-wrap: wrap; justify-content: flex-start; margin-top: 10px; }
@@ -195,6 +140,7 @@ body {
 body.scrolled #nav-backdrop { transform: translateY(0); }
 body.scrolled #glass-8 { opacity: 0; transform: translate(-50%, -50%) scale(4); }
 
+/* Desktop Scrolled State */
 body.scrolled #dynamic-logo {
     top: 45px; left: 4vw; 
     transform: translate(0, -50%) scale(0.55); transform-origin: left center; 
@@ -202,8 +148,17 @@ body.scrolled #dynamic-logo {
 body.scrolled #nav-menu { opacity: 1; pointer-events: auto; }
 body.scrolled .scroll-prompt { opacity: 0; }
 
+/* --- Carrd Scroll Reveals --- */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+.main-title.reveal { transition-delay: 0.1s; }
+.software-tags.reveal { transition-delay: 0.2s; }
+.bio-text.reveal { transition-delay: 0.3s; }
+.button-group.reveal { transition-delay: 0.4s; }
+.social-links.reveal { transition-delay: 0.5s; }
+
 /* ========================================= */
-/* MOBILE RESPONSIVENESS                     */
+/* MOBILE RESPONSIVENESS & STACKED LOGO      */
 /* ========================================= */
 @media (max-width: 768px) {
     #main-content { margin-top: 50vh; padding: 20px 24px; }
@@ -213,53 +168,50 @@ body.scrolled .scroll-prompt { opacity: 0; }
     #nav-backdrop { height: 75px; } 
     #glass-8 { top: 35%; left: 50%; }
     
-    /* Mobile Initial Entry Layout */
+    /* Mobile Initial Entry Layout (Horizontal flow) */
     #dynamic-logo { 
         top: 35px; left: 15px; font-size: 30px; 
         transform: translateY(-50%) scale(1); transform-origin: left center;
     }
-    .logo-text { letter-spacing: -2px; }
     
-    /* Scrolled Header Fixed Core */
+    /* STACKED JUSTIFIED LOGO: Triggers only when scrolled on Mobile */
     body.scrolled #dynamic-logo {
         top: 37.5px; left: 15px; 
-        transform: translateY(-50%) scale(0.65); 
+        flex-direction: column; /* Force the two lines to stack */
+        align-items: flex-start; /* Pin everything strictly to the left margin */
+        line-height: 0.8; /* Pull the top and bottom lines tight together vertically */
+        transform: translateY(-50%) scale(0.65); /* Shrinks the whole locked block down */
     }
     
-    #nav-menu { 
-        top: 35px; right: 15px; left: auto; transform: translateY(-50%); 
-        opacity: 1; pointer-events: auto;
+    body.scrolled .logo-top-line { 
+        margin-right: 0; /* Clear horizontal desktop spacing */
     }
+    
+    /* Optical Width Balancing: Make 6 characters on bottom match 8 characters on top */
+    body.scrolled .type-text-1 { letter-spacing: -2px; } /* Keep top compressed */
+    body.scrolled .type-text-2,
+    body.scrolled .type-text-end { letter-spacing: 1.5px; } /* Expand bottom to match */
+    
+    body.scrolled .crystal-8 { margin-left: -2px; margin-right: -2px; } /* Ease image compression so it fills space gracefully */
+    
+    /* Mobile Menu Execution */
+    #nav-menu { top: 35px; right: 15px; left: auto; transform: translateY(-50%); opacity: 1; pointer-events: auto; }
     body.scrolled #nav-menu { top: 37.5px; right: 15px; transform: translateY(-50%); }
     
-    .hamburger {
-        display: block; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px; padding: 10px; cursor: pointer; z-index: 105;
-    }
-    .hamburger .line {
-        display: block; width: 18px; height: 2px; margin: 5px 0; background-color: #ffffff;
-        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); transform-origin: center;
-    }
+    .hamburger { display: block; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 10px; cursor: pointer; z-index: 105; }
+    .hamburger .line { display: block; width: 18px; height: 2px; margin: 5px 0; background-color: #ffffff; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); transform-origin: center; }
     .hamburger.active .line:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
     .hamburger.active .line:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
 
-    .nav-links { 
-        position: absolute; top: 55px; right: 0; background-color: #0d0d0d;
-        border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; 
-        flex-direction: column; width: 160px; gap: 0; opacity: 0; visibility: hidden;
-        transform: translateY(-15px); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); overflow: hidden;
-    }
+    .nav-links { position: absolute; top: 55px; right: 0; background-color: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; flex-direction: column; width: 160px; gap: 0; opacity: 0; visibility: hidden; transform: translateY(-15px); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); overflow: hidden; }
     .nav-links.active { opacity: 1; visibility: visible; transform: translateY(0); }
     .nav-links li { width: 100%; }
     .nav-links a { display: block; font-size: 14px; padding: 16px 20px; text-align: right; border-bottom: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0; }
     .nav-links li:last-child a { border-bottom: none; }
     
-    /* Mobile Spacing Track Override */
-    .crystal-8 { 
-        height: 120%;
-        max-height: 28px;
-        margin-left: -3px; /* Squeezes tight against mobile dimensions */
-        margin-right: -4px; 
-        transform: translateY(-1px);
-    }
+    .crystal-8 { height: 120%; max-height: 28px; margin-left: -3px; margin-right: -4px; transform: translateY(-1px); }
+    .scroll-prompt { display: none; }
+    .button-group { flex-direction: column; width: 100%; max-width: 300px; align-items: flex-start; }
+    .btn { width: 100%; text-align: center; }
+    .secondary-btn { padding: 16px 40px; } 
 }
