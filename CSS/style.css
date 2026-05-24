@@ -22,15 +22,10 @@ body {
 #nav-backdrop {
     position: fixed; top: 0; left: 0; width: 100%; height: 90px;
     z-index: 95;
-    
-    /* Border Radius on the bottom only */
     border-radius: 0 0 30px 30px;
     border-bottom: 3px solid transparent;
-    
-    /* The trick to give the border a gradient without messing up the radius */
     background: linear-gradient(#050505, #050505) padding-box,
                 linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff) border-box;
-    
     transform: translateY(-100%);
     transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -41,9 +36,10 @@ body {
     top: 45%; left: 50%;
     transform: translate(-50%, -50%) scale(1.8);
     display: flex; align-items: center; justify-content: center;
-    font-size: 32px; /* Set a specific base font size */
+    font-size: 32px; 
     font-weight: 900; letter-spacing: 1px;
     z-index: 100;
+    white-space: nowrap; /* Prevents text from ever breaking into two lines */
     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -58,13 +54,12 @@ body {
 
 /* Fixes the 8 spacing perfectly to the text */
 .crystal-8 {
-    height: 1.1em; /* Scales perfectly with the 32px font size */
+    height: 1.1em; 
     width: auto; 
     object-fit: contain;
-    margin: 0 -4px; /* Pulls the text flush against the image */
-    transform: translateY(2px); /* Drops it slightly onto the text baseline */
+    margin: 0 -4px; 
+    transform: translateY(2px); 
     opacity: 0;
-    mix-blend-mode: screen;
     animation: fadeIn 0.8s ease forwards;
     animation-delay: 1.5s; 
 }
@@ -94,7 +89,7 @@ body {
 /* --- Main Navigation --- */
 #nav-menu {
     position: fixed; 
-    top: 45px; /* Aligns with the center of the 90px backdrop */
+    top: 45px; 
     right: 8vw;
     transform: translateY(-50%);
     opacity: 0; pointer-events: none; z-index: 99;
@@ -131,40 +126,60 @@ body {
 .social-links a:hover { color: #00ffcc; }
 
 /* ========================================= */
-/* THE SCROLL MAGIC                          */
+/* THE SCROLL MAGIC & CARRD ANIMATIONS       */
 /* ========================================= */
-body.scrolled #nav-backdrop {
-    transform: translateY(0); /* Drops the backdrop down */
-}
+body.scrolled #nav-backdrop { transform: translateY(0); }
 body.scrolled #dynamic-logo {
     top: 45px; left: 8vw;
-    /* Keeps the logo perfectly vertically centered in the backdrop */
     transform: translate(0, -50%) scale(0.85);
+    transform-origin: left center; /* Anchors the shrink to the left edge */
 }
-body.scrolled #nav-menu {
-    opacity: 1; pointer-events: auto;
-}
-body.scrolled .scroll-prompt {
-    opacity: 0;
-}
+body.scrolled #nav-menu { opacity: 1; pointer-events: auto; }
+body.scrolled .scroll-prompt { opacity: 0; }
 
-/* Mobile Responsiveness */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+.main-title.reveal { transition-delay: 0.1s; }
+.software-tags.reveal { transition-delay: 0.2s; }
+.bio-text.reveal { transition-delay: 0.3s; }
+.button-group.reveal { transition-delay: 0.4s; }
+.social-links.reveal { transition-delay: 0.5s; }
+
+/* ========================================= */
+/* MOBILE RESPONSIVENESS                     */
+/* ========================================= */
 @media (max-width: 768px) {
     .main-title { font-size: 2.8rem; }
-    #nav-backdrop { height: 110px; } /* Slightly taller on mobile for links */
     
-    #dynamic-logo { transform: translate(-50%, -50%) scale(1.2); }
+    /* Slightly slimmer backdrop to save screen space */
+    #nav-backdrop { height: 75px; } 
+    
+    /* Initial loading state size */
+    #dynamic-logo { transform: translate(-50%, -50%) scale(1); }
+    
+    /* Scrolled state: Anchored left, shrunk down to fit */
     body.scrolled #dynamic-logo {
-        top: 35px; left: 50%;
-        transform: translate(-50%, -50%) scale(0.8);
+        top: 37.5px; /* Center of the 75px backdrop */
+        left: 5vw; /* Tighter edge margin */
+        transform: translate(0, -50%) scale(0.55); 
     }
     
-    body.scrolled #nav-menu { 
-        top: 80px; right: 50%; 
-        transform: translate(50%, -50%); 
+    /* Scrolled state: Nav links on the right */
+    #nav-menu { 
+        top: 37.5px; 
+        right: 5vw; 
+        transform: translateY(-50%); 
     }
-    .nav-links { gap: 15px; }
-    .nav-links a { font-size: 14px; }
+    .nav-links { gap: 12px; } /* Tighter gap between words */
+    .nav-links a { font-size: 13px; } /* Slightly smaller text to fit */
+    
     .button-group { flex-direction: column; width: 100%; max-width: 300px; }
     .btn { width: 100%; text-align: center; }
 }
