@@ -9,6 +9,7 @@
 <body>
 
     <div class="bg-streaks"></div>
+
     <div id="nav-backdrop"></div>
 
     <div id="dynamic-logo">
@@ -32,24 +33,24 @@
 
     <main id="main-content">
         <header class="hero">
-            <h1 class="main-title reveal">AKANDE <span class="gradient-text">ISAAC</span> AYODEJI</h1>
+            <h1 class="main-title">AKANDE <span class="gradient-text">ISAAC</span> AYODEJI</h1>
             
-            <div class="software-tags reveal">
+            <div class="software-tags">
                 <span>VIDEO EDITOR</span>
                 <span>GRAPHIC DESIGNER</span>
                 <span>VIDEOGRAPHER</span>
             </div>
 
-            <p class="bio-text reveal">
+            <p class="bio-text">
                 Video Editor and Graphics Designer with focus on Cinematic storytelling and high-impact visuals. Turning raw footage into cinematic stories and static ideas into high-impact graphics. I build the visuals that define the brand. <strong>Let's Cre8.</strong>
             </p>
 
-            <div class="button-group reveal">
+            <div class="button-group">
                 <a href="work.html" class="btn primary-btn">View My Work</a>
                 <a href="about.html" class="btn secondary-btn">About Me</a>
             </div>
 
-            <div class="social-links reveal">
+            <div class="social-links">
                 <a href="https://x.com/DejiTheCre8or" target="_blank">𝕏 DejiTheCre8or</a>
                 <a href="mailto:DejiTheCre8or@gmail.com">✉ Email</a>
                 <a href="https://instagram.com/DejiTheCre8or" target="_blank">📷 Instagram</a>
@@ -65,22 +66,6 @@
             } else {
                 document.body.classList.remove('scrolled');
             }
-        });
-
-        const observerOptions = {
-            threshold: 0.2
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach((el) => {
-            observer.observe(el);
         });
     </script>
 </body>
