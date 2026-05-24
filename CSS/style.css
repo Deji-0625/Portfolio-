@@ -40,7 +40,7 @@ body {
     transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- Dynamic Loading Logo Engine (Bebas Neue + Animation) --- */
+/* --- Dynamic Loading Logo Engine --- */
 #dynamic-logo {
     position: fixed; top: 45%; left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
@@ -62,13 +62,24 @@ body {
 @keyframes typing { to { max-width: 320px; } }
 @keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
 
-/* The Transparent PNG Suffix Space Handler */
+/* --- CRITICAL NATIVE TEXT EMBED FOR THE 8 --- */
 .crystal-8 {
-    height: 1.05em; width: auto; object-fit: contain;
-    margin-left: 0.22em; /* Creates the perfect word gap boundary before the 8 */
-    margin-right: -4px;  /* FIXED: Restored the exact negative layout override */
-    opacity: 0; transform: translateY(1px);
-    animation: fadeIn 0.8s ease forwards; animation-delay: 1.5s;
+    display: inline-block;
+    height: 0.82em; /* Shrinks the asset to perfectly align with Bebas Neue's cap-height */
+    width: auto; 
+    object-fit: contain;
+    
+    /* Forces the image to lock directly onto the font's typographic baseline line */
+    vertical-align: baseline; 
+    
+    /* Strict negative spatial tracking rules to remove any visual separation indication */
+    margin-left: -1px; 
+    margin-right: -4px; 
+    
+    opacity: 0;
+    transform: translateY(0); /* Removed custom offsets to let baseline alignment manage placement */
+    animation: fadeIn 0.8s ease forwards; 
+    animation-delay: 1.5s;
 }
 
 .type-text-end {
@@ -186,11 +197,8 @@ body.scrolled .scroll-prompt { opacity: 0; }
     
     /* Mobile Initial Entry Layout */
     #dynamic-logo { 
-        top: 35px; 
-        left: 15px; 
-        font-size: 30px; 
-        transform: translateY(-50%) scale(1);
-        transform-origin: left center;
+        top: 35px; top: 35px; left: 15px; font-size: 30px; 
+        transform: translateY(-50%) scale(1); transform-origin: left center;
     }
     .logo-text { letter-spacing: -2px; }
     
@@ -227,6 +235,9 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .nav-links li { width: 100%; }
     .nav-links a { display: block; font-size: 14px; padding: 16px 20px; text-align: right; border-bottom: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0; }
     .nav-links li:last-child a { border-bottom: none; }
+    
+    /* Mobile-specific embed size override to protect alignment ratio */
+    .crystal-8 { margin-left: 0.18em; margin-right: -2px; }
     
     .scroll-prompt { display: none; }
     .button-group { flex-direction: column; width: 100%; max-width: 300px; align-items: flex-start; }
