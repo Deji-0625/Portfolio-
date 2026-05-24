@@ -40,9 +40,7 @@ body {
     transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* ========================================= */
-/* DYNAMIC LOGO ENGINE (SINGLE LINE)         */
-/* ========================================= */
+/* --- Dynamic Loading Logo Engine --- */
 #dynamic-logo {
     position: fixed; top: 45%; left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
@@ -52,9 +50,6 @@ body {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 54px;
 }
-
-/* --- Global override ensures the stacked logo is completely hidden on desktop --- */
-#header-logo { display: none; }
 
 /* Typing Sequence Rules */
 .type-text {
@@ -76,6 +71,7 @@ body {
     object-fit: contain;
     vertical-align: middle; 
     
+    /* EXTRA COMPRESSED TRACKING: Pulls letters tight to cancel asset padding */
     margin-left: -5px;  
     margin-right: -8px; 
     
@@ -87,7 +83,7 @@ body {
 
 .type-text-end {
     opacity: 0; 
-    letter-spacing: -2px; 
+    letter-spacing: -2px; /* Pulls O and R matching internal word tracking */
     color: #ffffff;
     animation: fadeIn 0.5s ease forwards; animation-delay: 2.3s;
 }
@@ -145,7 +141,7 @@ body {
 /* ========================================= */
 .button-group { 
     display: flex; 
-    gap: 16px; 
+    gap: 16px; /* Tighter gap for a more app-like layout */
     align-items: center; 
 }
 
@@ -157,14 +153,41 @@ body {
     font-size: 1.1rem; 
     border-radius: 50px; 
     z-index: 1;
+    /* Clean, fast transitions for color, and a very snappy transform for clicks */
     transition: background-color 0.2s ease, transform 0.1s ease; 
 }
 
-.primary-btn { background-color: #ffffff; color: #111111; border: none; }
-.primary-btn:hover { background-color: #e2e2e2; color: #111111; }
-.secondary-btn { background-color: transparent; color: #ffffff; border: none; }
-.secondary-btn:hover { background-color: rgba(255, 255, 255, 0.1); color: #ffffff; }
-.btn:active { transform: scale(0.96); }
+/* Primary Button: Solid White to Light Gray */
+.primary-btn { 
+    background-color: #ffffff; 
+    color: #111111; 
+    border: none; 
+}
+
+.primary-btn:hover { 
+    background-color: #e2e2e2; /* Subtle dimming on hover */
+    color: #111111;
+}
+
+/* Secondary Button: Transparent to Muted Highlight */
+.secondary-btn { 
+    background-color: transparent; 
+    color: #ffffff; 
+    border: none; 
+}
+
+.secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle Pinterest dark-mode wash */
+    color: #ffffff;
+}
+
+/* The Pinterest "Press" Effect */
+.btn:active {
+    transform: scale(0.96); /* Button presses physically inward when clicked */
+}
+
+@keyframes backgroundFlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+@keyframes textFlow { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
 
 /* --- Social Links --- */
 .social-links { display: flex; gap: 25px; flex-wrap: wrap; justify-content: flex-start; margin-top: 10px; }
@@ -175,22 +198,12 @@ body {
 body.scrolled #nav-backdrop { transform: translateY(0); }
 body.scrolled #glass-8 { opacity: 0; transform: translate(-50%, -50%) scale(4); }
 
-/* Desktop Scrolled State */
 body.scrolled #dynamic-logo {
     top: 45px; left: 4vw; 
     transform: translate(0, -50%) scale(0.55); transform-origin: left center; 
 }
 body.scrolled #nav-menu { opacity: 1; pointer-events: auto; }
 body.scrolled .scroll-prompt { opacity: 0; }
-
-/* --- Carrd Scroll Reveals --- */
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-.reveal.active { opacity: 1; transform: translateY(0); }
-.main-title.reveal { transition-delay: 0.1s; }
-.software-tags.reveal { transition-delay: 0.2s; }
-.bio-text.reveal { transition-delay: 0.3s; }
-.button-group.reveal { transition-delay: 0.4s; }
-.social-links.reveal { transition-delay: 0.5s; }
 
 /* ========================================= */
 /* MOBILE RESPONSIVENESS                     */
@@ -203,54 +216,19 @@ body.scrolled .scroll-prompt { opacity: 0; }
     #nav-backdrop { height: 75px; } 
     #glass-8 { top: 35%; left: 50%; }
     
-    /* 1. MOBILE INITIAL ENTRY (Unbreakable single line) */
+    /* Mobile Initial Entry Layout */
     #dynamic-logo { 
         top: 35px; left: 15px; font-size: 30px; 
         transform: translateY(-50%) scale(1); transform-origin: left center;
-        /* transition opacity cleanly on scroll */
-        transition: opacity 0.3s ease; 
     }
     .logo-text { letter-spacing: -2px; }
-
-    /* The Crossfade Handoff: Fades out initial line in place */
+    
+    /* Scrolled Header Fixed Core */
     body.scrolled #dynamic-logo {
-        opacity: 0; pointer-events: none;
-        top: 35px; left: 15px; 
-        transform: translateY(-50%) scale(1);
-    }
-    
-    /* 2. THE NEW STACKED HEADER LOGO (Mobile Only) */
-    #header-logo {
-        display: flex; /* Activates on mobile */
-        flex-direction: column; 
-        align-items: flex-start; 
-        position: fixed;
         top: 37.5px; left: 15px; 
-        transform: translateY(-50%) scale(0.75); 
-        transform-origin: left center;
-        font-family: 'Bebas Neue', sans-serif; font-size: 30px;
-        line-height: 0.8;
-        z-index: 100;
-        
-        opacity: 0; pointer-events: none; /* Invisible until scrolled */
-        transition: opacity 0.3s ease;
+        transform: translateY(-50%) scale(0.65); 
     }
     
-    /* Optical Width Balancing */
-    .header-line-1 { letter-spacing: -2px; color: #ffffff; } 
-    .header-line-2 { letter-spacing: 1.5px; color: #ffffff; } /* Expanded to match DEJI THE */
-    .header-8 { 
-        display: inline-block; height: 120%; max-height: 28px; width: auto; 
-        object-fit: contain; vertical-align: middle; 
-        margin-left: -2px; margin-right: -2px; transform: translateY(-1px); 
-    }
-
-    /* The Crossfade Handoff: Fades in the stacked logo */
-    body.scrolled #header-logo {
-        opacity: 1; pointer-events: auto;
-    }
-    
-    /* Mobile Menu Execution */
     #nav-menu { 
         top: 35px; right: 15px; left: auto; transform: translateY(-50%); 
         opacity: 1; pointer-events: auto;
@@ -279,14 +257,12 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .nav-links a { display: block; font-size: 14px; padding: 16px 20px; text-align: right; border-bottom: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0; }
     .nav-links li:last-child a { border-bottom: none; }
     
-    /* Initial 8 size override for mobile single line */
+    /* Mobile Spacing Track Override */
     .crystal-8 { 
-        height: 120%; max-height: 28px; 
-        margin-left: -3px; margin-right: -4px; transform: translateY(-1px);
+        height: 120%;
+        max-height: 28px;
+        margin-left: -3px; /* Squeezes tight against mobile dimensions */
+        margin-right: -4px; 
+        transform: translateY(-1px);
     }
-    
-    .scroll-prompt { display: none; }
-    .button-group { flex-direction: column; width: 100%; max-width: 300px; align-items: flex-start; }
-    .btn { width: 100%; text-align: center; }
-    .secondary-btn { padding: 16px 40px; } 
 }
