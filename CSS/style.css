@@ -47,7 +47,7 @@ body {
     transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- Dynamic Loading Logo (Now Bebas Neue Style) --- */
+/* --- Dynamic Loading Logo (Now Upright & Compressed) --- */
 #dynamic-logo {
     position: fixed;
     top: 45%; left: 50%;
@@ -58,27 +58,22 @@ body {
     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 54px; /* Slightly boosted size for condensed typography font layout */
+    font-size: 54px; 
 }
 
 .logo-text {
     display: inline-block;
-    letter-spacing: -3px; /* Compact negative character spacing for brand logo */
+    letter-spacing: -3px; /* Squeezed together character spacing */
     color: #ffffff;
 }
 
-.logo-slant {
-    transform: skewX(-12deg); /* Perfectly matches the italic styling skew of ISAAC */
-    transform-origin: center;
-}
-
-/* The Transparent PNG */
+/* The Transparent PNG (Now completely upright) --- */
 .crystal-8 {
     height: 1.05em; 
     width: auto; 
     object-fit: contain;
     margin: 0 -2px; 
-    transform: translateY(1px) skewX(-12deg); /* Slants the PNG asset along with the text string */
+    transform: translateY(1px); 
     opacity: 1;
 }
 
@@ -154,7 +149,7 @@ body {
     background-clip: text;
 }
 
-/* Software Tags: Reduced character spacing */
+/* --- Software Tags: Retains its previous clean font style --- */
 .software-tags { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 12px; }
 .software-tags span { 
     background-color: #1a1a1a; 
@@ -164,7 +159,7 @@ body {
     font-weight: bold; 
     color: #e0e0e0; 
     border: 1px solid #333; 
-    letter-spacing: -1px; 
+    letter-spacing: 1px; /* Back to original breathing room */
 }
 
 .bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 700px; line-height: 1.6; margin-top: 10px; }
@@ -231,10 +226,9 @@ body.scrolled #glass-8 {
     transform: translate(-50%, -50%) scale(4); 
 }
 
-/* Scrolled Logo Scale */
 body.scrolled #dynamic-logo {
     top: 45px; left: 4vw; 
-    transform: translate(0, -50%) scale(0.55); /* Clean scaled-down footprint for Bebas header layout */
+    transform: translate(0, -50%) scale(0.55); 
     transform-origin: left center; 
 }
 body.scrolled #nav-menu { opacity: 1; pointer-events: auto; }
@@ -260,7 +254,7 @@ body.scrolled .scroll-prompt { opacity: 0; }
 
 
 /* ========================================= */
-/* MOBILE RESPONSIVENESS                     */
+/* MOBILE RESPONSIVENESS & PORTFOLIO ENGINE  */
 /* ========================================= */
 @media (max-width: 768px) {
     #main-content { 
@@ -278,8 +272,12 @@ body.scrolled .scroll-prompt { opacity: 0; }
         letter-spacing: -4px; 
     }
     
+    /* Mobile Setup: Initial Entry Screen is floating cleanly at the top */
     #dynamic-logo { 
-        font-size: 34px; /* Balanced responsive sizing for condensed lettering layout */
+        top: 35px; left: 15px;
+        font-size: 34px; 
+        transform: translateY(-50%) scale(1);
+        transform-origin: left center;
     }
     
     .logo-text {
@@ -289,14 +287,14 @@ body.scrolled .scroll-prompt { opacity: 0; }
     #nav-backdrop { height: 75px; } 
     #glass-8 { top: 35%; left: 50%; }
     
+    /* When scrolled down, the header interface settles in seamlessly */
     body.scrolled #dynamic-logo {
         top: 37.5px; left: 15px; 
         transform: translateY(-50%) scale(0.65); 
-        transform-origin: left center;
     }
     
     #nav-menu { 
-        top: 37.5px; right: 15px; left: auto;
+        top: 35px; right: 15px; left: auto;
         transform: translateY(-50%); 
         opacity: 1; pointer-events: auto;
     }
