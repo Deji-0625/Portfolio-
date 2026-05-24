@@ -24,11 +24,10 @@ body {
 #glass-8 {
     position: fixed;
     top: 45%; left: 50%;
-    /* Scales it up massively */
     transform: translate(-50%, -50%) scale(5);
-    opacity: 0.12; /* Very faint */
-    filter: blur(12px); /* The frosted glass blur effect */
-    z-index: 90; /* Sits behind the main text */
+    opacity: 0.12; 
+    filter: blur(12px); 
+    z-index: 90; 
     pointer-events: none;
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
@@ -51,10 +50,7 @@ body {
     top: 45%; left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
     display: flex; align-items: center; justify-content: center;
-    
-    /* Increased heavily for desktop impact */
     font-size: 48px; 
-    
     font-weight: 900; letter-spacing: 1px;
     z-index: 100;
     white-space: nowrap; 
@@ -166,7 +162,7 @@ body {
 .secondary-btn { 
     background-color: transparent; 
     color: #ffffff; 
-    border: none; /* Stripped the border */
+    border: none; 
 }
 .secondary-btn:hover {
     transform: scale(1.05); 
@@ -178,7 +174,6 @@ body {
     animation: textFlow 2.5s linear infinite;
 }
 
-/* Flow Animations */
 @keyframes backgroundFlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 @keyframes textFlow { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
 
@@ -204,7 +199,6 @@ body.scrolled #glass-8 {
 /* Shrinks the massive logo into the header */
 body.scrolled #dynamic-logo {
     top: 45px; left: 8vw;
-    /* Scales the 48px font down to a nice 28px header size */
     transform: translate(0, -50%) scale(0.6); 
     transform-origin: left center; 
 }
@@ -237,25 +231,34 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .main-title { font-size: 2.8rem; }
     #nav-backdrop { height: 75px; } 
     
-    /* Shrinks the base font so it doesn't break off the edge of a phone */
+    /* Pulls the main content up so the scroll gap is much shorter */
+    #main-content { margin-top: 70vh; }
+    
     #dynamic-logo { 
         font-size: 28px; 
         transform: translate(-50%, -50%) scale(1.1); 
     }
     
-    /* Mobile header state */
+    /* Scrolled Header: Logo is scaled down to leave room */
     body.scrolled #dynamic-logo {
         top: 37.5px; left: 15px; 
-        transform: translateY(-50%) scale(0.7); 
+        transform: translateY(-50%) scale(0.55); 
         transform-origin: left center; 
     }
     
+    /* Scrolled Header: Links are pulled tighter together */
     #nav-menu { 
-        top: 37.5px; right: 15px; left: auto;
+        top: 37.5px; right: 12px; left: auto;
         transform: translateY(-50%); 
     }
-    .nav-links { gap: 15px; justify-content: flex-end; } 
-    .nav-links a { font-size: 13px; padding: 5px; } 
+    .nav-links { 
+        gap: 8px; /* Tighter gap between the buttons */
+        justify-content: flex-end; 
+    } 
+    .nav-links a { 
+        font-size: 12px; /* Slightly smaller text */
+        padding: 4px 6px; 
+    } 
     
     .button-group { flex-direction: column; width: 100%; max-width: 300px; }
     .btn { width: 100%; text-align: center; }
