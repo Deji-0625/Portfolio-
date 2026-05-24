@@ -94,28 +94,6 @@
         </div>
     </main>
 
-    <script>
-        window.addEventListener('scroll', () => {
-            const body = document.body;
-            if (window.scrollY > 50) {
-                body.classList.add('scrolled');
-            } else {
-                body.classList.remove('scrolled');
-            }
-        });
-
-        const observerOptions = { threshold: 0.15 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, observerOptions);
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-    </script>
+    <script src="JS/script.js"></script>
 </body>
 </html>
