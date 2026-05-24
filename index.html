@@ -10,7 +10,6 @@
 
     <div class="bg-streaks"></div>
     <img src="8.png" alt="" id="glass-8">
-
     <div id="nav-backdrop"></div>
 
     <div id="dynamic-logo">
@@ -45,23 +44,23 @@
     <main id="main-content">
         <header class="hero">
             <div class="hero-intro-group">
-                <h1 class="main-title reveal">
+                <h1 class="main-title">
                     <span class="name-part">AKANDE</span>
                     <span class="name-part name-italic gradient-text">ISAAC</span>
                     <span class="name-part">AYODEJI</span>
                 </h1>
                 
-                <div class="software-tags reveal">
+                <div class="software-tags">
                     <span>VIDEOGRAPHER</span>
                     <span>VIDEO EDITOR</span>
                     <span>GRAPHIC DESIGNER</span>
                 </div>
 
-                <p class="bio-text reveal">
+                <p class="bio-text">
                     Video Editor and Graphics Designer with focus on Cinematic storytelling and high-impact visuals. Turning raw footage into cinematic stories and static ideas into high-impact graphics. I build the visuals that define the brand. <strong>Let's Cre8.</strong>
                 </p>
 
-                <div class="button-group reveal">
+                <div class="button-group">
                     <a href="work.html" class="btn primary-btn">View My Work</a>
                     <a href="contact.html" class="btn secondary-btn">Contact Me</a>
                 </div>
@@ -104,14 +103,12 @@
             const currentScrollY = window.scrollY;
             const isScrolled = currentScrollY > 50;
 
-            // 1. Initial Intro Logic
             if (isScrolled) {
                 body.classList.add('scrolled');
             } else {
                 body.classList.remove('scrolled');
             }
 
-            // 2. Gatekeeper: Smart Scroll (Only hide header after intro)
             if (isScrolled) {
                 if (currentScrollY > lastScrollY && currentScrollY > 100) {
                     body.classList.add('header-hidden');
@@ -125,7 +122,7 @@
             lastScrollY = currentScrollY;
         });
 
-        const observerOptions = { threshold: 0.15 };
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, observerOptions);
