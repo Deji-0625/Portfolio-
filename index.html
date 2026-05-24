@@ -25,7 +25,6 @@
             <span class="line"></span>
             <span class="line"></span>
         </button>
-        
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="work.html">Work</a></li>
@@ -40,7 +39,9 @@
 
     <main id="main-content">
         <header class="hero">
-            <h1 class="main-title reveal">AKANDE <span class="gradient-text">ISAAC</span> AYODEJI</h1>
+            <h1 class="main-title reveal">
+                I am Isaac Ayodeji. I translate raw footage into cinematic stories, shape static ideas into high-impact graphics, and <span class="gradient-text">build the definitive visuals that shape the brand.</span>
+            </h1>
             
             <div class="software-tags reveal">
                 <span>VIDEO EDITOR</span>
@@ -49,7 +50,7 @@
             </div>
 
             <p class="bio-text reveal">
-                Video Editor and Graphics Designer with focus on Cinematic storytelling and high-impact visuals. Turning raw footage into cinematic stories and static ideas into high-impact graphics. I build the visuals that define the brand. <strong>Let's Cre8.</strong>
+                Focused on clean execution and narrative-driven creation. From behind the camera to the final asset, I bring ideas to life with absolute precision. <strong>Let's Cre8.</strong>
             </p>
 
             <div class="button-group reveal">
@@ -67,7 +68,6 @@
     </main>
 
     <script>
-        // Header Scroll Magic
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 document.body.classList.add('scrolled');
@@ -76,7 +76,6 @@
             }
         });
 
-        // Carrd Scroll Reveals
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -90,14 +89,11 @@
             observer.observe(el);
         });
 
-        // THE NEW MOBILE MENU TOGGLE LOGIC
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
 
         hamburger.addEventListener('click', () => {
-            // Toggles the "X" animation on the button
             hamburger.classList.toggle('active');
-            // Slides the dropdown menu in and out
             navLinks.classList.toggle('active');
         });
     </script>
