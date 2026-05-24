@@ -134,14 +134,22 @@ body {
     gap: 25px; 
 }
 
-/* Tall & Thin Headline Architecture */
+/* Tall & Tight Headline Architecture */
 .main-title { 
     font-family: 'Bebas Neue', sans-serif; 
-    font-size: 6.5rem; /* Tall fonts can scale massively without taking up too much width */
-    font-weight: 400;  /* Naturally elegant, unbulky baseline weight */
-    letter-spacing: 3px; /* Gives the compressed characters breathing room */
+    font-size: 8rem; /* Scales up tall without overflowing horizontally */
+    font-weight: 400;  
+    
+    /* RADICAL LETTER SPACING REDUCTION: Desktop */
+    letter-spacing: -15px; /* Characters are now nearly touching/overlapping */
+    
     line-height: 0.95;  /* Pulls rows closer for that editorial look */
-    max-width: 1000px;
+    max-width: 1100px;
+}
+
+/* Specific styling to italicize ISAAC */
+.name-italic {
+    font-style: italic;
 }
 
 .gradient-text {
@@ -149,8 +157,21 @@ body {
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 
+/* Software Tags: Reduced character spacing */
 .software-tags { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 12px; }
-.software-tags span { background-color: #1a1a1a; padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; color: #e0e0e0; border: 1px solid #333; }
+.software-tags span { 
+    background-color: #1a1a1a; 
+    padding: 8px 18px; 
+    border-radius: 30px; 
+    font-size: 0.85rem; 
+    font-weight: bold; 
+    color: #e0e0e0; 
+    border: 1px solid #333; 
+    
+    /* REDUCED ABILITY SPACING */
+    letter-spacing: -2px; /* Pulls letters videography, video editing, design tight */
+}
+
 .bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 700px; line-height: 1.6; margin-top: 10px; }
 .bio-text strong { color: #ffffff; }
 
@@ -253,9 +274,11 @@ body.scrolled .scroll-prompt { opacity: 0; }
     
     /* Tall & Condensed Mobile Rule Scaling */
     .main-title { 
-        font-size: 4.8rem; /* Scales up tall without overflowing horizontally */
+        font-size: 5rem; /* Scales up tall without overflowing horizontally */
         line-height: 0.95; 
-        letter-spacing: 1px;
+        
+        /* REDUCED SPACING: Mobile */
+        letter-spacing: -7px; /* Pulls mobile characters very tight */
     }
     
     #nav-backdrop { height: 75px; } 
@@ -317,4 +340,9 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .button-group { flex-direction: column; width: 100%; max-width: 300px; align-items: flex-start; }
     .btn { width: 100%; text-align: center; }
     .secondary-btn { padding: 16px 40px; } 
+    
+    /* Adjust mobile ability spacing */
+    .software-tags span {
+        letter-spacing: -1.5px; /* Tighter on mobile */
+    }
 }
