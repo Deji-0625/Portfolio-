@@ -29,7 +29,6 @@ body { background-color: #050505; color: #ffffff; overflow-x: hidden; min-height
 #dynamic-logo { position: fixed; top: 45%; left: 50%; transform: translate(-50%, -50%) scale(1.5); display: flex; align-items: center; justify-content: center; z-index: 100; white-space: nowrap; transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); font-family: 'Bebas Neue', sans-serif; font-size: 54px; }
 #mobile-stacked-logo { display: none; }
 
-/* FIXED: Increased max-width from 320px to 400px so the 'E' never gets cut off to look like an 'I' */
 .type-text { display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0; letter-spacing: -2px; color: #ffffff; border-right: 2px solid #fff; animation: typing 1.5s steps(13, end) forwards, blink 0.5s step-end 6 forwards; }
 @keyframes typing { to { max-width: 400px; } }
 @keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
@@ -53,7 +52,6 @@ body { background-color: #050505; color: #ffffff; overflow-x: hidden; min-height
 #main-content { margin-top: 100vh; padding: 20px 8vw; display: flex; flex-direction: column; }
 .hero { display: flex; flex-direction: column; align-items: flex-start; gap: 25px; }
 
-/* FIXED: Restored 'font-weight: 400' and 'max-width' so the font looks thin and correct again */
 .main-title { font-family: 'Bebas Neue', sans-serif; font-size: 8rem; font-weight: 400; line-height: 0.85; max-width: 1100px; display: flex; flex-wrap: wrap; gap: 0 40px; }
 .name-part { display: inline-block; letter-spacing: -6px; }
 .name-italic { transform: skewX(-15deg); transform-origin: center; margin-right: 15px; }
@@ -96,7 +94,6 @@ body.scrolled .scroll-prompt { opacity: 0; }
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-
 /* ========================================= */
 /* --- PERMANENT HEADER FOR INNER PAGES  --- */
 /* ========================================= */
@@ -125,12 +122,49 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     transform: translateY(-50%) !important;
 }
 
+/* ========================================= */
+/* --- DESKTOP DROPDOWN MENU --- */
+/* ========================================= */
+
+.nav-dropdown { position: relative; }
+.dropdown-toggle { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.arrow { font-size: 0.6rem; transition: transform 0.3s ease; }
+
+/* The Hidden Box */
+.dropdown-menu { 
+    position: absolute; 
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%) translateY(10px);
+    background-color: #0d0d0d; 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 12px; 
+    padding: 8px 0; 
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0; 
+    visibility: hidden; 
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Make it appear on click (using .active) */
+.nav-dropdown.active .dropdown-menu { 
+    opacity: 1; 
+    visibility: visible; 
+    transform: translateX(-50%) translateY(0); 
+}
+.nav-dropdown.active .arrow { transform: rotate(180deg); }
+
+/* Desktop Sub-links */
+.dropdown-menu li { list-style: none; }
+.dropdown-menu a { padding: 12px 20px; font-size: 14px; text-align: center; color: #ccc; transition: background 0.2s; }
+.dropdown-menu a:hover { color: #00ffcc; background-color: rgba(255,255,255,0.03); }
+
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-    /* Pulled back up to 15vh so it isn't lost at the bottom of the screen */
     #main-content { margin-top: 50vh; padding: 20px 24px; }
     
-    /* REDUCED SPACE: Tighter gap (10px) and tighter line-height (0.8) */
     .main-title { font-size: 5rem; line-height: 0.8; gap: 0 10px; } 
     .name-part { letter-spacing: -4px; }
     
@@ -149,22 +183,18 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     .stack-8 { display: inline-block; height: 120%; max-height: 28px; width: auto; object-fit: contain; vertical-align: middle; margin-left: -2px; margin-right: -2px; transform: translateY(-1px); }
 
     /* --- Lock Mobile Header for Inner Pages --- */
-    
-    /* Keep mobile stacked logo permanently visible */
     body.inner-page #mobile-stacked-logo,
     body.inner-page.scrolled.header-hidden #mobile-stacked-logo {
         opacity: 1 !important; 
         pointer-events: auto !important;
     }
     
-    /* Keep the desktop logo hidden on mobile inner pages */
     body.inner-page #dynamic-logo,
     body.inner-page.scrolled.header-hidden #dynamic-logo {
         opacity: 0 !important; 
         pointer-events: none !important;
     }
     
-    /* Keep the mobile hamburger menu locked in place */
     body.inner-page #nav-menu,
     body.inner-page.scrolled.header-hidden #nav-menu {
         top: 37.5px !important;
@@ -190,8 +220,32 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     
     .software-tags { flex-wrap: wrap; }
     
-    /* NEW: Side-by-side mobile buttons */
     .button-group { flex-direction: row; justify-content: flex-start; gap: 12px; width: 100%; max-width: 350px; }
-    /* flex: 1 makes both buttons take up exactly 50% of the space for a perfect split */
     .btn { flex: 1; text-align: center; padding: 14px 10px; font-size: 1rem; border-radius: 50px; }
+
+    /* --- Mobile Accordion Dropdown --- */
+    .dropdown-toggle { justify-content: flex-end; }
+    
+    .dropdown-menu {
+        position: relative; /* Stays inside the menu flow to push links down */
+        top: 0; left: 0; transform: none;
+        background-color: rgba(255, 255, 255, 0.02); 
+        border: none; border-radius: 0;
+        padding: 0; width: 100%;
+        display: none; /* Hidden via display on mobile */
+    }
+    
+    /* When clicked on mobile, show it */
+    .nav-dropdown.active .dropdown-menu { display: flex; animation: none; opacity: 1; visibility: visible; }
+    .nav-dropdown.active .arrow { transform: rotate(180deg); }
+    
+    /* The Indentation! */
+    .dropdown-menu a { 
+        padding: 12px 35px 12px 20px; /* 35px right padding pushes it inward */
+        text-align: right; 
+        font-size: 13px; 
+        color: #888; 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03); 
+    }
+    .dropdown-menu a:hover { background-color: transparent; color: #fff; }
 }
