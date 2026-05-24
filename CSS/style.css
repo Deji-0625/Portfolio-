@@ -9,7 +9,7 @@ body {
     min-height: 200vh; 
 }
 
-/* --- Ambient Rainbow Streaks (Updated Colors) --- */
+/* --- Ambient Rainbow Streaks --- */
 .bg-streaks {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: radial-gradient(ellipse at top left, rgba(157,0,255,0.08), transparent 50%),
@@ -39,22 +39,24 @@ body {
 @keyframes typing { to { max-width: 250px; } }
 @keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
 
-/* SVG '8' Animation */
-.draw-8 {
-    width: 25px; height: 42px; margin: 0 2px;
-}
-.draw-8 path {
-    stroke-dasharray: 400; stroke-dashoffset: 400;
-    animation: trace 1.5s ease-in-out forwards;
+/* The High-Res Image Magic */
+.crystal-8 {
+    height: 48px; /* Perfectly matches the text height */
+    width: auto; /* Prevents warping */
+    object-fit: contain;
+    margin: 0 2px;
+    vertical-align: middle;
+    opacity: 0;
+    mix-blend-mode: screen; /* THIS erases the black background instantly */
+    animation: fadeIn 0.8s ease forwards;
     animation-delay: 1.5s; 
 }
-@keyframes trace { to { stroke-dashoffset: 0; } }
 
-/* Final 'or' fade in (FIXED: Added the @keyframes) */
+/* Final 'or' fade in */
 .type-text-end {
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
-    animation-delay: 2.8s; 
+    animation-delay: 2.3s; 
 }
 
 @keyframes fadeIn {
@@ -93,7 +95,6 @@ body {
     display: flex; flex-direction: column; align-items: center; text-align: center; gap: 25px;
 }
 
-/* Updated ISAAC Text Gradient */
 .main-title { font-size: 4rem; font-weight: 900; letter-spacing: 2px; line-height: 1.1; }
 .gradient-text {
     background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
