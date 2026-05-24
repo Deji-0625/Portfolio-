@@ -1,5 +1,5 @@
-/* --- Import Thinner Premium Google Fonts (Light 300 & Regular 400) --- */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
+/* --- Import Heavy Premium Google Font (Back to 900) --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 
 /* --- Global Settings --- */
 * {
@@ -26,7 +26,7 @@ body {
 /* --- The Giant Glassmorphic 8 --- */
 #glass-8 {
     position: fixed;
-    top: 45%; left: 65%; 
+    top: 45%; left: 65%; /* Keeps right alignment to contrast left text */
     transform: translate(-50%, -50%) scale(5);
     opacity: 0.12; 
     filter: blur(12px); 
@@ -129,37 +129,29 @@ body {
 .hero { 
     display: flex; 
     flex-direction: column; 
-    align-items: flex-start; 
+    align-items: flex-start; /* Stacks all content along the left edge */
     text-align: left; 
-    gap: 30px; 
+    gap: 25px; 
 }
 
-/* The New Elegant, Thin Layout Rules */
+/* Restored Bold Headline Styling */
 .main-title { 
     font-family: 'Montserrat', sans-serif; 
-    font-size: 3.2rem; 
-    font-weight: 300; /* Shifted to ultra-clean Light weight */
-    letter-spacing: 0px; /* Neutral track for modern thin layouts */
-    line-height: 1.25; 
-    max-width: 950px; 
-    color: #e5e5e5; /* Softened slightly so pure white text options pop */
-}
-
-/* Gives your name a slightly cleaner structural emphasis inside the sentence */
-.name-inline {
-    font-weight: 400; /* Regular weight to subtly anchor the text string */
-    color: #ffffff;
+    font-size: 4rem; 
+    font-weight: 900; /* Back to heavy impact style */
+    letter-spacing: 2px; 
+    line-height: 1.1; 
+    max-width: 900px;
 }
 
 .gradient-text {
     background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    font-weight: 400; /* Let the rainbow have just a hair more presence */
 }
 
 .software-tags { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 12px; }
 .software-tags span { background-color: #1a1a1a; padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; color: #e0e0e0; border: 1px solid #333; }
-.bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 650px; line-height: 1.6; }
+.bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 700px; line-height: 1.6; margin-top: 10px; }
 .bio-text strong { color: #ffffff; }
 
 /* ========================================= */
@@ -259,11 +251,11 @@ body.scrolled .scroll-prompt { opacity: 0; }
         padding: 20px 24px; 
     }
     
-    /* Thin, high-end scaling rules for mobile layout columns */
+    /* Restored massive stacked layout to comfortably occupy space */
     .main-title { 
-        font-size: 2.6rem; /* Scaled down slightly to stop long words from feeling cramped when thin */
-        line-height: 1.2; 
-        letter-spacing: 0px;
+        font-size: 3.8rem; 
+        line-height: 1.05; 
+        letter-spacing: -1.5px;
     }
     
     #nav-backdrop { height: 75px; } 
