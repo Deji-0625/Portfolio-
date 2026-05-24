@@ -151,7 +151,6 @@ body.scrolled .scroll-prompt { opacity: 0; }
     opacity: 1;
     transform: translateY(0);
 }
-/* Staggering the load times so they flow downwards */
 .main-title.reveal { transition-delay: 0.1s; }
 .software-tags.reveal { transition-delay: 0.2s; }
 .bio-text.reveal { transition-delay: 0.3s; }
@@ -164,5 +163,38 @@ body.scrolled .scroll-prompt { opacity: 0; }
 /* ========================================= */
 @media (max-width: 768px) {
     .main-title { font-size: 2.8rem; }
+    
+    /* Slightly slimmer backdrop */
     #nav-backdrop { height: 75px; } 
-    #dynamic-logo { transform: translate(-50%, -50%) scale(1); }
+    
+    /* Initial state: logo stays perfectly centered */
+    #dynamic-logo { transform: translate(-50%, -50%) scale(1.1); }
+    
+    /* Scrolled state: Logo hard-pinned to the LEFT */
+    body.scrolled #dynamic-logo {
+        top: 37.5px; 
+        left: 15px; /* Rigid left anchor */
+        transform: translateY(-50%) scale(0.5); /* Slightly smaller to prevent crashing */
+        transform-origin: left center; 
+    }
+    
+    /* Scrolled state: Nav links hard-pinned to the RIGHT */
+    #nav-menu { 
+        top: 37.5px; 
+        right: 15px; /* Rigid right anchor */
+        left: auto;
+        transform: translateY(-50%); 
+    }
+    
+    .nav-links { 
+        gap: 15px; 
+        justify-content: flex-end; /* Forces items to the right */
+    } 
+    .nav-links a { 
+        font-size: 13px; 
+        padding: 5px; /* Gives fingers a larger tap target */
+    } 
+    
+    .button-group { flex-direction: column; width: 100%; max-width: 300px; }
+    .btn { width: 100%; text-align: center; }
+}
