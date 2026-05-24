@@ -74,7 +74,7 @@ body {
     height: 1.1em; 
     width: auto; 
     object-fit: contain;
-    margin: 0 -5px; 
+    margin: 0 -4px; 
     transform: translateY(3px); 
     opacity: 0;
     animation: fadeIn 0.8s ease forwards;
@@ -134,27 +134,36 @@ body {
     gap: 25px; 
 }
 
-/* Tall & Tight Headline Architecture */
+/* Tall & Tight Headline Container Layout */
 .main-title { 
     font-family: 'Bebas Neue', sans-serif; 
-    font-size: 8rem; /* Scales up tall without overflowing horizontally */
+    font-size: 8rem; 
     font-weight: 400;  
-    
-    /* RADICAL LETTER SPACING REDUCTION: Desktop */
-    letter-spacing: -15px; /* Characters are now nearly touching/overlapping */
-    
-    line-height: 0.95;  /* Pulls rows closer for that editorial look */
+    line-height: 0.85; /* Pulls rows even tighter together vertically */
     max-width: 1100px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 40px; /* Space between the giant words */
 }
 
-/* Specific styling to italicize ISAAC */
+/* Target each word to apply the tight character grid */
+.name-part {
+    display: inline-block;
+    letter-spacing: -6px; /* Forces characters to squeeze tightly together */
+}
+
+/* THE ARTIFICIAL SKEW LOGIC: Force italic styling onto Bebas Neue */
 .name-italic {
-    font-style: italic;
+    transform: skewX(-15deg); /* Slants the text mathematically */
+    transform-origin: center;
+    margin-right: 15px; /* Compensates for the slant width */
 }
 
 .gradient-text {
     background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* Software Tags: Reduced character spacing */
@@ -167,9 +176,7 @@ body {
     font-weight: bold; 
     color: #e0e0e0; 
     border: 1px solid #333; 
-    
-    /* REDUCED ABILITY SPACING */
-    letter-spacing: -2px; /* Pulls letters videography, video editing, design tight */
+    letter-spacing: -1px; 
 }
 
 .bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 700px; line-height: 1.6; margin-top: 10px; }
@@ -264,7 +271,7 @@ body.scrolled .scroll-prompt { opacity: 0; }
 
 
 /* ========================================= */
-/* MOBILE RESPONSIVENESS & HAMBURGER MENU    */
+/* MOBILE RESPONSIVENESS                     */
 /* ========================================= */
 @media (max-width: 768px) {
     #main-content { 
@@ -272,13 +279,14 @@ body.scrolled .scroll-prompt { opacity: 0; }
         padding: 20px 24px; 
     }
     
-    /* Tall & Condensed Mobile Rule Scaling */
     .main-title { 
-        font-size: 5rem; /* Scales up tall without overflowing horizontally */
-        line-height: 0.95; 
-        
-        /* REDUCED SPACING: Mobile */
-        letter-spacing: -7px; /* Pulls mobile characters very tight */
+        font-size: 4.6rem; 
+        line-height: 0.9; 
+        gap: 0 20px;
+    }
+    
+    .name-part {
+        letter-spacing: -4px; /* Perfectly dense on mobile dimensions */
     }
     
     #nav-backdrop { height: 75px; } 
@@ -340,9 +348,4 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .button-group { flex-direction: column; width: 100%; max-width: 300px; align-items: flex-start; }
     .btn { width: 100%; text-align: center; }
     .secondary-btn { padding: 16px 40px; } 
-    
-    /* Adjust mobile ability spacing */
-    .software-tags span {
-        letter-spacing: -1.5px; /* Tighter on mobile */
-    }
 }
