@@ -1,11 +1,8 @@
-/* --- Import Tall, Condensed Premium Font --- */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-/* --- Global Settings --- */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif; }
 body { background-color: #050505; color: #ffffff; overflow-x: hidden; min-height: 200vh; }
 
-/* --- Ambient Rainbow Streaks --- */
 .bg-streaks {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: radial-gradient(ellipse at 15% 25%, rgba(157, 0, 255, 0.05), transparent 45%),
@@ -16,9 +13,12 @@ body { background-color: #050505; color: #ffffff; overflow-x: hidden; min-height
 }
 
 #glass-8 { position: fixed; top: 45%; left: 65%; transform: translate(-50%, -50%) scale(5); opacity: 0.12; filter: blur(12px); z-index: 90; pointer-events: none; transition: opacity 0.8s ease, transform 0.8s ease; }
-#nav-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 90px; z-index: 95; border-radius: 0 0 30px 30px; border-bottom: 3px solid transparent; background: linear-gradient(#050505, #050505) padding-box, linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff) border-box; transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
 
-/* --- Logos --- */
+/* Navigation Backdrops */
+#nav-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 90px; z-index: 95; border-radius: 0 0 30px 30px; border-bottom: 3px solid transparent; background: linear-gradient(#050505, #050505) padding-box, linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff) border-box; transform: translateY(0); transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+body.header-hidden #nav-backdrop { transform: translateY(-100%); }
+
+/* Logos */
 #dynamic-logo { position: fixed; top: 45%; left: 50%; transform: translate(-50%, -50%) scale(1.5); display: flex; align-items: center; justify-content: center; z-index: 100; white-space: nowrap; transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); font-family: 'Bebas Neue', sans-serif; font-size: 54px; }
 #mobile-stacked-logo { display: none; }
 .type-text { display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0; letter-spacing: -2px; color: #ffffff; border-right: 2px solid #fff; animation: typing 1.5s steps(13, end) forwards, blink 0.5s step-end 6 forwards; }
@@ -28,18 +28,18 @@ body { background-color: #050505; color: #ffffff; overflow-x: hidden; min-height
 .type-text-end { opacity: 0; letter-spacing: -2px; color: #ffffff; animation: fadeIn 0.5s ease forwards; animation-delay: 2.3s; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* --- Scroll Elements --- */
+/* Scroll Elements */
 .scroll-prompt { position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%); text-align: center; font-size: 14px; color: #888; animation: bounce 2s infinite; transition: opacity 0.4s ease; }
 @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 10px); } }
 
-/* --- Navigation --- */
+/* Nav */
 #nav-menu { position: fixed; top: 45px; right: 4vw; transform: translateY(-50%); opacity: 0; pointer-events: none; z-index: 99; transition: opacity 0.8s ease; }
 .hamburger { display: none; }
 .nav-links { list-style: none; display: flex; gap: 35px; }
 .nav-links a { color: #ffffff; text-decoration: none; font-size: 16px; font-weight: bold; transition: color 0.3s; }
 .nav-links a:hover { color: #00ffcc; }
 
-/* --- Main Content --- */
+/* Main Content */
 #main-content { margin-top: 100vh; padding: 20px 8vw; display: flex; flex-direction: column; }
 .hero { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 25px; }
 .main-title { font-family: 'Bebas Neue', sans-serif; font-size: 8rem; font-weight: 400; line-height: 0.85; max-width: 1100px; display: flex; flex-wrap: wrap; gap: 0 40px; }
@@ -51,7 +51,7 @@ body { background-color: #050505; color: #ffffff; overflow-x: hidden; min-height
 .bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 700px; line-height: 1.6; margin-top: 10px; }
 .bio-text strong { color: #ffffff; }
 
-/* --- Buttons --- */
+/* Buttons & Breaker */
 .button-group { display: flex; gap: 16px; align-items: center; }
 .btn { position: relative; padding: 16px 32px; text-decoration: none; font-weight: bold; font-size: 1.1rem; border-radius: 50px; z-index: 1; transition: background-color 0.2s ease, transform 0.1s ease; }
 .primary-btn { background-color: #ffffff; color: #111111; border: none; }
@@ -59,11 +59,9 @@ body { background-color: #050505; color: #ffffff; overflow-x: hidden; min-height
 .secondary-btn { background-color: transparent; color: #ffffff; border: none; }
 .secondary-btn:hover { background-color: rgba(255, 255, 255, 0.1); color: #ffffff; }
 .btn:active { transform: scale(0.96); }
-
-/* --- Section Breaker --- */
 .section-breaker { border: 0; height: 1px; background: linear-gradient(to right, transparent, #333, transparent); margin: 60px 0; width: 100%; }
 
-/* --- Cinematic Showreel --- */
+/* Cinematic Showreel */
 #showreel-section { position: relative; width: 100%; height: 70vh; border-radius: 20px; overflow: hidden; background-color: #050505; display: flex; align-items: center; justify-content: center; margin-bottom: 60px; }
 .showreel-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; pointer-events: none; }
 .showreel-watermark { position: relative; z-index: 2; width: 120px; height: 120px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; cursor: pointer; }
@@ -72,13 +70,10 @@ body { background-color: #050505; color: #ffffff; overflow-x: hidden; min-height
 .spinning-text text { font-family: 'Bebas Neue', sans-serif; font-size: 11px; font-weight: bold; fill: #ffffff; letter-spacing: 2px; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* --- Social Links --- */
+/* Social Links & Animations */
 .social-links { display: flex; gap: 25px; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 50px; }
 .social-links a { color: #888888; text-decoration: none; font-size: 0.95rem; transition: color 0.3s ease; }
 .social-links a:hover { color: #00ffcc; }
-
-/* --- Scroll Interactions --- */
-body.scrolled #nav-backdrop { transform: translateY(0); }
 body.scrolled #glass-8 { opacity: 0; transform: translate(-50%, -50%) scale(4); }
 body.scrolled #dynamic-logo { top: 45px; left: 4vw; transform: translate(0, -50%) scale(0.55); transform-origin: left center; }
 body.scrolled #nav-menu { opacity: 1; pointer-events: auto; }
@@ -86,7 +81,6 @@ body.scrolled .scroll-prompt { opacity: 0; }
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     #main-content { margin-top: 50vh; padding: 20px 24px; }
     .main-title { font-size: 5rem; line-height: 0.9; gap: 0 20px; }
