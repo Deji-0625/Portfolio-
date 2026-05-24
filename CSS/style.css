@@ -26,7 +26,7 @@ body {
 /* --- The Giant Glassmorphic 8 --- */
 #glass-8 {
     position: fixed;
-    top: 45%; left: 50%;
+    top: 45%; left: 65%; /* Shifted right to contrast beautifully against the left text */
     transform: translate(-50%, -50%) scale(5);
     opacity: 0.12; 
     filter: blur(12px); 
@@ -113,44 +113,50 @@ body {
     transition: opacity 0.8s ease;
 }
 
-/* Hamburger button hidden on desktop */
-.hamburger {
-    display: none; 
-}
+.hamburger { display: none; }
 
 .nav-links { list-style: none; display: flex; gap: 35px; }
 .nav-links a { color: #ffffff; text-decoration: none; font-size: 16px; font-weight: bold; transition: color 0.3s; }
 .nav-links a:hover { color: #00ffcc; }
 
-/* --- Main Hero Content --- */
+/* --- Main Hero Content (Left-Aligned Structure) --- */
 #main-content {
     margin-top: 100vh;
-    padding: 20px;
-    display: flex; justify-content: center;
+    padding: 20px 8vw; /* Generous padding on desktop to seat text beautifully */
+    display: flex; 
+    justify-content: flex-start; /* Aligns container to the left */
 }
-.hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 25px; }
+.hero { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; /* Aligns all sub-elements to the left spine */
+    text-align: left; /* Forces text left alignment */
+    gap: 30px; 
+}
 
+/* The Left-Aligned Statement Typography */
 .main-title { 
     font-family: 'Montserrat', sans-serif; 
-    font-size: 4rem; 
+    font-size: 3.2rem; 
     font-weight: 900; 
-    letter-spacing: 2px; 
-    line-height: 1.1; 
+    letter-spacing: -1px; 
+    line-height: 1.2; 
+    max-width: 900px; 
 }
 
 .gradient-text {
     background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
-.software-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+.software-tags { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 12px; }
 .software-tags span { background-color: #1a1a1a; padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; color: #e0e0e0; border: 1px solid #333; }
-.bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 700px; line-height: 1.6; margin-top: 10px; }
+.bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 650px; line-height: 1.6; }
 .bio-text strong { color: #ffffff; }
 
 /* ========================================= */
 /* BUTTONS: SOLID vs TEXT-ONLY               */
 /* ========================================= */
-.button-group { display: flex; gap: 20px; margin-top: 20px; }
+.button-group { display: flex; gap: 25px; align-items: center; }
 
 .btn { 
     position: relative; 
@@ -174,7 +180,10 @@ body {
 .primary-btn:hover { color: #000000; transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 0, 127, 0.25); }
 .primary-btn:hover::before { opacity: 1; animation: backgroundFlow 2.5s linear infinite; }
 
-.secondary-btn { background-color: transparent; color: #ffffff; border: none; }
+.secondary-btn { 
+    background-color: transparent; color: #ffffff; border: none; 
+    padding: 16px 20px; /* Slimmer horizontal area since there are no borders */
+}
 .secondary-btn:hover {
     transform: scale(1.05); 
     background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff, #9d00ff, #ff007f);
@@ -191,7 +200,7 @@ body {
 /* ========================================= */
 /* SOCIAL LINKS                              */
 /* ========================================= */
-.social-links { display: flex; gap: 25px; margin-top: 30px; flex-wrap: wrap; justify-content: center; }
+.social-links { display: flex; gap: 25px; flex-wrap: wrap; justify-content: flex-start; margin-top: 10px; }
 .social-links a { color: #888888; text-decoration: none; font-size: 0.95rem; transition: color 0.3s ease; }
 .social-links a:hover { color: #00ffcc; }
 
@@ -237,11 +246,19 @@ body.scrolled .scroll-prompt { opacity: 0; }
 /* MOBILE RESPONSIVENESS & HAMBURGER MENU    */
 /* ========================================= */
 @media (max-width: 768px) {
-    .main-title { font-size: 3.8rem; line-height: 1.05; }
+    #main-content { 
+        margin-top: 50vh; 
+        padding: 20px 24px; /* Tighter margins on mobile viewports */
+    }
+    
+    .main-title { 
+        font-size: 3.4rem; 
+        line-height: 1.1; 
+        letter-spacing: -1.5px;
+    }
     
     #nav-backdrop { height: 75px; } 
-    #main-content { margin-top: 50vh; }
-    #glass-8 { top: 35%; }
+    #glass-8 { top: 35%; left: 50%; }
     
     #dynamic-logo { 
         top: 37.5px; left: 15px; 
@@ -255,7 +272,6 @@ body.scrolled .scroll-prompt { opacity: 0; }
         transform: translateY(-50%) scale(0.55); 
     }
     
-    /* Center the menu container on the right side */
     #nav-menu { 
         top: 37.5px; right: 15px; left: auto;
         transform: translateY(-50%); 
@@ -266,78 +282,38 @@ body.scrolled .scroll-prompt { opacity: 0; }
         transform: translateY(-50%); 
     }
     
-    /* --- The Equivalent Menu Button --- */
     .hamburger {
-        display: block; /* Turns it on for mobile */
+        display: block; 
         background: transparent;
         border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px; /* The rounded rectangle */
+        border-radius: 8px; 
         padding: 10px;
         cursor: pointer;
         z-index: 105;
     }
     
-    /* The two "equivalent" lines */
     .hamburger .line {
-        display: block;
-        width: 18px;
-        height: 2px;
-        margin: 5px 0;
-        background-color: #ffffff;
-        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        transform-origin: center;
+        display: block; width: 18px; height: 2px; margin: 5px 0; background-color: #ffffff;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); transform-origin: center;
     }
 
-    /* Transforms into an X when clicked */
-    .hamburger.active .line:nth-child(1) {
-        transform: translateY(3.5px) rotate(45deg);
-    }
-    .hamburger.active .line:nth-child(2) {
-        transform: translateY(-3.5px) rotate(-45deg);
-    }
+    .hamburger.active .line:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+    .hamburger.active .line:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
 
-    /* --- The Dropdown Box --- */
     .nav-links { 
-        position: absolute;
-        top: 55px; /* Slides down right below the button */
-        right: 0;
-        background-color: #0d0d0d;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px; /* Curves on the outside box */
-        flex-direction: column; 
-        width: 160px;
-        gap: 0;
-        
-        /* Hidden by default */
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-15px);
-        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        overflow: hidden;
+        position: absolute; top: 55px; right: 0; background-color: #0d0d0d;
+        border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; 
+        flex-direction: column; width: 160px; gap: 0; opacity: 0; visibility: hidden;
+        transform: translateY(-15px); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); overflow: hidden;
     }
     
-    /* Triggers when hamburger is clicked */
-    .nav-links.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-
-    /* Dropdown Buttons: No border radius on the inside elements */
+    .nav-links.active { opacity: 1; visibility: visible; transform: translateY(0); }
     .nav-links li { width: 100%; }
-    .nav-links a { 
-        display: block;
-        font-size: 14px; 
-        padding: 16px 20px; 
-        text-align: right; /* Aligns text cleanly to the right edge */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 0; /* Ensures sharp edges inside the menu */
-    }
-    .nav-links li:last-child a {
-        border-bottom: none; /* Removes the line under the final link */
-    }
+    .nav-links a { display: block; font-size: 14px; padding: 16px 20px; text-align: right; border-bottom: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0; }
+    .nav-links li:last-child a { border-bottom: none; }
     
     .scroll-prompt { display: none; }
-    .button-group { flex-direction: column; width: 100%; max-width: 300px; }
+    .button-group { flex-direction: column; width: 100%; max-width: 300px; align-items: flex-start; }
     .btn { width: 100%; text-align: center; }
+    .secondary-btn { padding: 16px 40px; } /* Restores full width tap target on mobile column stacks */
 }
