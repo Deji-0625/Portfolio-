@@ -44,16 +44,19 @@ body {
 #dynamic-logo {
     position: fixed; top: 45%; left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
+    
+    /* Forces desktop to load exactly as a single row */
     display: flex; flex-direction: row; align-items: center; justify-content: center;
+    
     z-index: 100; white-space: nowrap; 
     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     font-family: 'Bebas Neue', sans-serif; font-size: 54px;
 }
 
-/* Space injected physically on desktop so it seamlessly collapses on mobile */
+/* Desktop spacing between "THE" and "CRE8OR" */
 .logo-top-line { margin-right: 12px; }
 
-/* Sequenced Typing Animations */
+/* Desktop Sequenced Typing Animations */
 .type-text-1 {
     display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
     letter-spacing: -2px; color: #ffffff; border-right: 2px solid #fff; 
@@ -64,7 +67,7 @@ body {
     display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
     letter-spacing: -2px; color: #ffffff; border-right: 2px solid #fff; 
     animation: typing-2 0.4s steps(3, end) forwards;
-    animation-delay: 0.9s; /* Triggers exactly when part 1 finishes */
+    animation-delay: 0.9s; 
 }
 
 @keyframes typing-1 { to { max-width: 170px; border-color: transparent; } }
@@ -168,31 +171,42 @@ body.scrolled .scroll-prompt { opacity: 0; }
     #nav-backdrop { height: 75px; } 
     #glass-8 { top: 35%; left: 50%; }
     
-    /* Mobile Initial Entry Layout (Horizontal flow) */
+    /* 1. INITIAL LOAD: Force absolute single coherent line */
     #dynamic-logo { 
         top: 35px; left: 15px; font-size: 30px; 
+        display: flex; flex-direction: row; flex-wrap: nowrap;
         transform: translateY(-50%) scale(1); transform-origin: left center;
     }
     
-    /* STACKED JUSTIFIED LOGO: Triggers only when scrolled on Mobile */
+    /* Tighten the word gap to match scaled down font size */
+    .logo-top-line { margin-right: 6px; } 
+
+    /* MOBILE-SPECIFIC TYPING ANIMATIONS: Stops cursor from flying away */
+    .type-text-1 { animation: typing-1-mobile 0.9s steps(8, end) forwards; }
+    .type-text-2 { animation: typing-2-mobile 0.4s steps(3, end) forwards; animation-delay: 0.9s; }
+    
+    @keyframes typing-1-mobile { to { max-width: 120px; border-color: transparent; } }
+    @keyframes typing-2-mobile { to { max-width: 48px; border-color: transparent; } }
+    
+    /* 2. SCROLLED STATE: Break into the bold two-line stack */
     body.scrolled #dynamic-logo {
         top: 37.5px; left: 15px; 
-        flex-direction: column; /* Force the two lines to stack */
-        align-items: flex-start; /* Pin everything strictly to the left margin */
-        line-height: 0.8; /* Pull the top and bottom lines tight together vertically */
-        transform: translateY(-50%) scale(0.65); /* Shrinks the whole locked block down */
+        flex-direction: column; /* This physically forces the line break */
+        align-items: flex-start; 
+        line-height: 0.8; 
+        transform: translateY(-50%) scale(0.65); 
     }
     
     body.scrolled .logo-top-line { 
-        margin-right: 0; /* Clear horizontal desktop spacing */
+        margin-right: 0; /* Remove horizontal space when stacked */
     }
     
-    /* Optical Width Balancing: Make 6 characters on bottom match 8 characters on top */
-    body.scrolled .type-text-1 { letter-spacing: -2px; } /* Keep top compressed */
+    /* Optical Width Balancing: Force bottom word to match top word width */
+    body.scrolled .type-text-1 { letter-spacing: -2px; } 
     body.scrolled .type-text-2,
-    body.scrolled .type-text-end { letter-spacing: 1.5px; } /* Expand bottom to match */
+    body.scrolled .type-text-end { letter-spacing: 1px; } 
     
-    body.scrolled .crystal-8 { margin-left: -2px; margin-right: -2px; } /* Ease image compression so it fills space gracefully */
+    body.scrolled .crystal-8 { margin-left: -2px; margin-right: -2px; } 
     
     /* Mobile Menu Execution */
     #nav-menu { top: 35px; right: 15px; left: auto; transform: translateY(-50%); opacity: 1; pointer-events: auto; }
