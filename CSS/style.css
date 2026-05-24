@@ -40,23 +40,34 @@ body {
     transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- Dynamic Loading Logo Engine (Multi-Line Grid System) --- */
+/* ========================================= */
+/* DYNAMIC LOGO ENGINE (FIXED STEPTING)     */
+/* ========================================= */
 #dynamic-logo {
     position: fixed; top: 45%; left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
     
-    /* Forces desktop to load exactly as a single row */
-    display: flex; flex-direction: row; align-items: center; justify-content: center;
+    /* Forces blocks to flow as single cohesive sentence on initial desktop load */
+    display: block; 
+    text-align: center; 
+    white-space: nowrap; /* Never wraps, forcing horizontal alignment */
     
-    z-index: 100; white-space: nowrap; 
+    z-index: 100;
     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     font-family: 'Bebas Neue', sans-serif; font-size: 54px;
 }
 
-/* Desktop spacing between "THE" and "CRE8OR" */
+/* Force wrappers to act as contiguous words */
+.logo-top-line, 
+.logo-bottom-line { 
+    display: inline-block; 
+    vertical-align: middle; /* Ensures math baseline is identical */
+}
+
+/* Fixed space boundary for desktop word gap */
 .logo-top-line { margin-right: 12px; }
 
-/* Desktop Sequenced Typing Animations */
+/* Sequenced Typing Animations */
 .type-text-1 {
     display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
     letter-spacing: -2px; color: #ffffff; border-right: 2px solid #fff; 
@@ -161,7 +172,7 @@ body.scrolled .scroll-prompt { opacity: 0; }
 .social-links.reveal { transition-delay: 0.5s; }
 
 /* ========================================= */
-/* MOBILE RESPONSIVENESS & STACKED LOGO      */
+/* MOBILE RESPONSIVENESS (FIXED STEPPING)   */
 /* ========================================= */
 @media (max-width: 768px) {
     #main-content { margin-top: 50vh; padding: 20px 24px; }
@@ -171,52 +182,72 @@ body.scrolled .scroll-prompt { opacity: 0; }
     #nav-backdrop { height: 75px; } 
     #glass-8 { top: 35%; left: 50%; }
     
-    /* 1. INITIAL LOAD: Force absolute single coherent line */
+    /* ======================================= */
+    /* 1. MOBILE INITIAL LOAD (UNSTEPPED)     */
+    /* ======================================= */
     #dynamic-logo { 
         top: 35px; left: 15px; font-size: 30px; 
-        display: flex; flex-direction: row; flex-wrap: nowrap;
+        
+        /* Forces contiguous horizontal inline flow on mobile entry */
+        display: block; 
+        text-align: left; 
+        white-space: nowrap; 
+        
         transform: translateY(-50%) scale(1); transform-origin: left center;
     }
     
-    /* Tighten the word gap to match scaled down font size */
-    .logo-top-line { margin-right: 6px; } 
+    /* Target wrappers to sit as CONTIGUOUS INLINE WORDS */
+    .logo-top-line,
+    .logo-bottom-line { 
+        display: inline-block; 
+        vertical-align: middle; /* Key baseline lock */
+        margin: 0; padding: 0; 
+    } 
 
-    /* MOBILE-SPECIFIC TYPING ANIMATIONS: Stops cursor from flying away */
+    /* The critical word gap fix: uses negative margins to trick eye into contiguous line */
+    .logo-top-line { 
+        margin-right: -2px; /* Pulls THE toward CRE8OR to force Contiguous appearance */
+    } 
+
+    /* REVISED MOBILE TYPING ANIMATION: Precise math to prevent stepping */
     .type-text-1 { animation: typing-1-mobile 0.9s steps(8, end) forwards; }
     .type-text-2 { animation: typing-2-mobile 0.4s steps(3, end) forwards; animation-delay: 0.9s; }
     
     @keyframes typing-1-mobile { to { max-width: 120px; border-color: transparent; } }
     @keyframes typing-2-mobile { to { max-width: 48px; border-color: transparent; } }
     
-    /* 2. SCROLLED STATE: Break into the bold two-line stack */
+    /* ======================================= */
+    /* 2. MOBILE SCROLLED STATE (STACKED)     */
+    /* ======================================= */
     body.scrolled #dynamic-logo {
         top: 37.5px; left: 15px; 
-        flex-direction: column; /* This physically forces the line break */
+        display: flex; /* THIS TRIPS THE STACK */
+        flex-direction: column; 
         align-items: flex-start; 
         line-height: 0.8; 
         transform: translateY(-50%) scale(0.65); 
     }
     
-    body.scrolled .logo-top-line { 
-        margin-right: 0; /* Remove horizontal space when stacked */
-    }
+    /* Resets for stacked state */
+    body.scrolled .logo-top-line,
+    body.scrolled .logo-bottom-line { 
+        display: block; 
+    } 
+    body.scrolled .logo-top-line { margin-right: 0; }
     
-    /* Optical Width Balancing: Force bottom word to match top word width */
+    /* Optical Width Balancing (Unchanged) */
     body.scrolled .type-text-1 { letter-spacing: -2px; } 
     body.scrolled .type-text-2,
     body.scrolled .type-text-end { letter-spacing: 1px; } 
-    
     body.scrolled .crystal-8 { margin-left: -2px; margin-right: -2px; } 
     
-    /* Mobile Menu Execution */
+    /* Mobile Menu Execution (Unchanged) */
     #nav-menu { top: 35px; right: 15px; left: auto; transform: translateY(-50%); opacity: 1; pointer-events: auto; }
     body.scrolled #nav-menu { top: 37.5px; right: 15px; transform: translateY(-50%); }
-    
     .hamburger { display: block; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 10px; cursor: pointer; z-index: 105; }
     .hamburger .line { display: block; width: 18px; height: 2px; margin: 5px 0; background-color: #ffffff; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); transform-origin: center; }
     .hamburger.active .line:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
     .hamburger.active .line:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
-
     .nav-links { position: absolute; top: 55px; right: 0; background-color: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; flex-direction: column; width: 160px; gap: 0; opacity: 0; visibility: hidden; transform: translateY(-15px); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); overflow: hidden; }
     .nav-links.active { opacity: 1; visibility: visible; transform: translateY(0); }
     .nav-links li { width: 100%; }
