@@ -41,33 +41,24 @@ body {
 }
 
 /* ========================================= */
-/* DYNAMIC LOGO ENGINE (FIXED STEPTING)     */
+/* LOGO 1: INITIAL CENTERED LOAD             */
 /* ========================================= */
 #dynamic-logo {
     position: fixed; top: 45%; left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
-    
-    /* Forces blocks to flow as single cohesive sentence on initial desktop load */
-    display: block; 
-    text-align: center; 
-    white-space: nowrap; /* Never wraps, forcing horizontal alignment */
-    
+    display: block; text-align: center; white-space: nowrap; 
     z-index: 100;
-    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     font-family: 'Bebas Neue', sans-serif; font-size: 54px;
+    
+    /* Prepares the logo to crossfade out */
+    opacity: 1; 
+    transition: opacity 0.5s ease;
 }
 
-/* Force wrappers to act as contiguous words */
-.logo-top-line, 
-.logo-bottom-line { 
-    display: inline-block; 
-    vertical-align: middle; /* Ensures math baseline is identical */
-}
-
-/* Fixed space boundary for desktop word gap */
+.logo-top-line, .logo-bottom-line { display: inline-block; vertical-align: middle; }
 .logo-top-line { margin-right: 12px; }
 
-/* Sequenced Typing Animations */
+/* Desktop Sequenced Typing Animations */
 .type-text-1 {
     display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
     letter-spacing: -2px; color: #ffffff; border-right: 2px solid #fff; 
@@ -77,14 +68,12 @@ body {
 .type-text-2 {
     display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
     letter-spacing: -2px; color: #ffffff; border-right: 2px solid #fff; 
-    animation: typing-2 0.4s steps(3, end) forwards;
-    animation-delay: 0.9s; 
+    animation: typing-2 0.4s steps(3, end) forwards; animation-delay: 0.9s; 
 }
 
 @keyframes typing-1 { to { max-width: 170px; border-color: transparent; } }
 @keyframes typing-2 { to { max-width: 90px; border-color: transparent; } }
 
-/* SPACING-MATCHED NATIVE IMAGE GRID */
 .crystal-8 {
     display: inline-block; height: 120%; max-height: 52px; width: auto; 
     object-fit: contain; vertical-align: middle; 
@@ -98,6 +87,34 @@ body {
 }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ========================================= */
+/* LOGO 2: THE FIXED DESKTOP HEADER LOGO     */
+/* ========================================= */
+#header-logo {
+    position: fixed; 
+    top: 45px; left: 4vw; 
+    transform: translate(0, -50%) scale(0.65); 
+    transform-origin: left center;
+    z-index: 100;
+    font-family: 'Bebas Neue', sans-serif; font-size: 54px;
+    display: flex; flex-direction: row; white-space: nowrap;
+    
+    /* Hidden on initial load, waits for scroll */
+    opacity: 0; 
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.header-line-1 { letter-spacing: -2px; color: #ffffff; margin-right: 12px; }
+.header-line-2 { letter-spacing: -2px; color: #ffffff; }
+
+.header-8 {
+    display: inline-block; height: 120%; max-height: 52px; width: auto; 
+    object-fit: contain; vertical-align: middle; 
+    margin-left: -5px; margin-right: -8px; transform: translateY(-2px);
+}
+
 
 /* --- Scroll Prompt --- */
 .scroll-prompt {
@@ -150,15 +167,18 @@ body {
 .social-links a { color: #888888; text-decoration: none; font-size: 0.95rem; transition: color 0.3s ease; }
 .social-links a:hover { color: #00ffcc; }
 
-/* --- Scroll Magic States --- */
+/* ========================================= */
+/* THE CROSSFADE HANDOFF (SCROLLED STATE)    */
+/* ========================================= */
 body.scrolled #nav-backdrop { transform: translateY(0); }
 body.scrolled #glass-8 { opacity: 0; transform: translate(-50%, -50%) scale(4); }
 
-/* Desktop Scrolled State */
-body.scrolled #dynamic-logo {
-    top: 45px; left: 4vw; 
-    transform: translate(0, -50%) scale(0.55); transform-origin: left center; 
-}
+/* Fade OUT the big center intro logo */
+body.scrolled #dynamic-logo { opacity: 0; pointer-events: none; }
+
+/* Fade IN the top corner header logo */
+body.scrolled #header-logo { opacity: 1; pointer-events: auto; }
+
 body.scrolled #nav-menu { opacity: 1; pointer-events: auto; }
 body.scrolled .scroll-prompt { opacity: 0; }
 
@@ -172,89 +192,60 @@ body.scrolled .scroll-prompt { opacity: 0; }
 .social-links.reveal { transition-delay: 0.5s; }
 
 /* ========================================= */
-/* MOBILE RESPONSIVENESS (FIXED STEPPING)   */
+/* MOBILE RESPONSIVENESS & THE STACKED LOGO  */
 /* ========================================= */
 @media (max-width: 768px) {
     #main-content { margin-top: 50vh; padding: 20px 24px; }
     .main-title { font-size: 5rem; line-height: 0.9; gap: 0 20px; }
     .name-part { letter-spacing: -4px; }
-    
     #nav-backdrop { height: 75px; } 
     #glass-8 { top: 35%; left: 50%; }
     
-    /* ======================================= */
-    /* 1. MOBILE INITIAL LOAD (UNSTEPPED)     */
-    /* ======================================= */
+    /* 1. MOBILE INTRO LOGO (Single Line, Big) */
     #dynamic-logo { 
         top: 35px; left: 15px; font-size: 30px; 
-        
-        /* Forces contiguous horizontal inline flow on mobile entry */
-        display: block; 
-        text-align: left; 
-        white-space: nowrap; 
-        
         transform: translateY(-50%) scale(1); transform-origin: left center;
     }
     
-    /* Target wrappers to sit as CONTIGUOUS INLINE WORDS */
-    .logo-top-line,
-    .logo-bottom-line { 
-        display: inline-block; 
-        vertical-align: middle; /* Key baseline lock */
-        margin: 0; padding: 0; 
-    } 
-
-    /* The critical word gap fix: uses negative margins to trick eye into contiguous line */
-    .logo-top-line { 
-        margin-right: -2px; /* Pulls THE toward CRE8OR to force Contiguous appearance */
-    } 
-
-    /* REVISED MOBILE TYPING ANIMATION: Precise math to prevent stepping */
+    .logo-top-line { margin-right: -2px; } 
+    
     .type-text-1 { animation: typing-1-mobile 0.9s steps(8, end) forwards; }
     .type-text-2 { animation: typing-2-mobile 0.4s steps(3, end) forwards; animation-delay: 0.9s; }
-    
     @keyframes typing-1-mobile { to { max-width: 120px; border-color: transparent; } }
     @keyframes typing-2-mobile { to { max-width: 48px; border-color: transparent; } }
     
-    /* ======================================= */
-    /* 2. MOBILE SCROLLED STATE (STACKED)     */
-    /* ======================================= */
-    body.scrolled #dynamic-logo {
+    /* 2. MOBILE HEADER LOGO (Stacked, Compact, Justified) */
+    #header-logo {
         top: 37.5px; left: 15px; 
-        display: flex; /* THIS TRIPS THE STACK */
-        flex-direction: column; 
+        flex-direction: column; /* Force the stack */
         align-items: flex-start; 
         line-height: 0.8; 
-        transform: translateY(-50%) scale(0.65); 
     }
     
-    /* Resets for stacked state */
-    body.scrolled .logo-top-line,
-    body.scrolled .logo-bottom-line { 
-        display: block; 
-    } 
-    body.scrolled .logo-top-line { margin-right: 0; }
+    /* Optical Width Balancing for the mobile stack */
+    .header-line-1 { letter-spacing: -2px; margin-right: 0; } 
+    .header-line-2 { letter-spacing: 1px; } 
+    .header-8 { margin-left: -2px; margin-right: -2px; }
     
-    /* Optical Width Balancing (Unchanged) */
-    body.scrolled .type-text-1 { letter-spacing: -2px; } 
-    body.scrolled .type-text-2,
-    body.scrolled .type-text-end { letter-spacing: 1px; } 
-    body.scrolled .crystal-8 { margin-left: -2px; margin-right: -2px; } 
     
-    /* Mobile Menu Execution (Unchanged) */
+    /* Mobile Menu Execution */
     #nav-menu { top: 35px; right: 15px; left: auto; transform: translateY(-50%); opacity: 1; pointer-events: auto; }
     body.scrolled #nav-menu { top: 37.5px; right: 15px; transform: translateY(-50%); }
+    
     .hamburger { display: block; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 10px; cursor: pointer; z-index: 105; }
     .hamburger .line { display: block; width: 18px; height: 2px; margin: 5px 0; background-color: #ffffff; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); transform-origin: center; }
     .hamburger.active .line:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
     .hamburger.active .line:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
+
     .nav-links { position: absolute; top: 55px; right: 0; background-color: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; flex-direction: column; width: 160px; gap: 0; opacity: 0; visibility: hidden; transform: translateY(-15px); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); overflow: hidden; }
     .nav-links.active { opacity: 1; visibility: visible; transform: translateY(0); }
     .nav-links li { width: 100%; }
     .nav-links a { display: block; font-size: 14px; padding: 16px 20px; text-align: right; border-bottom: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0; }
     .nav-links li:last-child a { border-bottom: none; }
     
-    .crystal-8 { height: 120%; max-height: 28px; margin-left: -3px; margin-right: -4px; transform: translateY(-1px); }
+    .crystal-8, .header-8 { height: 120%; max-height: 28px; transform: translateY(-1px); }
+    .crystal-8 { margin-left: -3px; margin-right: -4px; }
+    
     .scroll-prompt { display: none; }
     .button-group { flex-direction: column; width: 100%; max-width: 300px; align-items: flex-start; }
     .btn { width: 100%; text-align: center; }
