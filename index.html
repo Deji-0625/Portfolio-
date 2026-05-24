@@ -21,6 +21,11 @@
     </div>
 
     <nav id="nav-menu">
+        <button class="hamburger" aria-label="Toggle menu">
+            <span class="line"></span>
+            <span class="line"></span>
+        </button>
+        
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="work.html">Work</a></li>
@@ -62,6 +67,7 @@
     </main>
 
     <script>
+        // Header Scroll Magic
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 document.body.classList.add('scrolled');
@@ -70,6 +76,7 @@
             }
         });
 
+        // Carrd Scroll Reveals
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -81,6 +88,17 @@
 
         document.querySelectorAll('.reveal').forEach((el) => {
             observer.observe(el);
+        });
+
+        // THE NEW MOBILE MENU TOGGLE LOGIC
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            // Toggles the "X" animation on the button
+            hamburger.classList.toggle('active');
+            // Slides the dropdown menu in and out
+            navLinks.classList.toggle('active');
         });
     </script>
 </body>
