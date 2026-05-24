@@ -59,7 +59,6 @@
     </main>
 
     <script>
-        // 1. Controls the Header Logo transforming on scroll
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 document.body.classList.add('scrolled');
@@ -68,9 +67,8 @@
             }
         });
 
-        // 2. Carrd-Style Scroll Reveal Observer
         const observerOptions = {
-            threshold: 0.2 // Triggers when 20% of the item is visible
+            threshold: 0.2
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -81,7 +79,6 @@
             });
         }, observerOptions);
 
-        // Tell the observer to watch every element with the "reveal" class
         document.querySelectorAll('.reveal').forEach((el) => {
             observer.observe(el);
         });
