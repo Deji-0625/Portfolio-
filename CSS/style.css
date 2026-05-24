@@ -2,350 +2,114 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 /* --- Global Settings --- */
-* {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
-}
-
-body {
-    background-color: #050505; color: #ffffff; overflow-x: hidden;
-    min-height: 200vh; 
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif; }
+body { background-color: #050505; color: #ffffff; overflow-x: hidden; min-height: 200vh; }
 
 /* --- Ambient Rainbow Streaks --- */
 .bg-streaks {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: 
-        radial-gradient(ellipse at 15% 25%, rgba(157, 0, 255, 0.05), transparent 45%),
-        radial-gradient(ellipse at 75% 35%, rgba(255, 0, 127, 0.04), transparent 50%),
-        radial-gradient(ellipse at 45% 65%, rgba(204, 255, 0, 0.03), transparent 55%),
-        radial-gradient(ellipse at 85% 85%, rgba(0, 204, 255, 0.04), transparent 45%);
+    background: radial-gradient(ellipse at 15% 25%, rgba(157, 0, 255, 0.05), transparent 45%),
+                radial-gradient(ellipse at 75% 35%, rgba(255, 0, 127, 0.04), transparent 50%),
+                radial-gradient(ellipse at 45% 65%, rgba(204, 255, 0, 0.03), transparent 55%),
+                radial-gradient(ellipse at 85% 85%, rgba(0, 204, 255, 0.04), transparent 45%);
     z-index: -1; pointer-events: none;
 }
 
-/* --- The Giant Glassmorphic 8 --- */
-#glass-8 {
-    position: fixed; top: 45%; left: 65%; 
-    transform: translate(-50%, -50%) scale(5);
-    opacity: 0.12; filter: blur(12px); z-index: 90; pointer-events: none;
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
+#glass-8 { position: fixed; top: 45%; left: 65%; transform: translate(-50%, -50%) scale(5); opacity: 0.12; filter: blur(12px); z-index: 90; pointer-events: none; transition: opacity 0.8s ease, transform 0.8s ease; }
+#nav-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 90px; z-index: 95; border-radius: 0 0 30px 30px; border-bottom: 3px solid transparent; background: linear-gradient(#050505, #050505) padding-box, linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff) border-box; transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
 
-/* --- The Sliding Header Backdrop --- */
-#nav-backdrop {
-    position: fixed; top: 0; left: 0; width: 100%; height: 90px; z-index: 95;
-    border-radius: 0 0 30px 30px; border-bottom: 3px solid transparent;
-    background: linear-gradient(#050505, #050505) padding-box,
-                linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff) border-box;
-    transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* --- Dynamic Loading Logo Engine --- */
-#dynamic-logo {
-    position: fixed; top: 45%; left: 50%;
-    transform: translate(-50%, -50%) scale(1.5);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 100; white-space: nowrap; 
-    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 54px;
-}
-
-/* HIDES THE NEW STACKED LOGO FROM DESKTOP */
+/* --- Logos --- */
+#dynamic-logo { position: fixed; top: 45%; left: 50%; transform: translate(-50%, -50%) scale(1.5); display: flex; align-items: center; justify-content: center; z-index: 100; white-space: nowrap; transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); font-family: 'Bebas Neue', sans-serif; font-size: 54px; }
 #mobile-stacked-logo { display: none; }
-
-/* Typing Sequence Rules */
-.type-text {
-    display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
-    letter-spacing: -2px; color: #ffffff;
-    border-right: 2px solid #fff; 
-    animation: typing 1.5s steps(13, end) forwards, blink 0.5s step-end 6 forwards;
-}
-
+.type-text { display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0; letter-spacing: -2px; color: #ffffff; border-right: 2px solid #fff; animation: typing 1.5s steps(13, end) forwards, blink 0.5s step-end 6 forwards; }
 @keyframes typing { to { max-width: 320px; } }
 @keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
-
-/* --- SPACING-MATCHED NATIVE IMAGE GRID --- */
-.crystal-8 {
-    display: inline-block;
-    height: 120%; 
-    max-height: 52px; 
-    width: auto; 
-    object-fit: contain;
-    vertical-align: middle; 
-    
-    /* EXTRA COMPRESSED TRACKING: Pulls letters tight to cancel asset padding */
-    margin-left: -5px;  
-    margin-right: -8px; 
-    
-    opacity: 0;
-    transform: translateY(-2px); 
-    animation: fadeIn 0.8s ease forwards; 
-    animation-delay: 1.5s;
-}
-
-.type-text-end {
-    opacity: 0; 
-    letter-spacing: -2px; /* Pulls O and R matching internal word tracking */
-    color: #ffffff;
-    animation: fadeIn 0.5s ease forwards; animation-delay: 2.3s;
-}
-
+.crystal-8 { display: inline-block; height: 120%; max-height: 52px; width: auto; object-fit: contain; vertical-align: middle; margin-left: -5px; margin-right: -8px; opacity: 0; transform: translateY(-2px); animation: fadeIn 0.8s ease forwards; animation-delay: 1.5s; }
+.type-text-end { opacity: 0; letter-spacing: -2px; color: #ffffff; animation: fadeIn 0.5s ease forwards; animation-delay: 2.3s; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* --- Scroll Prompt --- */
-.scroll-prompt {
-    position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%);
-    text-align: center; font-size: 14px; color: #888;
-    animation: bounce 2s infinite; transition: opacity 0.4s ease;
-}
+/* --- Scroll Elements --- */
+.scroll-prompt { position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%); text-align: center; font-size: 14px; color: #888; animation: bounce 2s infinite; transition: opacity 0.4s ease; }
 @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 10px); } }
 
-/* --- Main Navigation --- */
-#nav-menu {
-    position: fixed; top: 45px; right: 4vw; transform: translateY(-50%);
-    opacity: 0; pointer-events: none; z-index: 99; transition: opacity 0.8s ease;
-}
+/* --- Navigation --- */
+#nav-menu { position: fixed; top: 45px; right: 4vw; transform: translateY(-50%); opacity: 0; pointer-events: none; z-index: 99; transition: opacity 0.8s ease; }
 .hamburger { display: none; }
 .nav-links { list-style: none; display: flex; gap: 35px; }
 .nav-links a { color: #ffffff; text-decoration: none; font-size: 16px; font-weight: bold; transition: color 0.3s; }
 .nav-links a:hover { color: #00ffcc; }
 
-/* --- Main Hero Content --- */
-#main-content {
-    margin-top: 100vh; padding: 20px 8vw; display: flex; justify-content: flex-start;
-}
+/* --- Main Content --- */
+#main-content { margin-top: 100vh; padding: 20px 8vw; display: flex; flex-direction: column; }
 .hero { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 25px; }
-
-/* Tall & Tight Headline */
-.main-title { 
-    font-family: 'Bebas Neue', sans-serif; font-size: 8rem; font-weight: 400;  
-    line-height: 0.85; max-width: 1100px; display: flex; flex-wrap: wrap; gap: 0 40px; 
-}
+.main-title { font-family: 'Bebas Neue', sans-serif; font-size: 8rem; font-weight: 400; line-height: 0.85; max-width: 1100px; display: flex; flex-wrap: wrap; gap: 0 40px; }
 .name-part { display: inline-block; letter-spacing: -6px; }
 .name-italic { transform: skewX(-15deg); transform-origin: center; margin-right: 15px; }
-
-.gradient-text {
-    background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-
-/* Software Tags */
+.gradient-text { background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .software-tags { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 12px; }
-.software-tags span { 
-    background-color: #1a1a1a; padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; 
-    font-weight: bold; color: #e0e0e0; border: 1px solid #333; letter-spacing: 1px; 
-}
+.software-tags span { background-color: #1a1a1a; padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; color: #e0e0e0; border: 1px solid #333; letter-spacing: 1px; }
 .bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 700px; line-height: 1.6; margin-top: 10px; }
 .bio-text strong { color: #ffffff; }
 
-/* ========================================= */
-/* BUTTONS: SUBTLE NATIVE STYLE              */
-/* ========================================= */
-.button-group { 
-    display: flex; 
-    gap: 16px; 
-    align-items: center; 
-}
-
-.btn { 
-    position: relative; 
-    padding: 16px 32px; 
-    text-decoration: none; 
-    font-weight: bold; 
-    font-size: 1.1rem; 
-    border-radius: 50px; 
-    z-index: 1;
-    transition: background-color 0.2s ease, transform 0.1s ease; 
-}
-
+/* --- Buttons --- */
+.button-group { display: flex; gap: 16px; align-items: center; }
+.btn { position: relative; padding: 16px 32px; text-decoration: none; font-weight: bold; font-size: 1.1rem; border-radius: 50px; z-index: 1; transition: background-color 0.2s ease, transform 0.1s ease; }
 .primary-btn { background-color: #ffffff; color: #111111; border: none; }
 .primary-btn:hover { background-color: #e2e2e2; color: #111111; }
 .secondary-btn { background-color: transparent; color: #ffffff; border: none; }
 .secondary-btn:hover { background-color: rgba(255, 255, 255, 0.1); color: #ffffff; }
 .btn:active { transform: scale(0.96); }
 
+/* --- Section Breaker --- */
+.section-breaker { border: 0; height: 1px; background: linear-gradient(to right, transparent, #333, transparent); margin: 60px 0; width: 100%; }
+
+/* --- Cinematic Showreel --- */
+#showreel-section { position: relative; width: 100%; height: 70vh; border-radius: 20px; overflow: hidden; background-color: #050505; display: flex; align-items: center; justify-content: center; margin-bottom: 60px; }
+.showreel-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; pointer-events: none; }
+.showreel-watermark { position: relative; z-index: 2; width: 120px; height: 120px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.play-triangle { width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 10px solid #ffffff; margin-left: 4px; }
+.spinning-text { position: absolute; top: 0; left: 0; width: 100%; height: 100%; animation: spin 12s linear infinite; pointer-events: none; }
+.spinning-text text { font-family: 'Bebas Neue', sans-serif; font-size: 11px; font-weight: bold; fill: #ffffff; letter-spacing: 2px; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
 /* --- Social Links --- */
-.social-links { display: flex; gap: 25px; flex-wrap: wrap; justify-content: flex-start; margin-top: 10px; }
+.social-links { display: flex; gap: 25px; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 50px; }
 .social-links a { color: #888888; text-decoration: none; font-size: 0.95rem; transition: color 0.3s ease; }
 .social-links a:hover { color: #00ffcc; }
 
-/* --- Scroll Magic States --- */
+/* --- Scroll Interactions --- */
 body.scrolled #nav-backdrop { transform: translateY(0); }
 body.scrolled #glass-8 { opacity: 0; transform: translate(-50%, -50%) scale(4); }
-
-body.scrolled #dynamic-logo {
-    top: 45px; left: 4vw; 
-    transform: translate(0, -50%) scale(0.55); transform-origin: left center; 
-}
+body.scrolled #dynamic-logo { top: 45px; left: 4vw; transform: translate(0, -50%) scale(0.55); transform-origin: left center; }
 body.scrolled #nav-menu { opacity: 1; pointer-events: auto; }
 body.scrolled .scroll-prompt { opacity: 0; }
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
 
-/* --- Section Breaker Line --- */
-.section-breaker {
-    border: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #333, transparent);
-    margin: 60px 0;
-    width: 100%;
-}
-
-/* --- Cinematic Showreel Section --- */
-#showreel-section {
-    position: relative;
-    width: 100%;
-    height: 70vh;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: #050505;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 60px;
-}
-
-.showreel-video {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    opacity: 0.6;
-    pointer-events: none; 
-}
-
-.showreel-watermark {
-    position: relative;
-    z-index: 2;
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-}
-
-.play-triangle {
-    width: 0; height: 0;
-    border-top: 6px solid transparent;
-    border-bottom: 6px solid transparent;
-    border-left: 10px solid #ffffff;
-    margin-left: 4px;
-}
-
-.spinning-text {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    animation: spin 12s linear infinite;
-    pointer-events: none;
-}
-
-.spinning-text text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 11px;
-    font-weight: bold;
-    fill: #ffffff;
-    letter-spacing: 2px;
-}
-
-@keyframes spin { 100% { transform: rotate(360deg); } }
-
-/* ========================================= */
-/* MOBILE RESPONSIVENESS                     */
-/* ========================================= */
+/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     #main-content { margin-top: 50vh; padding: 20px 24px; }
     .main-title { font-size: 5rem; line-height: 0.9; gap: 0 20px; }
     .name-part { letter-spacing: -4px; }
-    
     #nav-backdrop { height: 75px; } 
     #glass-8 { top: 35%; left: 50%; }
-    
-    /* 1. Mobile Initial Entry Layout */
-    #dynamic-logo { 
-        top: 35px; left: 15px; font-size: 30px; 
-        transform: translateY(-50%) scale(1); transform-origin: left center;
-        transition: opacity 0.3s ease; 
-    }
-    
-    /* THE CROSSFADE: Fades out the verified main logo */
-    body.scrolled #dynamic-logo {
-        opacity: 0; 
-        pointer-events: none;
-        top: 35px; left: 15px; 
-        transform: translateY(-50%) scale(1); 
-    }
-    
-    /* 2. MOBILE STACKED LOGO SETUP */
-    #mobile-stacked-logo {
-        display: flex; 
-        flex-direction: column;
-        align-items: flex-start;
-        position: fixed;
-        top: 37.5px; left: 15px;
-        transform: translateY(-50%) scale(0.5); /* HEAVILY SCALED DOWN FOR SLEEK HEADER */
-        transform-origin: left center;
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 30px; 
-        line-height: 0.85; 
-        z-index: 100;
-        
-        opacity: 0; pointer-events: none; 
-        transition: opacity 0.3s ease;
-    }
-
-    /* THE CROSSFADE: Fades IN the stacked logo when scrolled */
-    body.scrolled #mobile-stacked-logo {
-        opacity: 1; pointer-events: auto;
-    }
-
-    /* Stacked Logo Typography & Width Alignment */
+    #dynamic-logo { top: 35px; left: 15px; font-size: 30px; transform: translateY(-50%) scale(1); transition: opacity 0.3s ease; }
+    body.scrolled #dynamic-logo { opacity: 0; pointer-events: none; }
+    #mobile-stacked-logo { display: flex; flex-direction: column; align-items: flex-start; position: fixed; top: 37.5px; left: 15px; transform: translateY(-50%) scale(0.5); transform-origin: left center; font-family: 'Bebas Neue', sans-serif; font-size: 30px; line-height: 0.85; z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    body.scrolled #mobile-stacked-logo { opacity: 1; pointer-events: auto; }
     .stack-top { letter-spacing: -2px; color: #ffffff; }
     .stack-bottom { letter-spacing: 1.5px; color: #ffffff; } 
-    
-    .stack-8 { 
-        display: inline-block; height: 120%; max-height: 28px; width: auto; 
-        object-fit: contain; vertical-align: middle; 
-        margin-left: -2px; margin-right: -2px; transform: translateY(-1px); 
-    }
-    
-    /* Navigation Execution */
-    #nav-menu { 
-        top: 35px; right: 15px; left: auto; transform: translateY(-50%); 
-        opacity: 1; pointer-events: auto;
-    }
+    .stack-8 { display: inline-block; height: 120%; max-height: 28px; width: auto; object-fit: contain; vertical-align: middle; margin-left: -2px; margin-right: -2px; transform: translateY(-1px); }
+    #nav-menu { top: 35px; right: 15px; left: auto; transform: translateY(-50%); opacity: 1; pointer-events: auto; }
     body.scrolled #nav-menu { top: 37.5px; right: 15px; transform: translateY(-50%); }
-    
-    .hamburger {
-        display: block; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px; padding: 10px; cursor: pointer; z-index: 105;
-    }
-    .hamburger .line {
-        display: block; width: 18px; height: 2px; margin: 5px 0; background-color: #ffffff;
-        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); transform-origin: center;
-    }
+    .hamburger { display: block; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 10px; cursor: pointer; z-index: 105; }
+    .hamburger .line { display: block; width: 18px; height: 2px; margin: 5px 0; background-color: #ffffff; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); transform-origin: center; }
     .hamburger.active .line:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
     .hamburger.active .line:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
-
-    .nav-links { 
-        position: absolute; top: 55px; right: 0; background-color: #0d0d0d;
-        border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; 
-        flex-direction: column; width: 160px; gap: 0; opacity: 0; visibility: hidden;
-        transform: translateY(-15px); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); overflow: hidden;
-    }
+    .nav-links { position: absolute; top: 55px; right: 0; background-color: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; flex-direction: column; width: 160px; gap: 0; opacity: 0; visibility: hidden; transform: translateY(-15px); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); overflow: hidden; }
     .nav-links.active { opacity: 1; visibility: visible; transform: translateY(0); }
     .nav-links li { width: 100%; }
     .nav-links a { display: block; font-size: 14px; padding: 16px 20px; text-align: right; border-bottom: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0; }
     .nav-links li:last-child a { border-bottom: none; }
-    
-    /* Verified Mobile Spacing Track Override */
-    .crystal-8 { 
-        height: 120%;
-        max-height: 28px;
-        margin-left: -3px; 
-        margin-right: -4px; 
-        transform: translateY(-1px);
-    }
+    .crystal-8 { height: 120%; max-height: 28px; margin-left: -3px; margin-right: -4px; transform: translateY(-1px); }
 }
