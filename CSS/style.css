@@ -107,11 +107,17 @@ body {
 #nav-menu {
     position: fixed; 
     top: 45px; 
-    right: 4vw; /* Pushed significantly further to the right edge */
+    right: 4vw; 
     transform: translateY(-50%);
     opacity: 0; pointer-events: none; z-index: 99;
     transition: opacity 0.8s ease;
 }
+
+/* Hamburger button hidden on desktop */
+.hamburger {
+    display: none; 
+}
+
 .nav-links { list-style: none; display: flex; gap: 35px; }
 .nav-links a { color: #ffffff; text-decoration: none; font-size: 16px; font-weight: bold; transition: color 0.3s; }
 .nav-links a:hover { color: #00ffcc; }
@@ -124,7 +130,6 @@ body {
 }
 .hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 25px; }
 
-/* The upgraded cinematic font */
 .main-title { 
     font-family: 'Montserrat', sans-serif; 
     font-size: 4rem; 
@@ -202,7 +207,7 @@ body.scrolled #glass-8 {
 
 /* Desktop Left-Aligned Logo */
 body.scrolled #dynamic-logo {
-    top: 45px; left: 4vw; /* Pushed significantly further to the left edge */
+    top: 45px; left: 4vw; 
     transform: translate(0, -50%) scale(0.6); 
     transform-origin: left center; 
 }
@@ -229,14 +234,10 @@ body.scrolled .scroll-prompt { opacity: 0; }
 
 
 /* ========================================= */
-/* MOBILE RESPONSIVENESS                     */
+/* MOBILE RESPONSIVENESS & HAMBURGER MENU    */
 /* ========================================= */
 @media (max-width: 768px) {
-    /* Made the main title massive to fill out the empty space */
-    .main-title { 
-        font-size: 3.8rem; 
-        line-height: 1.05; 
-    }
+    .main-title { font-size: 3.8rem; line-height: 1.05; }
     
     #nav-backdrop { height: 75px; } 
     #main-content { margin-top: 50vh; }
@@ -254,21 +255,89 @@ body.scrolled .scroll-prompt { opacity: 0; }
         transform: translateY(-50%) scale(0.55); 
     }
     
+    /* Center the menu container on the right side */
     #nav-menu { 
-        top: 37.5px; right: 12px; left: auto;
+        top: 37.5px; right: 15px; left: auto;
         transform: translateY(-50%); 
         opacity: 1; pointer-events: auto;
     }
     body.scrolled #nav-menu {
-        top: 37.5px; right: 12px; 
+        top: 37.5px; right: 15px; 
         transform: translateY(-50%); 
     }
     
-    .nav-links { gap: 8px; justify-content: flex-end; } 
-    .nav-links a { font-size: 12px; padding: 4px 6px; } 
+    /* --- The Equivalent Menu Button --- */
+    .hamburger {
+        display: block; /* Turns it on for mobile */
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px; /* The rounded rectangle */
+        padding: 10px;
+        cursor: pointer;
+        z-index: 105;
+    }
+    
+    /* The two "equivalent" lines */
+    .hamburger .line {
+        display: block;
+        width: 18px;
+        height: 2px;
+        margin: 5px 0;
+        background-color: #ffffff;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        transform-origin: center;
+    }
+
+    /* Transforms into an X when clicked */
+    .hamburger.active .line:nth-child(1) {
+        transform: translateY(3.5px) rotate(45deg);
+    }
+    .hamburger.active .line:nth-child(2) {
+        transform: translateY(-3.5px) rotate(-45deg);
+    }
+
+    /* --- The Dropdown Box --- */
+    .nav-links { 
+        position: absolute;
+        top: 55px; /* Slides down right below the button */
+        right: 0;
+        background-color: #0d0d0d;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px; /* Curves on the outside box */
+        flex-direction: column; 
+        width: 160px;
+        gap: 0;
+        
+        /* Hidden by default */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-15px);
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        overflow: hidden;
+    }
+    
+    /* Triggers when hamburger is clicked */
+    .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* Dropdown Buttons: No border radius on the inside elements */
+    .nav-links li { width: 100%; }
+    .nav-links a { 
+        display: block;
+        font-size: 14px; 
+        padding: 16px 20px; 
+        text-align: right; /* Aligns text cleanly to the right edge */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 0; /* Ensures sharp edges inside the menu */
+    }
+    .nav-links li:last-child a {
+        border-bottom: none; /* Removes the line under the final link */
+    }
     
     .scroll-prompt { display: none; }
-    
     .button-group { flex-direction: column; width: 100%; max-width: 300px; }
     .btn { width: 100%; text-align: center; }
 }
