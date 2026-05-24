@@ -66,7 +66,7 @@ body {
 .crystal-8 {
     height: 1.05em; width: auto; object-fit: contain;
     margin-left: 0.22em; /* Creates the perfect word gap boundary before the 8 */
-    margin-right: -2px;
+    margin-right: -4px;  /* FIXED: Restored the exact negative layout override */
     opacity: 0; transform: translateY(1px);
     animation: fadeIn 0.8s ease forwards; animation-delay: 1.5s;
 }
@@ -158,7 +158,7 @@ body.scrolled #nav-backdrop { transform: translateY(0); }
 body.scrolled #glass-8 { opacity: 0; transform: translate(-50%, -50%) scale(4); }
 
 body.scrolled #dynamic-logo {
-    top: 45px; left: 4vw; /* Rigid left alignment matching desktop text spine */
+    top: 45px; left: 4vw; 
     transform: translate(0, -50%) scale(0.55); transform-origin: left center; 
 }
 body.scrolled #nav-menu { opacity: 1; pointer-events: auto; }
@@ -181,14 +181,14 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .main-title { font-size: 5rem; line-height: 0.9; gap: 0 20px; }
     .name-part { letter-spacing: -4px; }
     
-    #backdrop { height: 75px; } 
+    #nav-backdrop { height: 75px; } 
     #glass-8 { top: 35%; left: 50%; }
     
-    /* Mobile Initial Entry Layout: Cleanly scaled down and left-aligned */
+    /* Mobile Initial Entry Layout */
     #dynamic-logo { 
         top: 35px; 
-        left: 15px; /* Firmly anchored left margin edge */
-        font-size: 30px; /* Scaled down footprint */
+        left: 15px; 
+        font-size: 30px; 
         transform: translateY(-50%) scale(1);
         transform-origin: left center;
     }
