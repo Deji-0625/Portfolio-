@@ -39,7 +39,7 @@ body {
     font-size: 32px; 
     font-weight: 900; letter-spacing: 1px;
     z-index: 100;
-    white-space: nowrap; /* Prevents text from ever breaking into two lines */
+    white-space: nowrap; 
     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -52,7 +52,7 @@ body {
 @keyframes typing { to { max-width: 250px; } }
 @keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
 
-/* Fixes the 8 spacing perfectly to the text */
+/* The Transparent PNG */
 .crystal-8 {
     height: 1.1em; 
     width: auto; 
@@ -126,59 +126,58 @@ body {
 .social-links a:hover { color: #00ffcc; }
 
 /* ========================================= */
-/* THE SCROLL MAGIC & CARRD ANIMATIONS       */
+/* THE SCROLL MAGIC & HEADER LAYOUT          */
 /* ========================================= */
 body.scrolled #nav-backdrop { transform: translateY(0); }
 body.scrolled #dynamic-logo {
     top: 45px; left: 8vw;
     transform: translate(0, -50%) scale(0.85);
-    transform-origin: left center; /* Anchors the shrink to the left edge */
+    transform-origin: left center; 
 }
 body.scrolled #nav-menu { opacity: 1; pointer-events: auto; }
 body.scrolled .scroll-prompt { opacity: 0; }
 
+/* ========================================= */
+/* CARRD-STYLE SCROLL REVEALS                */
+/* ========================================= */
 .reveal {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
 }
+/* Staggering the load times so they flow downwards */
 .main-title.reveal { transition-delay: 0.1s; }
 .software-tags.reveal { transition-delay: 0.2s; }
 .bio-text.reveal { transition-delay: 0.3s; }
 .button-group.reveal { transition-delay: 0.4s; }
 .social-links.reveal { transition-delay: 0.5s; }
 
+
 /* ========================================= */
 /* MOBILE RESPONSIVENESS                     */
 /* ========================================= */
 @media (max-width: 768px) {
     .main-title { font-size: 2.8rem; }
-    
-    /* Slightly slimmer backdrop to save screen space */
     #nav-backdrop { height: 75px; } 
-    
-    /* Initial loading state size */
     #dynamic-logo { transform: translate(-50%, -50%) scale(1); }
     
-    /* Scrolled state: Anchored left, shrunk down to fit */
     body.scrolled #dynamic-logo {
-        top: 37.5px; /* Center of the 75px backdrop */
-        left: 5vw; /* Tighter edge margin */
+        top: 37.5px; 
+        left: 5vw; 
         transform: translate(0, -50%) scale(0.55); 
     }
     
-    /* Scrolled state: Nav links on the right */
     #nav-menu { 
         top: 37.5px; 
         right: 5vw; 
         transform: translateY(-50%); 
     }
-    .nav-links { gap: 12px; } /* Tighter gap between words */
-    .nav-links a { font-size: 13px; } /* Slightly smaller text to fit */
+    .nav-links { gap: 12px; } 
+    .nav-links a { font-size: 13px; } 
     
     .button-group { flex-direction: column; width: 100%; max-width: 300px; }
     .btn { width: 100%; text-align: center; }
