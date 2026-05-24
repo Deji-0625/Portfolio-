@@ -21,8 +21,8 @@
     <nav id="nav-menu">
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
             <li><a href="work.html">Work</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
@@ -47,7 +47,7 @@
 
             <div class="button-group reveal">
                 <a href="work.html" class="btn primary-btn">View My Work</a>
-                <a href="about.html" class="btn secondary-btn">About Me</a>
+                <a href="contact.html" class="btn secondary-btn">Contact Me</a>
             </div>
 
             <div class="social-links reveal">
@@ -60,7 +60,6 @@
     </main>
 
     <script>
-        // 1. Header Scroll Logic
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 document.body.classList.add('scrolled');
@@ -69,15 +68,11 @@
             }
         });
 
-        // 2. Intersection Observer for Scroll Reveals
-        const observerOptions = {
-            threshold: 0.15 // Triggers when 15% of the element is visible
-        };
-
+        const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active'); // Adds the animation class
+                    entry.target.classList.add('active');
                 }
             });
         }, observerOptions);
