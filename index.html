@@ -33,24 +33,24 @@
 
     <main id="main-content">
         <header class="hero">
-            <h1 class="main-title">AKANDE <span class="gradient-text">ISAAC</span> AYODEJI</h1>
+            <h1 class="main-title reveal">AKANDE <span class="gradient-text">ISAAC</span> AYODEJI</h1>
             
-            <div class="software-tags">
+            <div class="software-tags reveal">
                 <span>VIDEO EDITOR</span>
                 <span>GRAPHIC DESIGNER</span>
                 <span>VIDEOGRAPHER</span>
             </div>
 
-            <p class="bio-text">
+            <p class="bio-text reveal">
                 Video Editor and Graphics Designer with focus on Cinematic storytelling and high-impact visuals. Turning raw footage into cinematic stories and static ideas into high-impact graphics. I build the visuals that define the brand. <strong>Let's Cre8.</strong>
             </p>
 
-            <div class="button-group">
+            <div class="button-group reveal">
                 <a href="work.html" class="btn primary-btn">View My Work</a>
                 <a href="about.html" class="btn secondary-btn">About Me</a>
             </div>
 
-            <div class="social-links">
+            <div class="social-links reveal">
                 <a href="https://x.com/DejiTheCre8or" target="_blank">𝕏 DejiTheCre8or</a>
                 <a href="mailto:DejiTheCre8or@gmail.com">✉ Email</a>
                 <a href="https://instagram.com/DejiTheCre8or" target="_blank">📷 Instagram</a>
@@ -60,12 +60,30 @@
     </main>
 
     <script>
+        // 1. Header Scroll Logic
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 document.body.classList.add('scrolled');
             } else {
                 document.body.classList.remove('scrolled');
             }
+        });
+
+        // 2. Intersection Observer for Scroll Reveals
+        const observerOptions = {
+            threshold: 0.15 // Triggers when 15% of the element is visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active'); // Adds the animation class
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
         });
     </script>
 </body>
