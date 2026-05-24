@@ -22,7 +22,6 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-// Added safety check to prevent errors on pages without a menu
 if (hamburger && navLinks) {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
@@ -36,7 +35,7 @@ const navDropdown = document.querySelector('.nav-dropdown');
 
 if (dropdownToggle && navDropdown) {
     dropdownToggle.addEventListener('click', (e) => {
-        e.preventDefault(); // Stops the page from jumping
+        e.preventDefault(); 
         navDropdown.classList.toggle('active');
     });
 }
