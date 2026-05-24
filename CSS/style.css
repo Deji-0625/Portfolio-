@@ -137,6 +137,9 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .crystal-8 { height: 120%; max-height: 28px; margin-left: -3px; margin-right: -4px; transform: translateY(-1px); }
     
     .software-tags { flex-wrap: wrap; }
-    .button-group { flex-direction: column; align-items: stretch; width: 100%; max-width: 300px; }
-    .btn { text-align: center; }
+    
+    /* NEW: Side-by-side mobile buttons */
+    .button-group { flex-direction: row; justify-content: flex-start; gap: 12px; width: 100%; max-width: 350px; }
+    /* flex: 1 makes both buttons take up exactly 50% of the space for a perfect split */
+    .btn { flex: 1; text-align: center; padding: 14px 10px; font-size: 1rem; border-radius: 50px; }
 }
