@@ -136,25 +136,54 @@ body {
 .bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 700px; line-height: 1.6; margin-top: 10px; }
 .bio-text strong { color: #ffffff; }
 
-/* --- Buttons --- */
-.button-group { display: flex; gap: 25px; align-items: center; }
-.btn { 
-    position: relative; padding: 16px 40px; text-decoration: none; font-weight: bold; 
-    font-size: 1.1rem; border-radius: 50px; z-index: 1; transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.3s ease; 
+/* ========================================= */
+/* BUTTONS: SUBTLE NATIVE STYLE              */
+/* ========================================= */
+.button-group { 
+    display: flex; 
+    gap: 16px; /* Tighter gap for a more app-like layout */
+    align-items: center; 
 }
-.primary-btn { background-color: #ffffff; color: #000000; border: none; overflow: hidden; }
-.primary-btn::before {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff, #9d00ff, #ff007f);
-    background-size: 200% 100%; z-index: -1; opacity: 0; transition: opacity 0.3s ease; border-radius: 50px;
-}
-.primary-btn:hover { color: #000000; transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 0, 127, 0.25); }
-.primary-btn:hover::before { opacity: 1; animation: backgroundFlow 2.5s linear infinite; }
 
-.secondary-btn { background-color: transparent; color: #ffffff; border: none; padding: 16px 20px; }
+.btn { 
+    position: relative; 
+    padding: 16px 32px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1.1rem; 
+    border-radius: 50px; 
+    z-index: 1;
+    /* Clean, fast transitions for color, and a very snappy transform for clicks */
+    transition: background-color 0.2s ease, transform 0.1s ease; 
+}
+
+/* Primary Button: Solid White to Light Gray */
+.primary-btn { 
+    background-color: #ffffff; 
+    color: #111111; 
+    border: none; 
+}
+
+.primary-btn:hover { 
+    background-color: #e2e2e2; /* Subtle dimming on hover */
+    color: #111111;
+}
+
+/* Secondary Button: Transparent to Muted Highlight */
+.secondary-btn { 
+    background-color: transparent; 
+    color: #ffffff; 
+    border: none; 
+}
+
 .secondary-btn:hover {
-    transform: scale(1.05); background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff, #9d00ff, #ff007f);
-    background-size: 200% auto; color: transparent; -webkit-background-clip: text; background-clip: text; animation: textFlow 2.5s linear infinite;
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle Pinterest dark-mode wash */
+    color: #ffffff;
+}
+
+/* The Pinterest "Press" Effect */
+.btn:active {
+    transform: scale(0.96); /* Button presses physically inward when clicked */
 }
 
 @keyframes backgroundFlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
