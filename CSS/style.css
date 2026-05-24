@@ -98,8 +98,11 @@ body.scrolled .scroll-prompt { opacity: 0; }
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-    #main-content { margin-top: 100vh; padding: 20px 24px; }
-    .main-title { font-size: 5rem; line-height: 0.9; gap: 0 20px; }
+    /* Pulled back up to 15vh so it isn't lost at the bottom of the screen */
+    #main-content { margin-top: 15vh; padding: 20px 24px; }
+    
+    /* REDUCED SPACE: Tighter gap (10px) and tighter line-height (0.8) */
+    .main-title { font-size: 5rem; line-height: 0.8; gap: 0 10px; } 
     .name-part { letter-spacing: -4px; }
     
     #nav-backdrop { height: 75px; } 
