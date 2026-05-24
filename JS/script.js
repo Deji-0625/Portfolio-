@@ -29,3 +29,14 @@ if (hamburger && navLinks) {
         navLinks.classList.toggle('active');
     });
 }
+
+// --- 4. Dropdown Logic (Click for All Devices) ---
+const dropdownToggle = document.querySelector('.dropdown-toggle');
+const navDropdown = document.querySelector('.nav-dropdown');
+
+if (dropdownToggle && navDropdown) {
+    dropdownToggle.addEventListener('click', (e) => {
+        e.preventDefault(); // Stops the page from jumping
+        navDropdown.classList.toggle('active');
+    });
+}
