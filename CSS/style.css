@@ -146,7 +146,6 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.3s ease; 
 }
 
-/* Primary Button: Solid White to Rainbow Fill */
 .primary-btn { 
     background-color: #ffffff; color: #000000; border: none; overflow: hidden;
 }
@@ -158,12 +157,7 @@ body {
 .primary-btn:hover { color: #000000; transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 0, 127, 0.25); }
 .primary-btn:hover::before { opacity: 1; animation: backgroundFlow 2.5s linear infinite; }
 
-/* Secondary Button: No Borders, Text Glows on Hover */
-.secondary-btn { 
-    background-color: transparent; 
-    color: #ffffff; 
-    border: none; 
-}
+.secondary-btn { background-color: transparent; color: #ffffff; border: none; }
 .secondary-btn:hover {
     transform: scale(1.05); 
     background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff, #9d00ff, #ff007f);
@@ -177,7 +171,6 @@ body {
 @keyframes backgroundFlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 @keyframes textFlow { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
 
-
 /* ========================================= */
 /* SOCIAL LINKS                              */
 /* ========================================= */
@@ -190,13 +183,11 @@ body {
 /* ========================================= */
 body.scrolled #nav-backdrop { transform: translateY(0); }
 
-/* Fades and deflates the glassmorphic 8 when scrolling */
 body.scrolled #glass-8 {
     opacity: 0;
     transform: translate(-50%, -50%) scale(4); 
 }
 
-/* Shrinks the massive logo into the header */
 body.scrolled #dynamic-logo {
     top: 45px; left: 8vw;
     transform: translate(0, -50%) scale(0.6); 
@@ -231,34 +222,42 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .main-title { font-size: 2.8rem; }
     #nav-backdrop { height: 75px; } 
     
-    /* Pulls the main content up so the scroll gap is much shorter */
-    #main-content { margin-top: 70vh; }
+    /* Perfect scroll gap: pulls the hero section up cleanly */
+    #main-content { margin-top: 50vh; }
     
+    /* Bumps the glass 8 up slightly so it frames the hero text */
+    #glass-8 { top: 35%; }
+    
+    /* Native App Fix: Logo is locked to the header instantly */
     #dynamic-logo { 
-        font-size: 28px; 
-        transform: translate(-50%, -50%) scale(1.1); 
-    }
-    
-    /* Scrolled Header: Logo is scaled down to leave room */
-    body.scrolled #dynamic-logo {
         top: 37.5px; left: 15px; 
+        font-size: 28px; 
         transform: translateY(-50%) scale(0.55); 
         transform-origin: left center; 
     }
     
-    /* Scrolled Header: Links are pulled tighter together */
+    /* Scrolled state override to keep it locked */
+    body.scrolled #dynamic-logo {
+        top: 37.5px; left: 15px; 
+        transform: translateY(-50%) scale(0.55); 
+    }
+    
+    /* Native App Fix: Nav links are instantly visible and spaced perfectly */
     #nav-menu { 
         top: 37.5px; right: 12px; left: auto;
         transform: translateY(-50%); 
+        opacity: 1; pointer-events: auto;
     }
-    .nav-links { 
-        gap: 8px; /* Tighter gap between the buttons */
-        justify-content: flex-end; 
-    } 
-    .nav-links a { 
-        font-size: 12px; /* Slightly smaller text */
-        padding: 4px 6px; 
-    } 
+    body.scrolled #nav-menu {
+        top: 37.5px; right: 12px; 
+        transform: translateY(-50%); 
+    }
+    
+    .nav-links { gap: 8px; justify-content: flex-end; } 
+    .nav-links a { font-size: 12px; padding: 4px 6px; } 
+    
+    /* Hides the scroll prompt since content is already visible */
+    .scroll-prompt { display: none; }
     
     .button-group { flex-direction: column; width: 100%; max-width: 300px; }
     .btn { width: 100%; text-align: center; }
