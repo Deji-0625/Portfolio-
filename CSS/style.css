@@ -47,52 +47,42 @@ body {
     transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- Dynamic Loading Logo --- */
+/* --- Dynamic Loading Logo (Now Bebas Neue Style) --- */
 #dynamic-logo {
     position: fixed;
     top: 45%; left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
     display: flex; align-items: center; justify-content: center;
-    font-size: 48px; 
-    font-weight: 900; letter-spacing: 1px;
     z-index: 100;
     white-space: nowrap; 
     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 54px; /* Slightly boosted size for condensed typography font layout */
 }
 
-.type-text {
-    display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
-    border-right: 2px solid #fff; 
-    animation: typing 1.5s steps(15, end) forwards, blink 0.5s step-end 6 forwards;
+.logo-text {
+    display: inline-block;
+    letter-spacing: -3px; /* Compact negative character spacing for brand logo */
+    color: #ffffff;
 }
 
-@keyframes typing { to { max-width: 350px; } }
-@keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
+.logo-slant {
+    transform: skewX(-12deg); /* Perfectly matches the italic styling skew of ISAAC */
+    transform-origin: center;
+}
 
 /* The Transparent PNG */
 .crystal-8 {
-    height: 1.1em; 
+    height: 1.05em; 
     width: auto; 
     object-fit: contain;
-    margin: 0 -4px; 
-    transform: translateY(3px); 
-    opacity: 0;
-    animation: fadeIn 0.8s ease forwards;
-    animation-delay: 1.5s; 
+    margin: 0 -2px; 
+    transform: translateY(1px) skewX(-12deg); /* Slants the PNG asset along with the text string */
+    opacity: 1;
 }
 
-.type-text-end {
-    opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
-    animation-delay: 2.3s; 
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Scroll Prompt */
+/* --- Scroll Prompt --- */
 .scroll-prompt {
     position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%);
     text-align: center; font-size: 14px; color: #888;
@@ -134,29 +124,27 @@ body {
     gap: 25px; 
 }
 
-/* Tall & Tight Headline Container Layout */
+/* Tall & Tight Headline Architecture */
 .main-title { 
     font-family: 'Bebas Neue', sans-serif; 
     font-size: 8rem; 
     font-weight: 400;  
-    line-height: 0.85; /* Pulls rows even tighter together vertically */
+    line-height: 0.85; 
     max-width: 1100px;
     display: flex;
     flex-wrap: wrap;
-    gap: 0 40px; /* Space between the giant words */
+    gap: 0 40px; 
 }
 
-/* Target each word to apply the tight character grid */
 .name-part {
     display: inline-block;
-    letter-spacing: -6px; /* Forces characters to squeeze tightly together */
+    letter-spacing: -6px; 
 }
 
-/* THE ARTIFICIAL SKEW LOGIC: Force italic styling onto Bebas Neue */
 .name-italic {
-    transform: skewX(-15deg); /* Slants the text mathematically */
+    transform: skewX(-15deg); 
     transform-origin: center;
-    margin-right: 15px; /* Compensates for the slant width */
+    margin-right: 15px; 
 }
 
 .gradient-text {
@@ -243,9 +231,10 @@ body.scrolled #glass-8 {
     transform: translate(-50%, -50%) scale(4); 
 }
 
+/* Scrolled Logo Scale */
 body.scrolled #dynamic-logo {
     top: 45px; left: 4vw; 
-    transform: translate(0, -50%) scale(0.6); 
+    transform: translate(0, -50%) scale(0.55); /* Clean scaled-down footprint for Bebas header layout */
     transform-origin: left center; 
 }
 body.scrolled #nav-menu { opacity: 1; pointer-events: auto; }
@@ -280,28 +269,30 @@ body.scrolled .scroll-prompt { opacity: 0; }
     }
     
     .main-title { 
-        font-size: 4.6rem; 
+        font-size: 5rem; 
         line-height: 0.9; 
         gap: 0 20px;
     }
     
     .name-part {
-        letter-spacing: -4px; /* Perfectly dense on mobile dimensions */
+        letter-spacing: -4px; 
+    }
+    
+    #dynamic-logo { 
+        font-size: 34px; /* Balanced responsive sizing for condensed lettering layout */
+    }
+    
+    .logo-text {
+        letter-spacing: -2px; 
     }
     
     #nav-backdrop { height: 75px; } 
     #glass-8 { top: 35%; left: 50%; }
     
-    #dynamic-logo { 
-        top: 37.5px; left: 15px; 
-        font-size: 28px; 
-        transform: translateY(-50%) scale(0.55); 
-        transform-origin: left center; 
-    }
-    
     body.scrolled #dynamic-logo {
         top: 37.5px; left: 15px; 
-        transform: translateY(-50%) scale(0.55); 
+        transform: translateY(-50%) scale(0.65); 
+        transform-origin: left center;
     }
     
     #nav-menu { 
