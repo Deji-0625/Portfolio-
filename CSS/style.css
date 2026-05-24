@@ -29,6 +29,7 @@ body { background-color: #050505; color: #ffffff; overflow-x: hidden; min-height
 #dynamic-logo { position: fixed; top: 45%; left: 50%; transform: translate(-50%, -50%) scale(1.5); display: flex; align-items: center; justify-content: center; z-index: 100; white-space: nowrap; transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); font-family: 'Bebas Neue', sans-serif; font-size: 54px; }
 #mobile-stacked-logo { display: none; }
 
+/* FIXED: Increased max-width from 320px to 400px so the 'E' never gets cut off to look like an 'I' */
 .type-text { display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0; letter-spacing: -2px; color: #ffffff; border-right: 2px solid #fff; animation: typing 1.5s steps(13, end) forwards, blink 0.5s step-end 6 forwards; }
 @keyframes typing { to { max-width: 400px; } }
 @keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
@@ -52,9 +53,7 @@ body { background-color: #050505; color: #ffffff; overflow-x: hidden; min-height
 #main-content { margin-top: 100vh; padding: 20px 8vw; display: flex; flex-direction: column; }
 .hero { display: flex; flex-direction: column; align-items: flex-start; gap: 25px; }
 
-/* NEW: Hero Intro Group for smooth synchronized fading */
-.hero-intro-group { transition: opacity 0.5s ease; opacity: 1; }
-
+/* FIXED: Restored 'font-weight: 400' and 'max-width' so the font looks thin and correct again */
 .main-title { font-family: 'Bebas Neue', sans-serif; font-size: 8rem; font-weight: 400; line-height: 0.85; max-width: 1100px; display: flex; flex-wrap: wrap; gap: 0 40px; }
 .name-part { display: inline-block; letter-spacing: -6px; }
 .name-italic { transform: skewX(-15deg); transform-origin: center; margin-right: 15px; }
@@ -94,10 +93,6 @@ body.scrolled #dynamic-logo { top: 45px; left: 4vw; transform: translate(0, -50%
 body.scrolled #nav-menu { opacity: 1; pointer-events: auto; }
 body.scrolled .scroll-prompt { opacity: 0; }
 
-/* NEW: Logic for Fading Hero and Smart Scroll Header */
-body.scrolled .hero-intro-group { opacity: 0; pointer-events: none; }
-body.scrolled.header-hidden #nav-backdrop { transform: translateY(-100%); }
-
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -110,6 +105,7 @@ body.scrolled.header-hidden #nav-backdrop { transform: translateY(-100%); }
     #nav-backdrop { height: 75px; } 
     #glass-8 { top: 35%; left: 50%; }
     
+    /* Logo Logic */
     #dynamic-logo { top: 35px; left: 15px; font-size: 30px; transform: translateY(-50%) scale(1); transition: opacity 0.3s ease; }
     body.scrolled #dynamic-logo { opacity: 0; pointer-events: none; }
     
@@ -120,6 +116,7 @@ body.scrolled.header-hidden #nav-backdrop { transform: translateY(-100%); }
     .stack-bottom { letter-spacing: 1.5px; color: #ffffff; } 
     .stack-8 { display: inline-block; height: 120%; max-height: 28px; width: auto; object-fit: contain; vertical-align: middle; margin-left: -2px; margin-right: -2px; transform: translateY(-1px); }
     
+    /* Menu Logic */
     #nav-menu { top: 35px; right: 15px; left: auto; transform: translateY(-50%); opacity: 1; pointer-events: auto; }
     body.scrolled #nav-menu { top: 37.5px; right: 15px; transform: translateY(-50%); }
     
