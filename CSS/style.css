@@ -98,6 +98,9 @@ body {
 }
 @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 10px); } }
 
+/* --- Hide mobile stacked logo on desktop --- */
+#mobile-stacked-logo { display: none; }
+
 /* --- Main Navigation --- */
 #nav-menu {
     position: fixed; top: 45px; right: 4vw; transform: translateY(-50%);
@@ -224,10 +227,104 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .logo-text { letter-spacing: -2px; }
     
     /* Scrolled Header Fixed Core */
-    body.scrolled #dynamic-logo {
-        top: 37.5px; left: 15px; 
-        transform: translateY(-50%) scale(0.65); 
+  /* ========================================= */
+/* MOBILE RESPONSIVENESS                     */
+/* ========================================= */
+@media (max-width: 768px) {
+    #main-content { margin-top: 50vh; padding: 20px 24px; }
+    .main-title { font-size: 5rem; line-height: 0.9; gap: 0 20px; }
+    .name-part { letter-spacing: -4px; }
+    
+    #nav-backdrop { height: 75px; } 
+    #glass-8 { top: 35%; left: 50%; }
+    
+    /* Mobile Initial Entry Layout (Single Line) */
+    #dynamic-logo { 
+        top: 35px; left: 15px; font-size: 30px; 
+        transform: translateY(-50%) scale(1); transform-origin: left center;
+        transition: opacity 0.3s ease; /* Prepares it to fade */
     }
+    .logo-text { letter-spacing: -2px; }
+    
+    /* 1. CROSSFADE OUT: Fades the single line when scrolled */
+    body.scrolled #dynamic-logo {
+        opacity: 0; 
+        pointer-events: none;
+        /* Keep it locked in place so it doesn't jump while fading */
+        top: 35px; left: 15px; transform: translateY(-50%) scale(1); 
+    }
+
+    /* 2. MOBILE STACKED LOGO SETUP */
+    #mobile-stacked-logo {
+        display: flex; /* Overrides the desktop 'none' */
+        flex-direction: column;
+        align-items: flex-start;
+        position: fixed;
+        top: 37.5px; left: 15px;
+        transform: translateY(-50%) scale(0.65); /* Scaled down for header */
+        transform-origin: left center;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 54px; /* Base size relative to the scale */
+        line-height: 0.8; /* Pulls rows tight together */
+        z-index: 100;
+        
+        opacity: 0; pointer-events: none; /* Invisible until scrolled */
+        transition: opacity 0.3s ease;
+    }
+
+    /* 3. CROSSFADE IN: Shows the stacked logo when scrolled */
+    body.scrolled #mobile-stacked-logo {
+        opacity: 1; pointer-events: auto;
+    }
+
+    /* Optical Alignment: Matching widths of top and bottom rows */
+    .stack-top { letter-spacing: -2px; color: #ffffff; }
+    .stack-bottom { letter-spacing: 2.5px; color: #ffffff; } /* Expanded to match DEJI THE */
+    
+    .stack-8 { 
+        display: inline-block; height: 120%; max-height: 52px; width: auto; 
+        object-fit: contain; vertical-align: middle; 
+        margin-left: -5px; margin-right: -5px; transform: translateY(-2px); 
+    }
+    
+    /* --- The Rest of Mobile Settings Remain Untouched --- */
+    #nav-menu { 
+        top: 35px; right: 15px; left: auto; transform: translateY(-50%); 
+        opacity: 1; pointer-events: auto;
+    }
+    body.scrolled #nav-menu { top: 37.5px; right: 15px; transform: translateY(-50%); }
+    
+    .hamburger {
+        display: block; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px; padding: 10px; cursor: pointer; z-index: 105;
+    }
+    .hamburger .line {
+        display: block; width: 18px; height: 2px; margin: 5px 0; background-color: #ffffff;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); transform-origin: center;
+    }
+    .hamburger.active .line:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+    .hamburger.active .line:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
+
+    .nav-links { 
+        position: absolute; top: 55px; right: 0; background-color: #0d0d0d;
+        border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; 
+        flex-direction: column; width: 160px; gap: 0; opacity: 0; visibility: hidden;
+        transform: translateY(-15px); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); overflow: hidden;
+    }
+    .nav-links.active { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; font-size: 14px; padding: 16px 20px; text-align: right; border-bottom: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0; }
+    .nav-links li:last-child a { border-bottom: none; }
+    
+    /* Mobile Spacing Track Override */
+    .crystal-8 { 
+        height: 120%;
+        max-height: 28px;
+        margin-left: -3px; 
+        margin-right: -4px; 
+        transform: translateY(-1px);
+    }
+}
     
     #nav-menu { 
         top: 35px; right: 15px; left: auto; transform: translateY(-50%); 
