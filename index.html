@@ -44,27 +44,25 @@
 
     <main id="main-content">
         <header class="hero">
-            <div class="hero-intro-group">
-                <h1 class="main-title">
-                    <span class="name-part">AKANDE</span>
-                    <span class="name-part name-italic gradient-text">ISAAC</span>
-                    <span class="name-part">AYODEJI</span>
-                </h1>
-                
-                <div class="software-tags">
-                    <span>VIDEOGRAPHER</span>
-                    <span>VIDEO EDITOR</span>
-                    <span>GRAPHIC DESIGNER</span>
-                </div>
+            <h1 class="main-title reveal">
+                <span class="name-part">AKANDE</span>
+                <span class="name-part name-italic gradient-text">ISAAC</span>
+                <span class="name-part">AYODEJI</span>
+            </h1>
+            
+            <div class="software-tags reveal">
+                <span>VIDEOGRAPHER</span>
+                <span>VIDEO EDITOR</span>
+                <span>GRAPHIC DESIGNER</span>
+            </div>
 
-                <p class="bio-text">
-                    Video Editor and Graphics Designer with focus on Cinematic storytelling and high-impact visuals. Turning raw footage into cinematic stories and static ideas into high-impact graphics. I build the visuals that define the brand. <strong>Let's Cre8.</strong>
-                </p>
+            <p class="bio-text reveal">
+                Video Editor and Graphics Designer with focus on Cinematic storytelling and high-impact visuals. Turning raw footage into cinematic stories and static ideas into high-impact graphics. I build the visuals that define the brand. <strong>Let's Cre8.</strong>
+            </p>
 
-                <div class="button-group">
-                    <a href="work.html" class="btn primary-btn">View My Work</a>
-                    <a href="contact.html" class="btn secondary-btn">Contact Me</a>
-                </div>
+            <div class="button-group reveal">
+                <a href="work.html" class="btn primary-btn">View My Work</a>
+                <a href="contact.html" class="btn secondary-btn">Contact Me</a>
             </div>
         </header>
 
@@ -97,37 +95,14 @@
     </main>
 
     <script>
-        let lastScrollY = window.scrollY;
-        const body = document.body;
-
-        // Function created so it can run safely on load AND on scroll
-        function updateScrollState() {
-            const currentScrollY = window.scrollY;
-            const isScrolled = currentScrollY > 50;
-
-            // 1. Initial Intro Logic (Fades text, shrinks logo)
-            if (isScrolled) {
+        window.addEventListener('scroll', () => {
+            const body = document.body;
+            if (window.scrollY > 50) {
                 body.classList.add('scrolled');
             } else {
                 body.classList.remove('scrolled');
             }
-
-            // 2. Smart Scroll Gatekeeper (Only applies AFTER intro is done)
-            if (isScrolled) {
-                if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                    body.classList.add('header-hidden'); // Scrolling down -> hide
-                } else {
-                    body.classList.remove('header-hidden'); // Scrolling up -> show
-                }
-            } else {
-                body.classList.remove('header-hidden'); // Reset if at the very top
-            }
-            
-            lastScrollY = currentScrollY;
-        }
-
-        window.addEventListener('scroll', updateScrollState);
-        window.addEventListener('load', updateScrollState); // Ensures correct state on refresh
+        });
 
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
