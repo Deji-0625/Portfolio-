@@ -18,18 +18,35 @@ body {
     z-index: -1; pointer-events: none;
 }
 
+/* --- The Sliding Header Backdrop --- */
+#nav-backdrop {
+    position: fixed; top: 0; left: 0; width: 100%; height: 90px;
+    z-index: 95;
+    
+    /* Border Radius on the bottom only */
+    border-radius: 0 0 30px 30px;
+    border-bottom: 3px solid transparent;
+    
+    /* The trick to give the border a gradient without messing up the radius */
+    background: linear-gradient(#050505, #050505) padding-box,
+                linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff) border-box;
+    
+    transform: translateY(-100%);
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
 /* --- Dynamic Loading Logo --- */
 #dynamic-logo {
     position: fixed;
     top: 45%; left: 50%;
     transform: translate(-50%, -50%) scale(1.8);
     display: flex; align-items: center; justify-content: center;
-    font-size: 28px; font-weight: 900; letter-spacing: 1px;
+    font-size: 32px; /* Set a specific base font size */
+    font-weight: 900; letter-spacing: 1px;
     z-index: 100;
     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Typewriter Effect */
 .type-text {
     display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
     border-right: 2px solid #fff; 
@@ -39,20 +56,19 @@ body {
 @keyframes typing { to { max-width: 250px; } }
 @keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
 
-/* The High-Res Image Magic */
+/* Fixes the 8 spacing perfectly to the text */
 .crystal-8 {
-    height: 48px; /* Perfectly matches the text height */
-    width: auto; /* Prevents warping */
+    height: 1.1em; /* Scales perfectly with the 32px font size */
+    width: auto; 
     object-fit: contain;
-    margin: 0 2px;
-    vertical-align: middle;
+    margin: 0 -4px; /* Pulls the text flush against the image */
+    transform: translateY(2px); /* Drops it slightly onto the text baseline */
     opacity: 0;
-    mix-blend-mode: screen; /* THIS erases the black background instantly */
+    mix-blend-mode: screen;
     animation: fadeIn 0.8s ease forwards;
     animation-delay: 1.5s; 
 }
 
-/* Final 'or' fade in */
 .type-text-end {
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
@@ -77,7 +93,10 @@ body {
 
 /* --- Main Navigation --- */
 #nav-menu {
-    position: fixed; top: 35px; right: 8vw;
+    position: fixed; 
+    top: 45px; /* Aligns with the center of the 90px backdrop */
+    right: 8vw;
+    transform: translateY(-50%);
     opacity: 0; pointer-events: none; z-index: 99;
     transition: opacity 0.8s ease;
 }
@@ -91,10 +110,7 @@ body {
     padding: 20px;
     display: flex; justify-content: center;
 }
-.hero {
-    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 25px;
-}
-
+.hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 25px; }
 .main-title { font-size: 4rem; font-weight: 900; letter-spacing: 2px; line-height: 1.1; }
 .gradient-text {
     background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
@@ -114,10 +130,16 @@ body {
 .social-links a { color: #888888; text-decoration: none; font-size: 0.95rem; transition: color 0.3s ease; }
 .social-links a:hover { color: #00ffcc; }
 
-/* THE SCROLL MAGIC */
+/* ========================================= */
+/* THE SCROLL MAGIC                          */
+/* ========================================= */
+body.scrolled #nav-backdrop {
+    transform: translateY(0); /* Drops the backdrop down */
+}
 body.scrolled #dynamic-logo {
-    top: 30px; left: 8vw;
-    transform: translate(0, 0) scale(0.85);
+    top: 45px; left: 8vw;
+    /* Keeps the logo perfectly vertically centered in the backdrop */
+    transform: translate(0, -50%) scale(0.85);
 }
 body.scrolled #nav-menu {
     opacity: 1; pointer-events: auto;
@@ -129,12 +151,18 @@ body.scrolled .scroll-prompt {
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .main-title { font-size: 2.8rem; }
+    #nav-backdrop { height: 110px; } /* Slightly taller on mobile for links */
+    
     #dynamic-logo { transform: translate(-50%, -50%) scale(1.2); }
     body.scrolled #dynamic-logo {
-        top: 20px; left: 50%;
-        transform: translate(-50%, 0) scale(0.8);
+        top: 35px; left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
     }
-    #nav-menu { top: 60px; right: 50%; transform: translateX(50%); }
+    
+    body.scrolled #nav-menu { 
+        top: 80px; right: 50%; 
+        transform: translate(50%, -50%); 
+    }
     .nav-links { gap: 15px; }
     .nav-links a { font-size: 14px; }
     .button-group { flex-direction: column; width: 100%; max-width: 300px; }
