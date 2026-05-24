@@ -62,22 +62,20 @@ body {
 @keyframes typing { to { max-width: 320px; } }
 @keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
 
-/* --- CRITICAL NATIVE TEXT EMBED FOR THE 8 --- */
+/* --- THE SCALE-MATCHED NATIVE TEXT EMBED FOR THE 8 --- */
 .crystal-8 {
     display: inline-block;
-    height: 0.82em; /* Shrinks the asset to perfectly align with Bebas Neue's cap-height */
+    height: 1.02rem; /* FIXED: Boosted size to perfectly overshoot and lock with Bebas Neue's cap-height */
     width: auto; 
     object-fit: contain;
-    
-    /* Forces the image to lock directly onto the font's typographic baseline line */
     vertical-align: baseline; 
     
-    /* Strict negative spatial tracking rules to remove any visual separation indication */
+    /* Strict negative tracking so it seamlessly hugs the font letters */
     margin-left: -1px; 
     margin-right: -4px; 
     
     opacity: 0;
-    transform: translateY(0); /* Removed custom offsets to let baseline alignment manage placement */
+    transform: translateY(2px); /* Micro-shift down so it sits absolutely flush on the line */
     animation: fadeIn 0.8s ease forwards; 
     animation-delay: 1.5s;
 }
@@ -197,7 +195,7 @@ body.scrolled .scroll-prompt { opacity: 0; }
     
     /* Mobile Initial Entry Layout */
     #dynamic-logo { 
-        top: 35px; top: 35px; left: 15px; font-size: 30px; 
+        top: 35px; left: 15px; font-size: 30px; 
         transform: translateY(-50%) scale(1); transform-origin: left center;
     }
     .logo-text { letter-spacing: -2px; }
@@ -236,8 +234,13 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .nav-links a { display: block; font-size: 14px; padding: 16px 20px; text-align: right; border-bottom: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0; }
     .nav-links li:last-child a { border-bottom: none; }
     
-    /* Mobile-specific embed size override to protect alignment ratio */
-    .crystal-8 { margin-left: 0.18em; margin-right: -2px; }
+    /* Mobile-specific embed height and positioning safety margins */
+    .crystal-8 { 
+        height: 1.02rem;
+        margin-left: 0.18em; 
+        margin-right: -2px; 
+        transform: translateY(1px);
+    }
     
     .scroll-prompt { display: none; }
     .button-group { flex-direction: column; width: 100%; max-width: 300px; align-items: flex-start; }
