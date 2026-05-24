@@ -9,7 +9,6 @@
 <body>
 
     <div class="bg-streaks"></div>
-
     <img src="8.png" alt="" id="glass-8">
 
     <div id="nav-backdrop"></div>
@@ -87,7 +86,7 @@
             </div>
         </section>
 
-        <div class="social-links reveal">
+        <div class="social-links reveal" style="margin-top: 60px;">
             <a href="https://x.com/DejiTheCre8or" target="_blank">𝕏 DejiTheCre8or</a>
             <a href="mailto:DejiTheCre8or@gmail.com">✉ Email</a>
             <a href="https://instagram.com/DejiTheCre8or" target="_blank">📷 Instagram</a>
@@ -96,30 +95,36 @@
     </main>
 
     <script>
+        let lastScrollY = window.scrollY;
+        const body = document.body;
+
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                document.body.classList.add('scrolled');
+            const currentScrollY = window.scrollY;
+
+            // Smart Scroll: Hide header on scroll down, show on scroll up
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                body.classList.add('header-hidden');
             } else {
-                document.body.classList.remove('scrolled');
+                body.classList.remove('header-hidden');
             }
+
+            // Existing logo animations
+            if (currentScrollY > 50) {
+                body.classList.add('scrolled');
+            } else {
+                body.classList.remove('scrolled');
+            }
+            lastScrollY = currentScrollY;
         });
 
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach((el) => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
-
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
