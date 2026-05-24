@@ -96,6 +96,35 @@ body.scrolled .scroll-prompt { opacity: 0; }
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
+
+/* ========================================= */
+/* --- PERMANENT HEADER FOR INNER PAGES  --- */
+/* ========================================= */
+
+/* Force the desktop menu to always be visible */
+body.inner-page #nav-menu { opacity: 1; pointer-events: auto; }
+
+/* Lock the backdrop in place (prevents JS from hiding it on scroll) */
+body.inner-page #nav-backdrop,
+body.inner-page.scrolled.header-hidden #nav-backdrop { 
+    transform: translateY(0) !important; 
+}
+
+/* Lock the desktop logo in place */
+body.inner-page #dynamic-logo,
+body.inner-page.scrolled.header-hidden #dynamic-logo {
+    top: 45px !important; 
+    left: 4vw !important; 
+    transform: translate(0, -50%) scale(0.55) !important; 
+    opacity: 1 !important;
+}
+
+/* Lock the nav menu in place */
+body.inner-page #nav-menu,
+body.inner-page.scrolled.header-hidden #nav-menu {
+    transform: translateY(-50%) !important;
+}
+
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     /* Pulled back up to 15vh so it isn't lost at the bottom of the screen */
@@ -118,6 +147,29 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .stack-top { letter-spacing: -2px; color: #ffffff; }
     .stack-bottom { letter-spacing: 1.5px; color: #ffffff; } 
     .stack-8 { display: inline-block; height: 120%; max-height: 28px; width: auto; object-fit: contain; vertical-align: middle; margin-left: -2px; margin-right: -2px; transform: translateY(-1px); }
+
+    /* --- Lock Mobile Header for Inner Pages --- */
+    
+    /* Keep mobile stacked logo permanently visible */
+    body.inner-page #mobile-stacked-logo,
+    body.inner-page.scrolled.header-hidden #mobile-stacked-logo {
+        opacity: 1 !important; 
+        pointer-events: auto !important;
+    }
+    
+    /* Keep the desktop logo hidden on mobile inner pages */
+    body.inner-page #dynamic-logo,
+    body.inner-page.scrolled.header-hidden #dynamic-logo {
+        opacity: 0 !important; 
+        pointer-events: none !important;
+    }
+    
+    /* Keep the mobile hamburger menu locked in place */
+    body.inner-page #nav-menu,
+    body.inner-page.scrolled.header-hidden #nav-menu {
+        top: 37.5px !important;
+        transform: translateY(-50%) !important;
+    }
     
     /* Menu Logic */
     #nav-menu { top: 35px; right: 15px; left: auto; transform: translateY(-50%); opacity: 1; pointer-events: auto; }
