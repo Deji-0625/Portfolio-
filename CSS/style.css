@@ -1,3 +1,6 @@
+/* --- Import Premium Google Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
 /* --- Global Settings --- */
 * {
     margin: 0; padding: 0; box-sizing: border-box;
@@ -100,11 +103,11 @@ body {
     50% { transform: translate(-50%, 10px); }
 }
 
-/* --- Main Navigation --- */
+/* --- Main Navigation (Desktop Right-Aligned) --- */
 #nav-menu {
     position: fixed; 
     top: 45px; 
-    right: 8vw;
+    right: 4vw; /* Pushed significantly further to the right edge */
     transform: translateY(-50%);
     opacity: 0; pointer-events: none; z-index: 99;
     transition: opacity 0.8s ease;
@@ -120,7 +123,16 @@ body {
     display: flex; justify-content: center;
 }
 .hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 25px; }
-.main-title { font-size: 4rem; font-weight: 900; letter-spacing: 2px; line-height: 1.1; }
+
+/* The upgraded cinematic font */
+.main-title { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 4rem; 
+    font-weight: 900; 
+    letter-spacing: 2px; 
+    line-height: 1.1; 
+}
+
 .gradient-text {
     background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -188,8 +200,9 @@ body.scrolled #glass-8 {
     transform: translate(-50%, -50%) scale(4); 
 }
 
+/* Desktop Left-Aligned Logo */
 body.scrolled #dynamic-logo {
-    top: 45px; left: 8vw;
+    top: 45px; left: 4vw; /* Pushed significantly further to the left edge */
     transform: translate(0, -50%) scale(0.6); 
     transform-origin: left center; 
 }
@@ -219,16 +232,16 @@ body.scrolled .scroll-prompt { opacity: 0; }
 /* MOBILE RESPONSIVENESS                     */
 /* ========================================= */
 @media (max-width: 768px) {
-    .main-title { font-size: 2.8rem; }
+    /* Made the main title massive to fill out the empty space */
+    .main-title { 
+        font-size: 3.8rem; 
+        line-height: 1.05; 
+    }
+    
     #nav-backdrop { height: 75px; } 
-    
-    /* Perfect scroll gap: pulls the hero section up cleanly */
     #main-content { margin-top: 50vh; }
-    
-    /* Bumps the glass 8 up slightly so it frames the hero text */
     #glass-8 { top: 35%; }
     
-    /* Native App Fix: Logo is locked to the header instantly */
     #dynamic-logo { 
         top: 37.5px; left: 15px; 
         font-size: 28px; 
@@ -236,13 +249,11 @@ body.scrolled .scroll-prompt { opacity: 0; }
         transform-origin: left center; 
     }
     
-    /* Scrolled state override to keep it locked */
     body.scrolled #dynamic-logo {
         top: 37.5px; left: 15px; 
         transform: translateY(-50%) scale(0.55); 
     }
     
-    /* Native App Fix: Nav links are instantly visible and spaced perfectly */
     #nav-menu { 
         top: 37.5px; right: 12px; left: auto;
         transform: translateY(-50%); 
@@ -256,7 +267,6 @@ body.scrolled .scroll-prompt { opacity: 0; }
     .nav-links { gap: 8px; justify-content: flex-end; } 
     .nav-links a { font-size: 12px; padding: 4px 6px; } 
     
-    /* Hides the scroll prompt since content is already visible */
     .scroll-prompt { display: none; }
     
     .button-group { flex-direction: column; width: 100%; max-width: 300px; }
