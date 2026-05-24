@@ -12,7 +12,7 @@ body {
     min-height: 200vh; 
 }
 
-/* --- Ambient Rainbow Streaks (Clean & Subtle) --- */
+/* --- Ambient Rainbow Streaks --- */
 .bg-streaks {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: 
@@ -25,57 +25,58 @@ body {
 
 /* --- The Giant Glassmorphic 8 --- */
 #glass-8 {
-    position: fixed;
-    top: 45%; left: 65%; 
+    position: fixed; top: 45%; left: 65%; 
     transform: translate(-50%, -50%) scale(5);
-    opacity: 0.12; 
-    filter: blur(12px); 
-    z-index: 90; 
-    pointer-events: none;
+    opacity: 0.12; filter: blur(12px); z-index: 90; pointer-events: none;
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 /* --- The Sliding Header Backdrop --- */
 #nav-backdrop {
-    position: fixed; top: 0; left: 0; width: 100%; height: 90px;
-    z-index: 95;
-    border-radius: 0 0 30px 30px;
-    border-bottom: 3px solid transparent;
+    position: fixed; top: 0; left: 0; width: 100%; height: 90px; z-index: 95;
+    border-radius: 0 0 30px 30px; border-bottom: 3px solid transparent;
     background: linear-gradient(#050505, #050505) padding-box,
                 linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff) border-box;
-    transform: translateY(-100%);
-    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- Dynamic Loading Logo (Now Upright & Compressed) --- */
+/* --- Dynamic Loading Logo Engine (Bebas Neue + Animation) --- */
 #dynamic-logo {
-    position: fixed;
-    top: 45%; left: 50%;
+    position: fixed; top: 45%; left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
     display: flex; align-items: center; justify-content: center;
-    z-index: 100;
-    white-space: nowrap; 
+    z-index: 100; white-space: nowrap; 
     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 54px; 
+    font-size: 54px;
 }
 
-.logo-text {
-    display: inline-block;
-    letter-spacing: -3px; /* Squeezed together character spacing */
-    color: #ffffff;
+/* Typing Sequence Rules */
+.type-text {
+    display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
+    letter-spacing: -2px; color: #ffffff;
+    border-right: 2px solid #fff; 
+    animation: typing 1.5s steps(13, end) forwards, blink 0.5s step-end 6 forwards;
 }
 
-/* The Transparent PNG (Now completely upright) --- */
+@keyframes typing { to { max-width: 320px; } }
+@keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
+
+/* The Transparent PNG Suffix Space Handler */
 .crystal-8 {
-    height: 1.05em; 
-    width: auto; 
-    object-fit: contain;
-    margin: 0 -2px; 
-    transform: translateY(1px); 
-    opacity: 1;
+    height: 1.05em; width: auto; object-fit: contain;
+    margin-left: 0.22em; /* Creates the perfect word gap boundary before the 8 */
+    margin-right: -2px;
+    opacity: 0; transform: translateY(1px);
+    animation: fadeIn 0.8s ease forwards; animation-delay: 1.5s;
 }
+
+.type-text-end {
+    opacity: 0; letter-spacing: -2px; color: #ffffff;
+    animation: fadeIn 0.5s ease forwards; animation-delay: 2.3s;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* --- Scroll Prompt --- */
 .scroll-prompt {
@@ -83,107 +84,53 @@ body {
     text-align: center; font-size: 14px; color: #888;
     animation: bounce 2s infinite; transition: opacity 0.4s ease;
 }
-@keyframes bounce {
-    0%, 100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, 10px); }
-}
+@keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 10px); } }
 
-/* --- Main Navigation (Desktop Right-Aligned) --- */
+/* --- Main Navigation --- */
 #nav-menu {
-    position: fixed; 
-    top: 45px; 
-    right: 4vw; 
-    transform: translateY(-50%);
-    opacity: 0; pointer-events: none; z-index: 99;
-    transition: opacity 0.8s ease;
+    position: fixed; top: 45px; right: 4vw; transform: translateY(-50%);
+    opacity: 0; pointer-events: none; z-index: 99; transition: opacity 0.8s ease;
 }
-
 .hamburger { display: none; }
-
 .nav-links { list-style: none; display: flex; gap: 35px; }
 .nav-links a { color: #ffffff; text-decoration: none; font-size: 16px; font-weight: bold; transition: color 0.3s; }
 .nav-links a:hover { color: #00ffcc; }
 
-/* --- Main Hero Content (Left-Aligned Structure) --- */
+/* --- Main Hero Content --- */
 #main-content {
-    margin-top: 100vh;
-    padding: 20px 8vw; 
-    display: flex; 
-    justify-content: flex-start; 
+    margin-top: 100vh; padding: 20px 8vw; display: flex; justify-content: flex-start;
 }
-.hero { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; 
-    text-align: left; 
-    gap: 25px; 
-}
+.hero { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 25px; }
 
-/* Tall & Tight Headline Architecture */
+/* Tall & Tight Headline */
 .main-title { 
-    font-family: 'Bebas Neue', sans-serif; 
-    font-size: 8rem; 
-    font-weight: 400;  
-    line-height: 0.85; 
-    max-width: 1100px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0 40px; 
+    font-family: 'Bebas Neue', sans-serif; font-size: 8rem; font-weight: 400;  
+    line-height: 0.85; max-width: 1100px; display: flex; flex-wrap: wrap; gap: 0 40px; 
 }
-
-.name-part {
-    display: inline-block;
-    letter-spacing: -6px; 
-}
-
-.name-italic {
-    transform: skewX(-15deg); 
-    transform-origin: center;
-    margin-right: 15px; 
-}
+.name-part { display: inline-block; letter-spacing: -6px; }
+.name-italic { transform: skewX(-15deg); transform-origin: center; margin-right: 15px; }
 
 .gradient-text {
     background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
-/* --- Software Tags: Retains its previous clean font style --- */
+/* Software Tags */
 .software-tags { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 12px; }
 .software-tags span { 
-    background-color: #1a1a1a; 
-    padding: 8px 18px; 
-    border-radius: 30px; 
-    font-size: 0.85rem; 
-    font-weight: bold; 
-    color: #e0e0e0; 
-    border: 1px solid #333; 
-    letter-spacing: 1px; /* Back to original breathing room */
+    background-color: #1a1a1a; padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; 
+    font-weight: bold; color: #e0e0e0; border: 1px solid #333; letter-spacing: 1px; 
 }
-
 .bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 700px; line-height: 1.6; margin-top: 10px; }
 .bio-text strong { color: #ffffff; }
 
-/* ========================================= */
-/* BUTTONS: SOLID vs TEXT-ONLY               */
-/* ========================================= */
+/* --- Buttons --- */
 .button-group { display: flex; gap: 25px; align-items: center; }
-
 .btn { 
-    position: relative; 
-    padding: 16px 40px; 
-    text-decoration: none; 
-    font-weight: bold; 
-    font-size: 1.1rem; 
-    border-radius: 50px; 
-    z-index: 1;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.3s ease; 
+    position: relative; padding: 16px 40px; text-decoration: none; font-weight: bold; 
+    font-size: 1.1rem; border-radius: 50px; z-index: 1; transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.3s ease; 
 }
-
-.primary-btn { 
-    background-color: #ffffff; color: #000000; border: none; overflow: hidden;
-}
+.primary-btn { background-color: #ffffff; color: #000000; border: none; overflow: hidden; }
 .primary-btn::before {
     content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff, #9d00ff, #ff007f);
@@ -192,132 +139,81 @@ body {
 .primary-btn:hover { color: #000000; transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 0, 127, 0.25); }
 .primary-btn:hover::before { opacity: 1; animation: backgroundFlow 2.5s linear infinite; }
 
-.secondary-btn { 
-    background-color: transparent; color: #ffffff; border: none; 
-    padding: 16px 20px; 
-}
+.secondary-btn { background-color: transparent; color: #ffffff; border: none; padding: 16px 20px; }
 .secondary-btn:hover {
-    transform: scale(1.05); 
-    background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff, #9d00ff, #ff007f);
-    background-size: 200% auto;
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    animation: textFlow 2.5s linear infinite;
+    transform: scale(1.05); background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff, #9d00ff, #ff007f);
+    background-size: 200% auto; color: transparent; -webkit-background-clip: text; background-clip: text; animation: textFlow 2.5s linear infinite;
 }
 
 @keyframes backgroundFlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 @keyframes textFlow { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
 
-/* ========================================= */
-/* SOCIAL LINKS                              */
-/* ========================================= */
+/* --- Social Links --- */
 .social-links { display: flex; gap: 25px; flex-wrap: wrap; justify-content: flex-start; margin-top: 10px; }
 .social-links a { color: #888888; text-decoration: none; font-size: 0.95rem; transition: color 0.3s ease; }
 .social-links a:hover { color: #00ffcc; }
 
-/* ========================================= */
-/* THE SCROLL MAGIC & HEADER LAYOUT          */
-/* ========================================= */
+/* --- Scroll Magic States --- */
 body.scrolled #nav-backdrop { transform: translateY(0); }
-
-body.scrolled #glass-8 {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(4); 
-}
+body.scrolled #glass-8 { opacity: 0; transform: translate(-50%, -50%) scale(4); }
 
 body.scrolled #dynamic-logo {
-    top: 45px; left: 4vw; 
-    transform: translate(0, -50%) scale(0.55); 
-    transform-origin: left center; 
+    top: 45px; left: 4vw; /* Rigid left alignment matching desktop text spine */
+    transform: translate(0, -50%) scale(0.55); transform-origin: left center; 
 }
 body.scrolled #nav-menu { opacity: 1; pointer-events: auto; }
 body.scrolled .scroll-prompt { opacity: 0; }
 
-/* ========================================= */
-/* CARRD-STYLE SCROLL REVEALS                */
-/* ========================================= */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* --- Carrd Scroll Reveals --- */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
 .main-title.reveal { transition-delay: 0.1s; }
 .software-tags.reveal { transition-delay: 0.2s; }
 .bio-text.reveal { transition-delay: 0.3s; }
 .button-group.reveal { transition-delay: 0.4s; }
 .social-links.reveal { transition-delay: 0.5s; }
 
-
 /* ========================================= */
-/* MOBILE RESPONSIVENESS & PORTFOLIO ENGINE  */
+/* MOBILE RESPONSIVENESS                     */
 /* ========================================= */
 @media (max-width: 768px) {
-    #main-content { 
-        margin-top: 50vh; 
-        padding: 20px 24px; 
-    }
+    #main-content { margin-top: 50vh; padding: 20px 24px; }
+    .main-title { font-size: 5rem; line-height: 0.9; gap: 0 20px; }
+    .name-part { letter-spacing: -4px; }
     
-    .main-title { 
-        font-size: 5rem; 
-        line-height: 0.9; 
-        gap: 0 20px;
-    }
+    #backdrop { height: 75px; } 
+    #glass-8 { top: 35%; left: 50%; }
     
-    .name-part {
-        letter-spacing: -4px; 
-    }
-    
-    /* Mobile Setup: Initial Entry Screen is floating cleanly at the top */
+    /* Mobile Initial Entry Layout: Cleanly scaled down and left-aligned */
     #dynamic-logo { 
-        top: 35px; left: 15px;
-        font-size: 34px; 
+        top: 35px; 
+        left: 15px; /* Firmly anchored left margin edge */
+        font-size: 30px; /* Scaled down footprint */
         transform: translateY(-50%) scale(1);
         transform-origin: left center;
     }
+    .logo-text { letter-spacing: -2px; }
     
-    .logo-text {
-        letter-spacing: -2px; 
-    }
-    
-    #nav-backdrop { height: 75px; } 
-    #glass-8 { top: 35%; left: 50%; }
-    
-    /* When scrolled down, the header interface settles in seamlessly */
+    /* Scrolled Header Fixed Core */
     body.scrolled #dynamic-logo {
         top: 37.5px; left: 15px; 
         transform: translateY(-50%) scale(0.65); 
     }
     
     #nav-menu { 
-        top: 35px; right: 15px; left: auto;
-        transform: translateY(-50%); 
+        top: 35px; right: 15px; left: auto; transform: translateY(-50%); 
         opacity: 1; pointer-events: auto;
     }
-    body.scrolled #nav-menu {
-        top: 37.5px; right: 15px; 
-        transform: translateY(-50%); 
-    }
+    body.scrolled #nav-menu { top: 37.5px; right: 15px; transform: translateY(-50%); }
     
     .hamburger {
-        display: block; 
-        background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px; 
-        padding: 10px;
-        cursor: pointer;
-        z-index: 105;
+        display: block; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px; padding: 10px; cursor: pointer; z-index: 105;
     }
-    
     .hamburger .line {
         display: block; width: 18px; height: 2px; margin: 5px 0; background-color: #ffffff;
         transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); transform-origin: center;
     }
-
     .hamburger.active .line:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
     .hamburger.active .line:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
 
@@ -327,7 +223,6 @@ body.scrolled .scroll-prompt { opacity: 0; }
         flex-direction: column; width: 160px; gap: 0; opacity: 0; visibility: hidden;
         transform: translateY(-15px); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); overflow: hidden;
     }
-    
     .nav-links.active { opacity: 1; visibility: visible; transform: translateY(0); }
     .nav-links li { width: 100%; }
     .nav-links a { display: block; font-size: 14px; padding: 16px 20px; text-align: right; border-bottom: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0; }
