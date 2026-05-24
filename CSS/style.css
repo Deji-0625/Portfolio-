@@ -94,69 +94,19 @@ body.scrolled .scroll-prompt { opacity: 0; }
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-/* ========================================= */
-/* --- PERMANENT HEADER FOR INNER PAGES  --- */
-/* ========================================= */
-
-/* Force the desktop menu to always be visible */
+/* --- PERMANENT HEADER FOR INNER PAGES --- */
 body.inner-page #nav-menu { opacity: 1; pointer-events: auto; }
+body.inner-page #nav-backdrop, body.inner-page.scrolled.header-hidden #nav-backdrop { transform: translateY(0) !important; }
+body.inner-page #dynamic-logo, body.inner-page.scrolled.header-hidden #dynamic-logo { top: 45px !important; left: 4vw !important; transform: translate(0, -50%) scale(0.55) !important; opacity: 1 !important; }
+body.inner-page #nav-menu, body.inner-page.scrolled.header-hidden #nav-menu { transform: translateY(-50%) !important; }
 
-/* Lock the backdrop in place (prevents JS from hiding it on scroll) */
-body.inner-page #nav-backdrop,
-body.inner-page.scrolled.header-hidden #nav-backdrop { 
-    transform: translateY(0) !important; 
-}
-
-/* Lock the desktop logo in place */
-body.inner-page #dynamic-logo,
-body.inner-page.scrolled.header-hidden #dynamic-logo {
-    top: 45px !important; 
-    left: 4vw !important; 
-    transform: translate(0, -50%) scale(0.55) !important; 
-    opacity: 1 !important;
-}
-
-/* Lock the nav menu in place */
-body.inner-page #nav-menu,
-body.inner-page.scrolled.header-hidden #nav-menu {
-    transform: translateY(-50%) !important;
-}
-
-/* ========================================= */
-/* --- DESKTOP DROPDOWN MENU --- */
-/* ========================================= */
-
+/* --- DESKTOP DROPDOWN --- */
 .nav-dropdown { position: relative; }
 .dropdown-toggle { display: flex; align-items: center; gap: 6px; cursor: pointer; }
 .arrow { font-size: 0.6rem; transition: transform 0.3s ease; }
-
-/* The Hidden Box */
-.dropdown-menu { 
-    position: absolute; 
-    top: 100%; 
-    left: 50%; 
-    transform: translateX(-50%) translateY(10px);
-    background-color: #0d0d0d; 
-    border: 1px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 12px; 
-    padding: 8px 0; 
-    min-width: 140px;
-    display: flex;
-    flex-direction: column;
-    opacity: 0; 
-    visibility: hidden; 
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* Make it appear on click (using .active) */
-.nav-dropdown.active .dropdown-menu { 
-    opacity: 1; 
-    visibility: visible; 
-    transform: translateX(-50%) translateY(0); 
-}
+.dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background-color: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 8px 0; min-width: 140px; display: flex; flex-direction: column; opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
+.nav-dropdown.active .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 .nav-dropdown.active .arrow { transform: rotate(180deg); }
-
-/* Desktop Sub-links */
 .dropdown-menu li { list-style: none; }
 .dropdown-menu a { padding: 12px 20px; font-size: 14px; text-align: center; color: #ccc; transition: background 0.2s; }
 .dropdown-menu a:hover { color: #00ffcc; background-color: rgba(255,255,255,0.03); }
@@ -164,104 +114,32 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     #main-content { margin-top: 50vh; padding: 20px 24px; }
-    
     .main-title { font-size: 5rem; line-height: 0.8; gap: 0 10px; } 
-    .name-part { letter-spacing: -4px; }
-    
     #nav-backdrop { height: 75px; } 
     #glass-8 { top: 35%; left: 50%; }
     
-    /* Logo Logic */
     #dynamic-logo { top: 35px; left: 15px; font-size: 30px; transform: translateY(-50%) scale(1); transition: opacity 0.3s ease; }
     body.scrolled #dynamic-logo { opacity: 0; pointer-events: none; }
-    
-    #mobile-stacked-logo { display: flex; flex-direction: column; align-items: flex-start; position: fixed; top: 37.5px; left: 15px; transform: translateY(-50%) scale(0.5); transform-origin: left center; font-family: 'Bebas Neue', sans-serif; font-size: 30px; line-height: 0.85; z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    #mobile-stacked-logo { display: flex; flex-direction: column; align-items: flex-start; position: fixed; top: 37.5px; left: 15px; transform: translateY(-50%) scale(0.5); font-family: 'Bebas Neue', sans-serif; font-size: 30px; line-height: 0.85; z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     body.scrolled #mobile-stacked-logo { opacity: 1; pointer-events: auto; }
     
-    .stack-top { letter-spacing: -2px; color: #ffffff; }
-    .stack-bottom { letter-spacing: 1.5px; color: #ffffff; } 
-    .stack-8 { display: inline-block; height: 120%; max-height: 28px; width: auto; object-fit: contain; vertical-align: middle; margin-left: -2px; margin-right: -2px; transform: translateY(-1px); }
-
-    /* --- Lock Mobile Header for Inner Pages --- */
-    body.inner-page #mobile-stacked-logo,
-    body.inner-page.scrolled.header-hidden #mobile-stacked-logo {
-        opacity: 1 !important; 
-        pointer-events: auto !important;
-    }
+    body.inner-page #mobile-stacked-logo { opacity: 1 !important; pointer-events: auto !important; }
+    body.inner-page #dynamic-logo { opacity: 0 !important; pointer-events: none !important; }
+    body.inner-page #nav-menu { top: 37.5px !important; transform: translateY(-50%) !important; }
     
-    body.inner-page #dynamic-logo,
-    body.inner-page.scrolled.header-hidden #dynamic-logo {
-        opacity: 0 !important; 
-        pointer-events: none !important;
-    }
-    
-    body.inner-page #nav-menu,
-    body.inner-page.scrolled.header-hidden #nav-menu {
-        top: 37.5px !important;
-        transform: translateY(-50%) !important;
-    }
-    
-/* --- Mobile Menu Logic FIX --- */
     #nav-menu { top: 35px; right: 15px; left: auto; transform: translateY(-50%); opacity: 1; pointer-events: auto; }
-    body.scrolled #nav-menu { top: 37.5px; right: 15px; transform: translateY(-50%); }
-    
     .hamburger { display: block; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 10px; cursor: pointer; z-index: 105; }
-    .hamburger .line { display: block; width: 18px; height: 2px; margin: 5px 0; background-color: #ffffff; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); transform-origin: center; }
+    .hamburger .line { display: block; width: 18px; height: 2px; margin: 5px 0; background-color: #ffffff; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
     .hamburger.active .line:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
     .hamburger.active .line:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
     
-    /* REMOVED overflow: hidden; so the dropdown can stretch the box! */
-    .nav-links { position: absolute; top: 55px; right: 0; background-color: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; flex-direction: column; width: 170px; gap: 0; opacity: 0; visibility: hidden; transform: translateY(-15px); transition: all 0.3s ease; }
-    
+    .nav-links { position: absolute; top: 55px; right: 0; background-color: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; flex-direction: column; width: 170px; opacity: 0; visibility: hidden; transform: translateY(-15px); transition: all 0.3s ease; }
     .nav-links.active { opacity: 1; visibility: visible; transform: translateY(0); }
-    .nav-links li { width: 100%; }
-    .nav-links a { display: block; font-size: 14px; padding: 16px 20px; text-align: right; border-bottom: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0; }
-    .nav-links li:last-child a { border-bottom: none; }
+    .nav-links a { display: block; font-size: 14px; padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
     
-    .crystal-8 { height: 120%; max-height: 28px; margin-left: -3px; margin-right: -4px; transform: translateY(-1px); }
-    .software-tags { flex-wrap: wrap; }
-    
-    .button-group { flex-direction: row; justify-content: flex-start; gap: 12px; width: 100%; max-width: 350px; }
-    .btn { flex: 1; text-align: center; padding: 14px 10px; font-size: 1rem; border-radius: 50px; }
-
-    /* --- Mobile Accordion Dropdown FIX --- */
-    .dropdown-toggle { justify-content: flex-end; }
-    
-    .dropdown-menu {
-        position: relative; /* Stays inside the menu flow to push links down */
-        top: 0; left: 0; transform: none;
-        background-color: rgba(255, 255, 255, 0.02); 
-        border: none; border-radius: 0;
-        padding: 0; width: 100%;
-        margin-top: 0; /* Clears desktop spacing */
-        min-width: unset; /* Clears desktop sizing */
-        display: none; 
-    }
-    
+    .dropdown-toggle { justify-content: flex-start; }
+    .dropdown-menu { position: relative; top: 0; left: 0; transform: none; background-color: rgba(255, 255, 255, 0.02); border: none; border-radius: 0; padding: 0; width: 100%; display: none; }
     .nav-dropdown.active .dropdown-menu { display: flex; flex-direction: column; opacity: 1; visibility: visible; }
     .nav-dropdown.active .arrow { transform: rotate(180deg); }
-    
-    .dropdown-menu a { 
-        padding: 12px 35px 12px 20px; 
-        text-align: right; 
-        font-size: 13px; 
-        color: #888; 
-        border-bottom: 1px solid rgba(255, 255, 255, 0.03); 
-    }
-    .dropdown-menu li:last-child a { border-bottom: none; }
-    .dropdown-menu a:hover { background-color: transparent; color: #fff; }
-    
-    /* When clicked on mobile, show it */
-    .nav-dropdown.active .dropdown-menu { display: flex; animation: none; opacity: 1; visibility: visible; }
-    .nav-dropdown.active .arrow { transform: rotate(180deg); }
-    
-    /* The Indentation! */
-    .dropdown-menu a { 
-        padding: 12px 35px 12px 20px; /* 35px right padding pushes it inward */
-        text-align: right; 
-        font-size: 13px; 
-        color: #888; 
-        border-bottom: 1px solid rgba(255, 255, 255, 0.03); 
-    }
-    .dropdown-menu a:hover { background-color: transparent; color: #fff; }
+    .dropdown-menu a { padding: 12px 20px 12px 40px; text-align: left; font-size: 13px; color: #888; border-bottom: 1px solid rgba(255, 255, 255, 0.03); }
 }
