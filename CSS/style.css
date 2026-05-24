@@ -1,5 +1,5 @@
-/* --- Import Heavy Premium Google Font (Back to 900) --- */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+/* --- Import Tall, Condensed Premium Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 /* --- Global Settings --- */
 * {
@@ -26,7 +26,7 @@ body {
 /* --- The Giant Glassmorphic 8 --- */
 #glass-8 {
     position: fixed;
-    top: 45%; left: 65%; /* Keeps right alignment to contrast left text */
+    top: 45%; left: 65%; 
     transform: translate(-50%, -50%) scale(5);
     opacity: 0.12; 
     filter: blur(12px); 
@@ -129,19 +129,19 @@ body {
 .hero { 
     display: flex; 
     flex-direction: column; 
-    align-items: flex-start; /* Stacks all content along the left edge */
+    align-items: flex-start; 
     text-align: left; 
     gap: 25px; 
 }
 
-/* Restored Bold Headline Styling */
+/* Tall & Thin Headline Architecture */
 .main-title { 
-    font-family: 'Montserrat', sans-serif; 
-    font-size: 4rem; 
-    font-weight: 900; /* Back to heavy impact style */
-    letter-spacing: 2px; 
-    line-height: 1.1; 
-    max-width: 900px;
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 6.5rem; /* Tall fonts can scale massively without taking up too much width */
+    font-weight: 400;  /* Naturally elegant, unbulky baseline weight */
+    letter-spacing: 3px; /* Gives the compressed characters breathing room */
+    line-height: 0.95;  /* Pulls rows closer for that editorial look */
+    max-width: 1000px;
 }
 
 .gradient-text {
@@ -251,11 +251,11 @@ body.scrolled .scroll-prompt { opacity: 0; }
         padding: 20px 24px; 
     }
     
-    /* Restored massive stacked layout to comfortably occupy space */
+    /* Tall & Condensed Mobile Rule Scaling */
     .main-title { 
-        font-size: 3.8rem; 
-        line-height: 1.05; 
-        letter-spacing: -1.5px;
+        font-size: 4.8rem; /* Scales up tall without overflowing horizontally */
+        line-height: 0.95; 
+        letter-spacing: 1px;
     }
     
     #nav-backdrop { height: 75px; } 
