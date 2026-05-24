@@ -1,170 +1,23 @@
-/* --- Global Settings --- */
-* {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
-}
-
-body {
-    background-color: #050505; color: #ffffff; overflow-x: hidden;
-    min-height: 200vh; 
-}
-
-/* --- Ambient Rainbow Streaks --- */
-.bg-streaks {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: radial-gradient(ellipse at top left, rgba(157,0,255,0.08), transparent 50%),
-                radial-gradient(ellipse at bottom right, rgba(0,255,170,0.06), transparent 50%),
-                radial-gradient(ellipse at center, rgba(255,0,127,0.05), transparent 60%);
-    z-index: -1; pointer-events: none;
-}
-
-/* --- The Sliding Header Backdrop --- */
-#nav-backdrop {
-    position: fixed; top: 0; left: 0; width: 100%; height: 90px;
-    z-index: 95;
-    
-    /* Border Radius on the bottom only */
-    border-radius: 0 0 30px 30px;
-    border-bottom: 3px solid transparent;
-    
-    /* The trick to give the border a gradient without messing up the radius */
-    background: linear-gradient(#050505, #050505) padding-box,
-                linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff) border-box;
-    
-    transform: translateY(-100%);
-    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* --- Dynamic Loading Logo --- */
-#dynamic-logo {
-    position: fixed;
-    top: 45%; left: 50%;
-    transform: translate(-50%, -50%) scale(1.8);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 32px; /* Set a specific base font size */
-    font-weight: 900; letter-spacing: 1px;
-    z-index: 100;
-    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.type-text {
-    display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0;
-    border-right: 2px solid #fff; 
-    animation: typing 1.5s steps(15, end) forwards, blink 0.5s step-end 6 forwards;
-}
-
-@keyframes typing { to { max-width: 250px; } }
-@keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
-
-/* Fixes the 8 spacing perfectly to the text */
-.crystal-8 {
-    height: 1.1em; /* Scales perfectly with the 32px font size */
-    width: auto; 
-    object-fit: contain;
-    margin: 0 -4px; /* Pulls the text flush against the image */
-    transform: translateY(2px); /* Drops it slightly onto the text baseline */
-    opacity: 0;
-    mix-blend-mode: screen;
-    animation: fadeIn 0.8s ease forwards;
-    animation-delay: 1.5s; 
-}
-
-.type-text-end {
-    opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
-    animation-delay: 2.3s; 
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Scroll Prompt */
-.scroll-prompt {
-    position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%);
-    text-align: center; font-size: 14px; color: #888;
-    animation: bounce 2s infinite; transition: opacity 0.4s ease;
-}
-@keyframes bounce {
-    0%, 100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, 10px); }
-}
-
-/* --- Main Navigation --- */
-#nav-menu {
-    position: fixed; 
-    top: 45px; /* Aligns with the center of the 90px backdrop */
-    right: 8vw;
-    transform: translateY(-50%);
-    opacity: 0; pointer-events: none; z-index: 99;
-    transition: opacity 0.8s ease;
-}
-.nav-links { list-style: none; display: flex; gap: 35px; }
-.nav-links a { color: #ffffff; text-decoration: none; font-size: 16px; font-weight: bold; transition: color 0.3s; }
-.nav-links a:hover { color: #00ffcc; }
-
-/* --- Main Hero Content --- */
-#main-content {
-    margin-top: 100vh;
-    padding: 20px;
-    display: flex; justify-content: center;
-}
-.hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 25px; }
-.main-title { font-size: 4rem; font-weight: 900; letter-spacing: 2px; line-height: 1.1; }
-.gradient-text {
-    background: linear-gradient(to right, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.software-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-.software-tags span { background-color: #1a1a1a; padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; color: #e0e0e0; border: 1px solid #333; }
-.bio-text { font-size: 1.15rem; color: #b3b3b3; max-width: 700px; line-height: 1.6; margin-top: 10px; }
-.bio-text strong { color: #ffffff; }
-.button-group { display: flex; gap: 20px; margin-top: 20px; }
-.btn { padding: 16px 40px; text-decoration: none; font-weight: bold; font-size: 1.1rem; border-radius: 50px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-.primary-btn { background-color: #ffffff; color: #000000; }
-.primary-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 255, 255, 0.25); }
-.secondary-btn { background-color: transparent; color: #ffffff; border: 2px solid #ffffff; }
-.secondary-btn:hover { background-color: #ffffff; color: #000000; transform: scale(1.05); }
-.social-links { display: flex; gap: 25px; margin-top: 30px; flex-wrap: wrap; justify-content: center; }
-.social-links a { color: #888888; text-decoration: none; font-size: 0.95rem; transition: color 0.3s ease; }
-.social-links a:hover { color: #00ffcc; }
-
 /* ========================================= */
-/* THE SCROLL MAGIC                          */
+/* CARRD-STYLE SCROLL REVEAL ANIMATIONS      */
 /* ========================================= */
-body.scrolled #nav-backdrop {
-    transform: translateY(0); /* Drops the backdrop down */
-}
-body.scrolled #dynamic-logo {
-    top: 45px; left: 8vw;
-    /* Keeps the logo perfectly vertically centered in the backdrop */
-    transform: translate(0, -50%) scale(0.85);
-}
-body.scrolled #nav-menu {
-    opacity: 1; pointer-events: auto;
-}
-body.scrolled .scroll-prompt {
+
+/* Starting state (Hidden and pushed down) */
+.reveal {
     opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .main-title { font-size: 2.8rem; }
-    #nav-backdrop { height: 110px; } /* Slightly taller on mobile for links */
-    
-    #dynamic-logo { transform: translate(-50%, -50%) scale(1.2); }
-    body.scrolled #dynamic-logo {
-        top: 35px; left: 50%;
-        transform: translate(-50%, -50%) scale(0.8);
-    }
-    
-    body.scrolled #nav-menu { 
-        top: 80px; right: 50%; 
-        transform: translate(50%, -50%); 
-    }
-    .nav-links { gap: 15px; }
-    .nav-links a { font-size: 14px; }
-    .button-group { flex-direction: column; width: 100%; max-width: 300px; }
-    .btn { width: 100%; text-align: center; }
+/* Ending state (Visible and in original position) */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
+
+/* Stagger the animations so they load one after another */
+.main-title.reveal { transition-delay: 0.1s; }
+.software-tags.reveal { transition-delay: 0.2s; }
+.bio-text.reveal { transition-delay: 0.3s; }
+.button-group.reveal { transition-delay: 0.4s; }
+.social-links.reveal { transition-delay: 0.5s; }
