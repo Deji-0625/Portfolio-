@@ -422,33 +422,33 @@ body.scrolled .scroll-prompt {
 }
 
 /* ========================================= */
-/* --- PERMANENT HEADER FOR INNER PAGES --- */
+/* --- PERMANENT HEADER FOR INNER PAGES  --- */
 /* ========================================= */
 body.inner-page #nav-menu { 
     opacity: 1; 
     pointer-events: auto; 
 }
 
-body.inner-page #nav-backdrop, 
+body.inner-page #nav-backdrop,
 body.inner-page.scrolled.header-hidden #nav-backdrop { 
     transform: translateY(0) !important; 
 }
 
-body.inner-page #dynamic-logo, 
-body.inner-page.scrolled.header-hidden #dynamic-logo { 
+body.inner-page #dynamic-logo,
+body.inner-page.scrolled.header-hidden #dynamic-logo {
     top: 45px !important; 
     left: 4vw !important; 
     transform: translate(0, -50%) scale(0.55) !important; 
-    opacity: 1 !important; 
+    opacity: 1 !important;
 }
 
-body.inner-page #nav-menu, 
-body.inner-page.scrolled.header-hidden #nav-menu { 
-    transform: translateY(-50%) !important; 
+body.inner-page #nav-menu,
+body.inner-page.scrolled.header-hidden #nav-menu {
+    transform: translateY(-50%) !important;
 }
 
 /* ========================================= */
-/* --- DESKTOP DROPDOWN --- */
+/* --- DESKTOP DROPDOWN MENU --- */
 /* ========================================= */
 .nav-dropdown { 
     position: relative; 
@@ -470,17 +470,17 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     position: absolute; 
     top: 100%; 
     left: 50%; 
-    transform: translateX(-50%) translateY(10px); 
+    transform: translateX(-50%) translateY(10px);
     background-color: #0d0d0d; 
     border: 1px solid rgba(255, 255, 255, 0.1); 
     border-radius: 12px; 
     padding: 8px 0; 
-    min-width: 140px; 
-    display: flex; 
-    flex-direction: column; 
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
     opacity: 0; 
     visibility: hidden; 
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); 
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .nav-dropdown.active .dropdown-menu { 
@@ -507,25 +507,28 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 
 .dropdown-menu a:hover { 
     color: #00ffcc; 
-    background-color: rgba(255, 255, 255, 0.03); 
+    background-color: rgba(255,255,255,0.03); 
 }
 
 /* ========================================= */
-/* --- MOBILE RESPONSIVENESS --- */
+/* --- MOBILE RESPONSIVENESS (RESTORED)  --- */
 /* ========================================= */
 @media (max-width: 768px) {
-    /* FIX: Restored proper height! */
     #main-content { 
-        margin-top: 15vh; 
+        margin-top: 50vh; 
         padding: 20px 24px; 
     }
-
+    
     .main-title { 
         font-size: 5rem; 
         line-height: 0.8; 
         gap: 0 10px; 
     } 
 
+    .name-part { 
+        letter-spacing: -4px; 
+    }
+    
     #nav-backdrop { 
         height: 75px; 
     } 
@@ -535,14 +538,11 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         left: 50%; 
     }
     
-    /* FIX: Scaled logo down to prevent the stray "OR" on screen */
     #dynamic-logo { 
         top: 35px; 
         left: 15px; 
         font-size: 30px; 
-        transform: translateY(-50%) scale(0.6); 
-        transform-origin: left center;
-        white-space: nowrap; 
+        transform: translateY(-50%) scale(1); 
         transition: opacity 0.3s ease; 
     }
 
@@ -550,7 +550,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         opacity: 0; 
         pointer-events: none; 
     }
-
+    
     #mobile-stacked-logo { 
         display: flex; 
         flex-direction: column; 
@@ -559,6 +559,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         top: 37.5px; 
         left: 15px; 
         transform: translateY(-50%) scale(0.5); 
+        transform-origin: left center; 
         font-family: 'Bebas Neue', sans-serif; 
         font-size: 30px; 
         line-height: 0.85; 
@@ -573,19 +574,44 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         pointer-events: auto; 
     }
     
-    body.inner-page #mobile-stacked-logo { 
+    .stack-top { 
+        letter-spacing: -2px; 
+        color: #ffffff; 
+    }
+
+    .stack-bottom { 
+        letter-spacing: 1.5px; 
+        color: #ffffff; 
+    } 
+
+    .stack-8 { 
+        display: inline-block; 
+        height: 120%; 
+        max-height: 28px; 
+        width: auto; 
+        object-fit: contain; 
+        vertical-align: middle; 
+        margin-left: -2px; 
+        margin-right: -2px; 
+        transform: translateY(-1px); 
+    }
+
+    body.inner-page #mobile-stacked-logo,
+    body.inner-page.scrolled.header-hidden #mobile-stacked-logo {
         opacity: 1 !important; 
-        pointer-events: auto !important; 
+        pointer-events: auto !important;
     }
-
-    body.inner-page #dynamic-logo { 
+    
+    body.inner-page #dynamic-logo,
+    body.inner-page.scrolled.header-hidden #dynamic-logo {
         opacity: 0 !important; 
-        pointer-events: none !important; 
+        pointer-events: none !important;
     }
-
-    body.inner-page #nav-menu { 
-        top: 37.5px !important; 
-        transform: translateY(-50%) !important; 
+    
+    body.inner-page #nav-menu,
+    body.inner-page.scrolled.header-hidden #nav-menu {
+        top: 37.5px !important;
+        transform: translateY(-50%) !important;
     }
     
     #nav-menu { 
@@ -597,6 +623,12 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         pointer-events: auto; 
     }
 
+    body.scrolled #nav-menu { 
+        top: 37.5px; 
+        right: 15px; 
+        transform: translateY(-50%); 
+    }
+    
     .hamburger { 
         display: block; 
         background: transparent; 
@@ -614,6 +646,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         margin: 5px 0; 
         background-color: #ffffff; 
         transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
+        transform-origin: center; 
     }
 
     .hamburger.active .line:nth-child(1) { 
@@ -624,6 +657,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         transform: translateY(-3.5px) rotate(-45deg); 
     }
     
+    /* Removed 'overflow: hidden' to let dropdown render properly */
     .nav-links { 
         position: absolute; 
         top: 55px; 
@@ -632,11 +666,12 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         border: 1px solid rgba(255, 255, 255, 0.1); 
         border-radius: 12px; 
         flex-direction: column; 
-        width: 170px; 
+        width: 160px; 
+        gap: 0; 
         opacity: 0; 
         visibility: hidden; 
         transform: translateY(-15px); 
-        transition: all 0.3s ease; 
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); 
     }
 
     .nav-links.active { 
@@ -645,16 +680,54 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         transform: translateY(0); 
     }
 
+    .nav-links li { 
+        width: 100%; 
+    }
+
     .nav-links a { 
         display: block; 
         font-size: 14px; 
         padding: 16px 20px; 
-        text-align: left; 
+        text-align: right; 
         border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+        border-radius: 0; 
+    }
+
+    .nav-links li:last-child a { 
+        border-bottom: none; 
     }
     
-    .dropdown-toggle { 
+    .crystal-8 { 
+        height: 120%; 
+        max-height: 28px; 
+        margin-left: -3px; 
+        margin-right: -4px; 
+        transform: translateY(-1px); 
+    }
+    
+    .software-tags { 
+        flex-wrap: wrap; 
+    }
+    
+    .button-group { 
+        flex-direction: row; 
         justify-content: flex-start; 
+        gap: 12px; 
+        width: 100%; 
+        max-width: 350px; 
+    }
+
+    .btn { 
+        flex: 1; 
+        text-align: center; 
+        padding: 14px 10px; 
+        font-size: 1rem; 
+        border-radius: 50px; 
+    }
+
+    /* Minimal Mobile Dropdown Fixes */
+    .dropdown-toggle { 
+        justify-content: flex-end; 
     }
 
     .dropdown-menu { 
@@ -662,7 +735,6 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         top: 0; 
         left: 0; 
         transform: none; 
-        /* FIX: Transparent background so it doesn't look like a new rectangle */
         background-color: transparent; 
         border: none; 
         border-radius: 0; 
@@ -674,20 +746,16 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     .nav-dropdown.active .dropdown-menu { 
         display: flex; 
         flex-direction: column; 
-        opacity: 1; 
-        visibility: visible; 
     }
-
+    
     .nav-dropdown.active .arrow { 
         transform: rotate(180deg); 
     }
 
-    /* FIX: Only the text shifts right via the 40px left padding */
     .dropdown-menu a { 
-        padding: 12px 20px 12px 40px; 
-        text-align: left; 
+        padding: 12px 20px; 
+        text-align: right; 
         font-size: 13px; 
         color: #888; 
-        border-bottom: 1px solid rgba(255, 255, 255, 0.03); 
     }
 }
