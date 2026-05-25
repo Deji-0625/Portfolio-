@@ -911,7 +911,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         display: block; /* Forces it to behave like a standard block element */
         width: 100%; /* Tells it to span exactly the width of the menu, no more */
         box-sizing: border-box; /* Forces the padding to stay INSIDE the width */
-        padding: 16px 20px; 
+        padding: 16px 40px; 
         text-align: right; /* Changed back to right so it perfectly aligns with "Work" */
         font-size: 13px; 
         color: #888; 
