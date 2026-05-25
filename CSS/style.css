@@ -677,7 +677,6 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         left: 50%; 
     }
 
-    /* Hide the new desktop header logo entirely on mobile */
     #desktop-header-logo {
         display: none !important;
     }
@@ -743,10 +742,11 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         transform: translateY(-1px); 
     }
 
-    body.inner-page #mobile-stacked-logo {
+    body.inner-page #mobile-stacked-logo,
+    body.inner-page.scrolled.header-hidden #mobile-stacked-logo {
         opacity: 1 !important; 
         pointer-events: auto !important;
-        transition: none !important; /* Stops mobile logo from fading in on load */
+        transition: none !important;
     }
     
     body.inner-page #nav-menu,
@@ -896,5 +896,101 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         text-align: right; 
         font-size: 13px; 
         color: #888; 
+    }
+
+    /* ========================================= */
+    /* --- CINEMATIC MOBILE OPTIMIZATIONS    --- */
+    /* ========================================= */
+
+    /* --- 1. VISUALS: Horizontal Snap Carousel --- */
+    .masonry-gallery {
+        display: flex !important;
+        flex-direction: row !important; 
+        overflow-x: auto;
+        scroll-snap-type: x mandatory; 
+        gap: 15px;
+        padding-bottom: 30px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; 
+    }
+    
+    .masonry-gallery::-webkit-scrollbar { 
+        display: none; 
+    }
+
+    .masonry-item {
+        min-width: 85vw !important; 
+        height: 60vh; 
+        scroll-snap-align: center;
+        border-radius: 20px;
+        position: relative;
+        box-shadow: inset 0 -100px 60px -20px rgba(0,0,0,0.9); 
+    }
+
+    /* --- 2. ABOUT: Premium Glassmorphism Cards --- */
+    .about-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 40px;
+    }
+
+    .about-bio {
+        background: rgba(255, 255, 255, 0.03); 
+        backdrop-filter: blur(15px); 
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.08); 
+        padding: 30px 25px;
+        border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .about-skills .sub-heading {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    
+    .software-tags {
+        justify-content: center; 
+    }
+
+    /* --- 3. CONTACT: Sleek App Interface --- */
+    .contact-grid {
+        display: flex !important;
+        flex-direction: column-reverse !important; 
+        gap: 40px;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 25px;
+        border-radius: 24px;
+        width: 100%;
+        gap: 25px;
+    }
+
+    .info-block {
+        margin: 0 !important;
+        text-align: center;
+    }
+
+    .contact-form-container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .custom-form {
+        gap: 35px; 
+    }
+
+    .input-group input,
+    .input-group textarea,
+    .input-group select {
+        font-size: 16px; 
+        padding: 12px 0;
     }
 }
