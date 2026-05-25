@@ -542,9 +542,9 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 }
 
 .dropdown-menu a { 
-    padding: 12px 20px; 
+    padding: 12px 0px; 
     font-size: 14px; 
-    text-align: center; 
+    text-align: right; 
     color: #ccc; 
     transition: background 0.2s; 
 }
