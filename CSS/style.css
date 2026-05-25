@@ -16,6 +16,11 @@ body {
     min-height: 200vh; 
 }
 
+/* Removes the ugly default blue tap highlight on mobile browsers */
+a, button, input, select, textarea {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
 .bg-streaks {
     position: fixed; 
     top: 0; 
