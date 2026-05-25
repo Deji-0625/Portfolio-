@@ -908,11 +908,16 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     }
 
 .dropdown-menu a { 
-        padding: 16px 20px; /* Keeps the text perfectly aligned with "Work" */
+        padding: 16px 20px; 
         text-align: right; 
         font-size: 13px; 
         color: #888; 
-        border-bottom: none !important; /* Kills the horizontal line only on mobile */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Brings the exact matching line back */
+    }
+
+    /* Keeps it ultra-clean by hiding the line under the final item */
+    .dropdown-menu li:last-child a {
+        border-bottom: none;
     }
     
     /* ========================================= */
