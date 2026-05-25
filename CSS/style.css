@@ -394,11 +394,41 @@ body.scrolled #glass-8 {
     transform: translate(-50%, -50%) scale(4); 
 }
 
-body.scrolled #dynamic-logo { 
-    top: 45px; 
-    left: 4vw; 
-    transform: translate(0, -50%) scale(0.55); 
-    transform-origin: left center; 
+/* 1. Desktop HOMEPAGE ONLY: Fade out the large center logo on scroll */
+body:not(.inner-page).scrolled #dynamic-logo { 
+    opacity: 0; 
+    pointer-events: none; 
+}
+
+/* 2. Desktop: Setup the new header logo (Hidden by default) */
+#desktop-header-logo {
+    position: fixed;
+    top: 45px;
+    left: 4vw;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    opacity: 0; 
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    letter-spacing: -1px;
+}
+
+.header-8 {
+    height: 26px;
+    margin: 0 -2px;
+    transform: translateY(-2px);
+}
+
+/* 3. Desktop HOMEPAGE ONLY: Fade IN the new header logo on scroll */
+body:not(.inner-page).scrolled #desktop-header-logo {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 body.scrolled #nav-menu { 
@@ -429,11 +459,12 @@ body.inner-page #nav-menu {
     pointer-events: auto; 
 }
 
-body.inner-page #nav-backdrop,
+body.inner-page #nav-backdrop, 
 body.inner-page.scrolled.header-hidden #nav-backdrop { 
     transform: translateY(0) !important; 
 }
 
+/* RESTORED: Keep the original sliding/scaling animation for Inner Pages */
 body.inner-page #dynamic-logo,
 body.inner-page.scrolled.header-hidden #dynamic-logo {
     top: 45px !important; 
@@ -442,9 +473,9 @@ body.inner-page.scrolled.header-hidden #dynamic-logo {
     opacity: 1 !important;
 }
 
-body.inner-page #nav-menu,
-body.inner-page.scrolled.header-hidden #nav-menu {
-    transform: translateY(-50%) !important;
+body.inner-page #nav-menu, 
+body.inner-page.scrolled.header-hidden #nav-menu { 
+    transform: translateY(-50%) !important; 
 }
 
 /* ========================================= */
@@ -511,7 +542,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 }
 
 /* ========================================= */
-/* --- MOBILE RESPONSIVENESS (RESTORED)  --- */
+/* --- MOBILE RESPONSIVENESS --- */
 /* ========================================= */
 @media (max-width: 768px) {
     #main-content { 
@@ -537,6 +568,11 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         top: 35%; 
         left: 50%; 
     }
+
+    /* Hide the new desktop header logo entirely on mobile */
+    #desktop-header-logo {
+        display: none !important;
+    }
     
     #dynamic-logo { 
         top: 35px; 
@@ -546,11 +582,11 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         transition: opacity 0.3s ease; 
     }
 
-   body.scrolled #dynamic-logo,
+    body.scrolled #dynamic-logo,
     body.scrolled #dynamic-logo * { 
         opacity: 0 !important; 
         visibility: hidden !important;
-        animation: none !important; /* This forcefully kills the "OR" animation */
+        animation: none !important; 
         pointer-events: none !important; 
     }
     
@@ -605,12 +641,6 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         pointer-events: auto !important;
     }
     
-    body.inner-page #dynamic-logo,
-    body.inner-page.scrolled.header-hidden #dynamic-logo {
-        opacity: 0 !important; 
-        pointer-events: none !important;
-    }
-    
     body.inner-page #nav-menu,
     body.inner-page.scrolled.header-hidden #nav-menu {
         top: 37.5px !important;
@@ -660,7 +690,6 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         transform: translateY(-3.5px) rotate(-45deg); 
     }
     
-    /* Removed 'overflow: hidden' to let dropdown render properly */
     .nav-links { 
         position: absolute; 
         top: 55px; 
@@ -728,7 +757,6 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         border-radius: 50px; 
     }
 
-    /* Minimal Mobile Dropdown Fixes */
     .dropdown-toggle { 
         justify-content: flex-end; 
     }
@@ -756,7 +784,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     }
 
     .dropdown-menu a { 
-        padding: 8px 20px; 
+        padding: 12px 20px; 
         text-align: right; 
         font-size: 13px; 
         color: #888; 
