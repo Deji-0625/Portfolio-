@@ -406,8 +406,8 @@ body:not(.inner-page).scrolled #dynamic-logo {
     top: 45px;
     left: 4vw;
     transform: translateY(-50%);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
+    font-family: 'Bebas Neue', sans-serif; /* Back to exactly how the big logo is set */
+    font-size: 30px; 
     color: #ffffff;
     text-decoration: none;
     display: flex;
@@ -416,12 +416,12 @@ body:not(.inner-page).scrolled #dynamic-logo {
     opacity: 0; 
     pointer-events: none;
     transition: opacity 0.4s ease;
-    letter-spacing: -1px;
+    letter-spacing: -2px; 
 }
 
 .header-8 {
-    height: 26px;
-    margin: 0 -2px;
+    height: 28px;
+    margin: 0 -3px; 
     transform: translateY(-2px);
 }
 
