@@ -22,10 +22,6 @@ a, button, input, select, textarea {
     outline: none;
 }
 
-/* Removes the ugly default tap/click highlights on Mobile AND Desktop */
-a, button, input, select, textarea {
-    -webkit-tap-highlight-color: transparent;
-    outline: none !important;
     /* Kills the desktop browser focus ring when you click links */
 a:focus, 
 a:active, 
@@ -566,13 +562,9 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 
 .dropdown-menu a:hover { 
     color: #00ffcc; 
-    background-color: rgba(255,255,255,0.03); 
-
-    .dropdown-menu a:hover { 
-    color: #00ffcc; /* Keeps the cyan text color on hover */
-    background-color: transparent !important; /* Kills the white background highlight */
-    border: none; /* Stops any lines from sneaking in */
-}
+    background-color: transparent !important; /* Kills the faint white box */
+    outline: none;
+}  
 }
 
 /* ========================================= */
