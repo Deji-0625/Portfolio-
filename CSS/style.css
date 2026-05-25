@@ -26,6 +26,15 @@ a, button, input, select, textarea {
 a, button, input, select, textarea {
     -webkit-tap-highlight-color: transparent;
     outline: none !important;
+    /* Kills the desktop browser focus ring when you click links */
+a:focus, 
+a:active, 
+button:focus, 
+button:active,
+.dropdown-toggle:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
 }
 .bg-streaks {
     position: fixed; 
@@ -548,7 +557,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 }
 
 .dropdown-menu a { 
-    padding: 12px 30px; 
+    padding: 12px 40px; 
     font-size: 14px; 
     text-align: centre; 
     color: #ccc; 
