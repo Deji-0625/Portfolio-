@@ -457,22 +457,26 @@ body.scrolled .scroll-prompt {
 body.inner-page #nav-menu { 
     opacity: 1; 
     pointer-events: auto; 
+    transform: translateY(-50%) !important; 
 }
 
-body.inner-page #nav-backdrop, 
-body.inner-page.scrolled.header-hidden #nav-backdrop { 
+body.inner-page #nav-backdrop { 
     transform: translateY(0) !important; 
 }
 
-/* RESTORED: Keep the original sliding/scaling animation for Inner Pages */
-body.inner-page #dynamic-logo,
-body.inner-page.scrolled.header-hidden #dynamic-logo {
-    top: 45px !important; 
-    left: 4vw !important; 
-    transform: translate(0, -50%) scale(0.55) !important; 
-    opacity: 1 !important;
+/* 1. Kill the big animated logo instantly on inner pages (No sliding/typing) */
+body.inner-page #dynamic-logo {
+    display: none !important;
+    animation: none !important;
+    transition: none !important;
 }
 
+/* 2. Lock the static header logo instantly in the EXACT same position */
+body.inner-page #desktop-header-logo {
+    opacity: 1 !important; 
+    pointer-events: auto !important; 
+    transition: none !important; /* Stops the fade-in on load */
+}
 body.inner-page #nav-menu, 
 body.inner-page.scrolled.header-hidden #nav-menu { 
     transform: translateY(-50%) !important; 
