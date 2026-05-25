@@ -909,7 +909,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 
 .dropdown-menu a { 
         padding: 16px 20px; 
-        text-align: right; 
+        text-align: center; 
         font-size: 13px; 
         color: #888; 
         border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Brings the exact matching line back */
