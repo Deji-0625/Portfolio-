@@ -463,6 +463,10 @@ body.inner-page #nav-menu {
 body.inner-page #nav-backdrop { 
     transform: translateY(0) !important; 
 }
+/* Adjust how far down the content starts on inner pages (Desktop & Global) */
+body.inner-page #main-content {
+    margin-top: 120px; /* Change this number to push the text higher or lower */
+}
 
 /* 1. Kill the big animated logo instantly on inner pages (No sliding/typing) */
 body.inner-page #dynamic-logo {
