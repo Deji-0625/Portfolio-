@@ -639,10 +639,10 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         transform: translateY(-1px); 
     }
 
-    body.inner-page #mobile-stacked-logo,
-    body.inner-page.scrolled.header-hidden #mobile-stacked-logo {
+    body.inner-page #mobile-stacked-logo {
         opacity: 1 !important; 
         pointer-events: auto !important;
+        transition: none !important; /* Stops mobile logo from fading in on load */
     }
     
     body.inner-page #nav-menu,
