@@ -550,6 +550,106 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 }
 
 /* ========================================= */
+/* --- ABOUT & CONTACT PAGE LAYOUTS      --- */
+/* ========================================= */
+
+.sub-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+/* --- About Grid --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+    margin-top: 20px;
+}
+
+/* --- Contact Grid --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 20px;
+}
+
+/* --- Premium Contact Form --- */
+.custom-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #444;
+    padding: 10px 0;
+    font-size: 1rem;
+    color: #ffffff;
+    transition: border-color 0.3s ease;
+    outline: none;
+}
+
+.input-group select {
+    color: #888;
+    cursor: pointer;
+}
+
+.input-group select option {
+    background-color: #050505;
+    color: #ffffff;
+}
+
+/* Floating Labels Magic */
+.input-group label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 1rem;
+    color: #888;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:not(:placeholder-shown) ~ label {
+    top: -20px;
+    font-size: 0.8rem;
+    color: #00ffcc; /* Matches your accent hover color */
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    border-bottom: 1px solid #00ffcc;
+}
+
+.contact-link {
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #00ffcc;
+}
+
+/* ========================================= */
 /* --- MOBILE RESPONSIVENESS --- */
 /* ========================================= */
 @media (max-width: 768px) {
