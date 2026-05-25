@@ -908,14 +908,16 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     }
 
 .dropdown-menu a { 
+        display: block; /* Forces it to behave like a standard block element */
+        width: 100%; /* Tells it to span exactly the width of the menu, no more */
+        box-sizing: border-box; /* Forces the padding to stay INSIDE the width */
         padding: 16px 20px; 
-        text-align: center; 
+        text-align: right; /* Changed back to right so it perfectly aligns with "Work" */
         font-size: 13px; 
         color: #888; 
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Brings the exact matching line back */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
     }
 
-    /* Keeps it ultra-clean by hiding the line under the final item */
     .dropdown-menu li:last-child a {
         border-bottom: none;
     }
