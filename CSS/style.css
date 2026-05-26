@@ -898,35 +898,33 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         display: none; 
     }
 
-   /* 1. Flips the dropdown container to sit horizontally */
+  /* 1. Flips the dropdown to a strict 50/50 Grid */
     .nav-dropdown.active .dropdown-menu { 
-        display: flex; 
-        flex-direction: row; /* Changed from column to row */
+        display: grid !important; 
+        grid-template-columns: 1fr 1fr; /* Two exactly equal columns */
+        width: 100%;
+        min-width: 0; /* Kills the inherited desktop width causing the spill */
+    }
+
+    /* 2. Forces list items to lock into their grid cells */
+    .dropdown-menu li {
         width: 100%;
     }
-    
-    .nav-dropdown.active .arrow { 
-        transform: rotate(180deg); 
-    }
 
-/* 2. Forces each list item to take up exactly half the space */
-    .dropdown-menu li {
-        width: 50%;
-    }
-
-    /* 3. Centers the text perfectly inside its 50% block */
+    /* 3. Centers text flawlessly inside its half */
     .dropdown-menu a { 
-        display: block; 
+        display: flex; 
+        align-items: center;
+        justify-content: center;
         width: 100%; 
         box-sizing: border-box; 
-        padding: 16px 0; /* Removed side padding so it centers flawlessly */
-        text-align: center; 
+        padding: 16px 0; 
         font-size: 13px; 
         color: #888; 
         border-bottom: none !important; 
     }
 
-    /* 4. Draws the vertical dividing line on the right edge of "Designs" */
+    /* 4. The subtle vertical divider */
     .dropdown-menu li:first-child a {
         border-right: 1px solid rgba(255, 255, 255, 0.05);
     }
