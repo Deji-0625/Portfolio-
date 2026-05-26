@@ -316,6 +316,7 @@ button:active,
     position: relative; 
     width: 100%; 
     height: 70vh; 
+    margin-top: 100px !important; /* <--- Forces a large gap above the showreel */
     border-radius: 20px; 
     overflow: hidden; 
     background-color: #050505; 
@@ -323,7 +324,6 @@ button:active,
     align-items: center; 
     justify-content: center; 
 }
-
 .showreel-video { 
     position: absolute; 
     width: 100%; 
