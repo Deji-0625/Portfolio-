@@ -379,37 +379,44 @@ button:active,
     100% { transform: rotate(360deg); } 
 }
 
-/* --- Premium Social Brand Bar --- */
+/* --- Premium Icon Brand Bar --- */
 .social-links { 
     display: flex; 
     align-items: center; 
-    justify-content: center; /* Centers the whole bar */
-    gap: 40px;             /* Space between items */
-    margin: 80px 0;        /* Space above and below the bar */
+    justify-content: center; 
+    gap: 40px;             
+    margin: 80px 0;        
     width: 100%;
 }
 
 .social-links a { 
-    color: #888888; 
+    display: flex;
+    align-items: center;
     text-decoration: none; 
-    font-size: 0.95rem; 
-    transition: color 0.3s ease;
+    transition: opacity 0.3s ease;
     
-    /* Creates the separator line effect */
+    /* The horizontal line separator */
     padding-right: 40px; 
     border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Removes the separator from the very last link */
+/* Forces the icons to a consistent size and makes them grayscale-to-color */
+.social-links a img {
+    height: 24px; /* Adjust this to make icons larger or smaller */
+    width: auto;
+    filter: grayscale(100%) brightness(0.5); /* Starts grey */
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover img {
+    filter: grayscale(0%) brightness(1); /* Turns to original color on hover */
+}
+
+/* Removes the separator from the very last icon */
 .social-links a:last-child {
     border-right: none;
     padding-right: 0;
 }
-
-.social-links a:hover { 
-    color: #00ffcc; 
-}
-
 /* --- Animations & Reveal --- */
 body.scrolled #nav-backdrop { 
     transform: translateY(0); 
