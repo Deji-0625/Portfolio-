@@ -961,6 +961,11 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         padding-bottom: 30px;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none; 
+        
+        /* THE FIX: Locks the gallery inside the screen so it stops stretching the whole page */
+        width: 100%; 
+        max-width: 100%; 
+        box-sizing: border-box;
     }
     
     .masonry-gallery::-webkit-scrollbar { 
