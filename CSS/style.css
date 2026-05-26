@@ -887,7 +887,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         align-items: center;
         justify-content: flex-end; /* Keeps it pinned to the right edge */
         gap: 6px; /* The space between 'Work' and the arrow */
-
+    {
         /* 2. Forces the arrow to be an animatable object */
     .arrow {
         display: inline-block; /* THE SECRET FIX: Allows the arrow to be rotated! */
