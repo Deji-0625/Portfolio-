@@ -968,7 +968,19 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         /* Swapped 'none' for the matching line color! */
         border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important; 
     }
-
+/* --- MOBILE: Scaled down Social Bar --- */
+    .social-links {
+        gap: 15px; /* Shrinks the gap between items */
+    }
+    
+    .social-item {
+        font-size: 0.75rem; /* Shrinks the text size */
+        padding-right: 15px; /* Shrinks the space before the vertical line */
+    }
+    
+    .social-item i {
+        font-size: 0.9rem; /* Shrinks the app logos slightly */
+    }
     /* 4. The subtle vertical divider */
     .dropdown-menu li:first-child a {
         border-right: 1px solid rgba(255, 255, 255, 0.05);
