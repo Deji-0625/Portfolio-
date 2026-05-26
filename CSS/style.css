@@ -378,24 +378,41 @@ button:active,
     100% { transform: rotate(360deg); } 
 }
 
-/* --- Social Links --- */
+/* --- Premium Social Brand Bar --- */
 .social-links { 
     display: flex; 
-    gap: 25px; 
-    flex-wrap: wrap; 
-    justify-content: flex-start; 
-    margin-top: 60px; 
-    margin-bottom: 50px; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 40px;             
+    margin: 80px 0;        
+    width: 100%;
 }
 
-.social-links a { 
-    color: #888888; 
+.social-item { 
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the icon and the text */
     text-decoration: none; 
-    font-size: 0.95rem; 
-    transition: color 0.3s ease; 
+    color: #888888; 
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    
+    /* The vertical separator line */
+    padding-right: 40px; 
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.social-links a:hover { 
+.social-item i {
+    font-size: 1.1rem; /* Controls the size of the app logos */
+}
+
+/* Removes the separator line from the very last item */
+.social-item:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+.social-item:hover { 
     color: #00ffcc; 
 }
 
