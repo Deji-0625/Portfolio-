@@ -681,6 +681,56 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 .contact-link:hover {
     color: #00ffcc;
 }
+/* ========================================= */
+/* --- PROJECTS: Masonry Grid Layout     --- */
+/* ========================================= */
+.project-masonry {
+    column-count: 2; /* Creates 2 columns on Desktop */
+    column-gap: 25px; /* Space between the columns */
+    width: 100%;
+    margin-top: 40px;
+}
+
+.project-card {
+    break-inside: avoid; /* THE MAGIC FIX: Stops a single card from splitting perfectly in half across two columns */
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    display: inline-block; /* Helps with masonry rendering */
+    width: 100%;
+}
+
+.project-card:hover {
+    transform: translateY(-5px); /* Gentle float effect */
+    border-color: rgba(0, 255, 204, 0.3); /* Lights up with your #00ffcc accent color */
+}
+
+.card-image img {
+    width: 100%;
+    display: block;
+    height: auto; /* Allows the image to dictate the card height organically */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    color: #888888;
+    line-height: 1.5;
+}
 
 /* ========================================= */
 /* --- MOBILE RESPONSIVENESS --- */
@@ -984,6 +1034,12 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     /* 4. The subtle vertical divider */
     .dropdown-menu li:first-child a {
         border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    /* --- MOBILE: Project Masonry --- */
+    .project-masonry {
+        column-count: 1; /* Stacks everything straight down on phones */
+        column-gap: 0;
     }
     
     /* ========================================= */
