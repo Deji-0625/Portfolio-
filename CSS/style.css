@@ -898,25 +898,39 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         display: none; 
     }
 
+   /* 1. Flips the dropdown container to sit horizontally */
     .nav-dropdown.active .dropdown-menu { 
         display: flex; 
-        flex-direction: column; 
+        flex-direction: row; /* Changed from column to row */
+        width: 100%;
     }
     
     .nav-dropdown.active .arrow { 
         transform: rotate(180deg); 
     }
 
-.dropdown-menu a { 
+/* 2. Forces each list item to take up exactly half the space */
+    .dropdown-menu li {
+        width: 50%;
+    }
+
+    /* 3. Centers the text perfectly inside its 50% block */
+    .dropdown-menu a { 
         display: block; 
         width: 100%; 
         box-sizing: border-box; 
-        padding: 16px 20px; 
-        text-align: right; 
+        padding: 16px 0; /* Removed side padding so it centers flawlessly */
+        text-align: center; 
         font-size: 13px; 
         color: #888; 
-        border-bottom: none !important; /* Completely kills the dividing lines */
-    }    
+        border-bottom: none !important; 
+    }
+
+    /* 4. Draws the vertical dividing line on the right edge of "Designs" */
+    .dropdown-menu li:first-child a {
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
     /* ========================================= */
     /* --- CINEMATIC MOBILE OPTIMIZATIONS    --- */
     /* ========================================= */
