@@ -682,55 +682,107 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     color: #00ffcc;
 }
 /* ========================================= */
-/* --- PROJECTS: Masonry Grid Layout     --- */
+/* --- CINEMATIC PROJECT CAROUSEL        --- */
 /* ========================================= */
-.project-masonry {
-    column-count: 2; /* Creates 2 columns on Desktop */
-    column-gap: 25px; /* Space between the columns */
-    width: 100%;
-    margin-top: 40px;
-}
-
-.project-card {
-    break-inside: avoid; /* THE MAGIC FIX: Stops a single card from splitting perfectly in half across two columns */
-    margin-bottom: 25px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
+.carousel-container {
+    width: 100vw;
+    margin-left: -8vw; 
+    padding: 60px 0;
+    position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    display: inline-block; /* Helps with masonry rendering */
+}
+
+.swipe-indicator { display: none; }
+
+.carousel-track {
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 25vw; 
+    scrollbar-width: none; 
+    -webkit-overflow-scrolling: touch;
+    align-items: center;
+    height: 70vh;
+}
+
+.carousel-track::-webkit-scrollbar { display: none; }
+
+.carousel-card {
+    min-width: 50vw; 
+    height: 100%;
+    scroll-snap-align: center;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+    transform: scale(0.85); 
+    opacity: 0.3; 
+}
+
+.carousel-card.active {
+    transform: scale(1); 
+    opacity: 1; 
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+}
+
+.card-media {
     width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
-.project-card:hover {
-    transform: translateY(-5px); /* Gentle float effect */
-    border-color: rgba(0, 255, 204, 0.3); /* Lights up with your #00ffcc accent color */
-}
-
-.card-image img {
+.card-media img,
+.card-media video {
     width: 100%;
-    display: block;
-    height: auto; /* Allows the image to dictate the card height organically */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    height: 100%;
+    object-fit: cover; 
 }
 
-.card-content {
-    padding: 20px;
+.card-media::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to top, rgba(5,5,5,0.95), transparent);
+    z-index: 2;
 }
 
-.card-content h3 {
-    font-size: 1.2rem;
+.card-info {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+    z-index: 3;
+    opacity: 0; 
+    transform: translateY(30px);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.carousel-card.active .card-info {
+    opacity: 1; 
+    transform: translateY(0);
+}
+
+.card-info h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
     color: #ffffff;
-    margin-bottom: 8px;
-    letter-spacing: 0.5px;
 }
 
-.card-content p {
-    font-size: 0.9rem;
-    color: #888888;
+.card-info p {
+    font-size: 1.1rem;
+    color: #cccccc;
     line-height: 1.5;
-}
+}}
 
 /* ========================================= */
 /* --- MOBILE RESPONSIVENESS --- */
@@ -1043,37 +1095,106 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     }
     
     /* ========================================= */
-    /* --- CINEMATIC MOBILE OPTIMIZATIONS    --- */
-    /* ========================================= */
+/* --- CINEMATIC PROJECT CAROUSEL        --- */
+/* ========================================= */
+.carousel-container {
+    width: 100vw;
+    margin-left: -8vw; 
+    padding: 60px 0;
+    position: relative;
+    overflow: hidden;
+}
 
-    /* --- 1. VISUALS: Horizontal Snap Carousel --- */
-    .masonry-gallery {
-        display: flex !important;
-        flex-direction: row !important; 
-        overflow-x: auto;
-        scroll-snap-type: x mandatory; 
-        gap: 15px;
-        padding-bottom: 30px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; 
-        
-        /* THE FIX: Locks the gallery inside the screen so it stops stretching the whole page */
-        width: 100%; 
-        max-width: 100%; 
-        box-sizing: border-box;
-    }
-    
-    .masonry-gallery::-webkit-scrollbar { 
-        display: none; 
-    }
+.swipe-indicator { display: none; }
 
-    .masonry-item {
-        min-width: 85vw !important; 
-        height: 60vh; 
-        scroll-snap-align: center;
-        border-radius: 20px;
-        position: relative;
-        box-shadow: inset 0 -100px 60px -20px rgba(0,0,0,0.9); 
+.carousel-track {
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 25vw; 
+    scrollbar-width: none; 
+    -webkit-overflow-scrolling: touch;
+    align-items: center;
+    height: 70vh;
+}
+
+.carousel-track::-webkit-scrollbar { display: none; }
+
+.carousel-card {
+    min-width: 50vw; 
+    height: 100%;
+    scroll-snap-align: center;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+    transform: scale(0.85); 
+    opacity: 0.3; 
+}
+
+.carousel-card.active {
+    transform: scale(1); 
+    opacity: 1; 
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+}
+
+.card-media {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.card-media img,
+.card-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.card-media::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to top, rgba(5,5,5,0.95), transparent);
+    z-index: 2;
+}
+
+.card-info {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+    z-index: 3;
+    opacity: 0; 
+    transform: translateY(30px);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.carousel-card.active .card-info {
+    opacity: 1; 
+    transform: translateY(0);
+}
+
+.card-info h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.card-info p {
+    font-size: 1.1rem;
+    color: #cccccc;
+    line-height: 1.5;
     }
 
     /* --- 2. ABOUT: Premium Glassmorphism Cards --- */
