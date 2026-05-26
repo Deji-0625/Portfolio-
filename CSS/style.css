@@ -898,12 +898,13 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         display: none; 
     }
 
-  /* 1. Flips the dropdown to a strict 50/50 Grid */
+ /* 1. Flips the dropdown to a strict 50/50 Grid & Kills Desktop Shift */
     .nav-dropdown.active .dropdown-menu { 
         display: grid !important; 
-        grid-template-columns: 1fr 1fr; /* Two exactly equal columns */
+        grid-template-columns: 1fr 1fr; 
         width: 100%;
-        min-width: 0; /* Kills the inherited desktop width causing the spill */
+        min-width: 0; 
+        transform: none !important; /* <--- THIS IS THE MAGIC FIX */
     }
 
     /* 2. Forces list items to lock into their grid cells */
@@ -919,6 +920,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         width: 100%; 
         box-sizing: border-box; 
         padding: 16px 0; 
+        text-align: center;
         font-size: 13px; 
         color: #888; 
         border-bottom: none !important; 
