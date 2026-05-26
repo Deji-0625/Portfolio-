@@ -266,7 +266,8 @@ button:active,
 .button-group { 
     display: flex; 
     gap: 16px; 
-    margin-top: 20px; 
+    margin-top: 40px; /* Increased from 20px */
+    margin-bottom: 40px; /* Added this to push the breaker down */
     align-items: center; 
 }
 
@@ -306,7 +307,7 @@ button:active,
     border: 0; 
     height: 1px; 
     background: linear-gradient(to right, transparent, #333, transparent); 
-    margin: 60px 0; 
+    margin: 80px 0; /* Increased from 60px */
     width: 100%; 
 }
 
