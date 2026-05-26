@@ -683,12 +683,13 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     }
     
     .main-title { 
-        /* 'clamp' shrinks the 5rem text automatically on smaller phones so it never overflows */
-        font-size: clamp(3rem, 14vw, 5rem); 
-        line-height: 0.8; 
+        /* The first value (3.5rem) is the minimum, 14vw is dynamic, 6rem is maximum */
+        font-size: clamp(3.5rem, 14vw, 6rem) !important; 
+        line-height: 0.85; 
         gap: 0 10px; 
         width: 100%;
-        overflow-wrap: break-word; /* Ultimate safety net: breaks the word before it breaks the screen */
+        max-width: 100vw;
+        overflow-wrap: break-word;
     }
     .name-part { 
         letter-spacing: -4px; 
