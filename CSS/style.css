@@ -881,8 +881,22 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         border-radius: 50px; 
     }
 
+    /* 1. Restores the flexbox layout so the arrow and text align perfectly */
     .dropdown-toggle { 
-        justify-content: flex-end; 
+        display: flex !important; /* Overrides the standard mobile block layout */
+        align-items: center;
+        justify-content: flex-end; /* Keeps it pinned to the right edge */
+        gap: 6px; /* The space between 'Work' and the arrow */
+
+        /* 2. Forces the arrow to be an animatable object */
+    .arrow {
+        display: inline-block; /* THE SECRET FIX: Allows the arrow to be rotated! */
+        transition: transform 0.3s ease;
+    }
+
+    /* 3. The actual spin command */
+    .nav-dropdown.active .arrow { 
+        transform: rotate(180deg); 
     }
 
     .dropdown-menu { 
@@ -923,7 +937,8 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         text-align: center;
         font-size: 13px; 
         color: #888; 
-        border-bottom: none !important; 
+        /* Swapped 'none' for the matching line color! */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important; 
     }
 
     /* 4. The subtle vertical divider */
