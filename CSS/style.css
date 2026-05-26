@@ -379,7 +379,7 @@ button:active,
     100% { transform: rotate(360deg); } 
 }
 
-/* --- Premium Icon Brand Bar --- */
+/* --- Premium Social Brand Bar --- */
 .social-links { 
     display: flex; 
     align-items: center; 
@@ -389,27 +389,49 @@ button:active,
     width: 100%;
 }
 
-.social-links a { 
+.social-item { 
     display: flex;
     align-items: center;
+    gap: 10px; 
     text-decoration: none; 
-    transition: opacity 0.3s ease;
+    color: #888888; 
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
     
-    /* The horizontal line separator */
+    /* The vertical separator line */
     padding-right: 40px; 
     border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Forces the icons to a consistent size and makes them grayscale-to-color */
-.social-links a img {
-    height: 24px; /* Adjust this to make icons larger or smaller */
-    width: auto;
-    filter: grayscale(100%) brightness(0.5); /* Starts grey */
-    transition: all 0.3s ease;
+.social-item i {
+    font-size: 1.1rem; /* Icon size */
 }
 
-.social-links a:hover img {
-    filter: grayscale(0%) brightness(1); /* Turns to original color on hover */
+/* Remove separator from the last item */
+.social-item:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+/* Hover effect */
+.social-item:hover { 
+    color: #00ffcc; 
+}
+
+/* --- MOBILE: Scaled down instead of stacking --- */
+@media (max-width: 600px) {
+    .social-links {
+        gap: 15px; /* Shrinks the gap between items */
+    }
+    
+    .social-item {
+        font-size: 0.75rem; /* Shrinks text size */
+        padding-right: 15px; /* Shrinks space before the line */
+    }
+    
+    .social-item i {
+        font-size: 0.9rem; /* Shrinks the icons slightly */
+    }
 }
 
 /* Removes the separator from the very last icon */
