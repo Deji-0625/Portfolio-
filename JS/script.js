@@ -40,27 +40,45 @@ if (dropdownToggle && navDropdown) {
     });
 }
 
-// --- 5. Cinematic Project Carousel "Camera Focus" ---
+// --- 5. Multi-Carousel "Camera Focus" & Infinite Loop ---
 document.addEventListener("DOMContentLoaded", function() {
-    const track = document.getElementById('project-track');
-    const cards = document.querySelectorAll('.carousel-card');
+    // Find EVERY carousel track on the page
+    const tracks = document.querySelectorAll('.carousel-track');
 
-    if (!track || cards.length === 0) return; // Safety check if the carousel isn't on the current page
+    if (tracks.length === 0) return;
 
-    // This watches the track and calculates which card is in the center
-    const carouselObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Remove active from all cards
-                cards.forEach(c => c.classList.remove('active'));
-                // Add active to the centered card
-                entry.target.classList.add('active');
-            }
+    // Loop through each track independently
+    tracks.forEach(track => {
+        let cards = track.querySelectorAll('.carousel-card');
+
+        // 1. INFINITE LOOP GENERATOR (For this specific track)
+        const originalCards = Array.from(cards);
+        originalCards.forEach(card => {
+            let clone = card.cloneNode(true);
+            track.appendChild(clone);
         });
-    }, {
-        root: track,
-        threshold: 0.6 // The card must be 60% inside the middle of the container to trigger
-    });
+        originalCards.forEach(card => {
+            let clone = card.cloneNode(true);
+            track.appendChild(clone); // Triples the cards for a smooth loop
+        });
 
-    cards.forEach(card => carouselObserver.observe(card));
+        // Re-select all cards inside this track now that we've multiplied them
+        cards = track.querySelectorAll('.carousel-card');
+
+        // 2. PERFECT CENTER DETECTION (For this specific track)
+        const carouselObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    cards.forEach(c => c.classList.remove('active'));
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            root: track,
+            rootMargin: "0px -49% 0px -49%", // Creates a laser-thin trigger line in the exact center
+            threshold: 0 
+        });
+
+        cards.forEach(card => carouselObserver.observe(card));
+    });
 });
