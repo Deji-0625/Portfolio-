@@ -40,45 +40,71 @@ if (dropdownToggle && navDropdown) {
     });
 }
 
-// --- 5. Multi-Carousel "Camera Focus" & Infinite Loop ---
+// --- 5. True Infinite Loop "Circle Ball" Carousel ---
 document.addEventListener("DOMContentLoaded", function() {
-    // Find EVERY carousel track on the page
     const tracks = document.querySelectorAll('.carousel-track');
 
-    if (tracks.length === 0) return;
-
-    // Loop through each track independently
     tracks.forEach(track => {
-        let cards = track.querySelectorAll('.carousel-card');
+        const originalCards = Array.from(track.querySelectorAll('.carousel-card'));
+        if (originalCards.length === 0) return;
 
-        // 1. INFINITE LOOP GENERATOR (For this specific track)
-        const originalCards = Array.from(cards);
-        originalCards.forEach(card => {
-            let clone = card.cloneNode(true);
-            track.appendChild(clone);
-        });
-        originalCards.forEach(card => {
-            let clone = card.cloneNode(true);
-            track.appendChild(clone); // Triples the cards for a smooth loop
-        });
+        // 1. Build the Massive Track (Clone 14 times)
+        // This gives you massive runway in both directions
+        for (let i = 0; i < 14; i++) {
+            originalCards.forEach(card => {
+                const clone = card.cloneNode(true);
+                track.appendChild(clone);
+            });
+        }
 
-        // Re-select all cards inside this track now that we've multiplied them
-        cards = track.querySelectorAll('.carousel-card');
+        const allCards = track.querySelectorAll('.carousel-card');
 
-        // 2. PERFECT CENTER DETECTION (For this specific track)
+        // 2. Center Detection (Scales the middle card up)
         const carouselObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    cards.forEach(c => c.classList.remove('active'));
+                    allCards.forEach(c => c.classList.remove('active'));
                     entry.target.classList.add('active');
                 }
             });
         }, {
             root: track,
-            rootMargin: "0px -49% 0px -49%", // Creates a laser-thin trigger line in the exact center
+            rootMargin: "0px -49% 0px -49%", 
             threshold: 0 
         });
 
-        cards.forEach(card => carouselObserver.observe(card));
+        allCards.forEach(card => carouselObserver.observe(card));
+
+        // 3. The Seamless Teleportation Engine
+        let oneSetWidth = 0;
+        
+        // Wait 100ms for the browser to render the rigid CSS widths
+        setTimeout(() => {
+            // Calculate exactly how many pixels wide ONE group of your projects is
+            const cardWidth = originalCards[0].offsetWidth;
+            const gapStyle = window.getComputedStyle(track).gap;
+            const gap = parseFloat(gapStyle) || 0;
+            oneSetWidth = (cardWidth + gap) * originalCards.length;
+
+            // Start the user exactly in the middle of the massive track (Set 7)
+            // This means you can immediately swipe left OR right!
+            track.scrollLeft = oneSetWidth * 7;
+        }, 100);
+
+        // Listen to your swiping
+        track.addEventListener('scroll', () => {
+            if (oneSetWidth === 0) return; // Guard until math is done
+
+            // If you swipe too close to the left edge...
+            if (track.scrollLeft <= oneSetWidth * 2) {
+                // Invisibly teleport scroll position forward by 5 sets
+                track.scrollLeft += (oneSetWidth * 5);
+            } 
+            // If you swipe too close to the right edge...
+            else if (track.scrollLeft >= oneSetWidth * 11) {
+                // Invisibly teleport scroll position backward by 5 sets
+                track.scrollLeft -= (oneSetWidth * 5);
+            }
+        });
     });
 });
