@@ -3,6 +3,13 @@ window.addEventListener('scroll', () => {
     const body = document.body;
     if (window.scrollY > 50) {
         body.classList.add('scrolled');
+        
+        // NEW: Simply play the videos when the user scrolls down!
+        const dVid = document.getElementById('vid-desktop');
+        const mVid = document.getElementById('vid-mobile');
+        if (dVid) dVid.play().catch(e => {});
+        if (mVid) mVid.play().catch(e => {});
+        
     } else {
         body.classList.remove('scrolled');
     }
@@ -49,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (originalCards.length === 0) return;
 
         // 1. Build the Massive Track (Clone 14 times)
-        // This gives you massive runway in both directions
         for (let i = 0; i < 14; i++) {
             originalCards.forEach(card => {
                 const clone = card.cloneNode(true);
@@ -80,14 +86,11 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Wait 100ms for the browser to render the rigid CSS widths
         setTimeout(() => {
-            // Calculate exactly how many pixels wide ONE group of your projects is
             const cardWidth = originalCards[0].offsetWidth;
             const gapStyle = window.getComputedStyle(track).gap;
             const gap = parseFloat(gapStyle) || 0;
             oneSetWidth = (cardWidth + gap) * originalCards.length;
 
-            // Start the user exactly in the middle of the massive track (Set 7)
-            // This means you can immediately swipe left OR right!
             track.scrollLeft = oneSetWidth * 7;
         }, 100);
 
@@ -95,51 +98,12 @@ document.addEventListener("DOMContentLoaded", function() {
         track.addEventListener('scroll', () => {
             if (oneSetWidth === 0) return; // Guard until math is done
 
-            // If you swipe too close to the left edge...
             if (track.scrollLeft <= oneSetWidth * 2) {
-                // Invisibly teleport scroll position forward by 5 sets
                 track.scrollLeft += (oneSetWidth * 5);
             } 
-            // If you swipe too close to the right edge...
             else if (track.scrollLeft >= oneSetWidth * 11) {
-                // Invisibly teleport scroll position backward by 5 sets
                 track.scrollLeft -= (oneSetWidth * 5);
             }
         });
     });
-});
-
-// --- 6. Video Logo "Play Once On Reveal" Engine ---
-document.addEventListener("DOMContentLoaded", function() {
-    const desktopVid = document.getElementById('vid-desktop');
-    const mobileVid = document.getElementById('vid-mobile');
-
-    let desktopPlayed = false;
-    let mobilePlayed = false;
-
-    const checkLogoVisibility = () => {
-        // Check Desktop Header Logo
-        if (desktopVid && !desktopPlayed) {
-            const desktopLogo = document.getElementById('desktop-header-logo');
-            if (desktopLogo && window.getComputedStyle(desktopLogo).opacity > 0) {
-                desktopVid.play().catch(e => console.log("Video autoplay prevented:", e));
-                desktopPlayed = true; // Locks it so it never plays again
-            }
-        }
-        
-        // Check Mobile Header Logo
-        if (mobileVid && !mobilePlayed) {
-            const mobileLogo = document.getElementById('mobile-stacked-logo');
-            if (mobileLogo && window.getComputedStyle(mobileLogo).opacity > 0) {
-                mobileVid.play().catch(e => console.log("Video autoplay prevented:", e));
-                mobilePlayed = true; // Locks it so it never plays again
-            }
-        }
-    };
-
-    // Check immediately (for inner pages where the nav is already visible)
-    setTimeout(checkLogoVisibility, 100);
-    
-    // Check continuously on scroll (for the homepage where it fades in)
-    window.addEventListener('scroll', checkLogoVisibility);
 });
