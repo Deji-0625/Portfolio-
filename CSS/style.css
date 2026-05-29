@@ -746,19 +746,25 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 /* --- MINIMALIST CINEMATIC FOOTER       --- */
 /* ========================================= */
 .sam-footer {
-    width: calc(100% + 16vw); 
-    margin-left: -8vw; 
+    width: 100vw; 
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%); /* The Ultimate Full-Bleed Breakout Trick */
     display: flex;
     flex-direction: column;
     margin-top: 80px;
+    box-sizing: border-box;
 }
 
 .footer-socials {
     display: flex;
     justify-content: center;
-    gap: 80px;
-    padding: 100px 20px;
+    flex-wrap: wrap; 
+    gap: 6vw; 
+    padding: 80px 20px;
     background-color: #050505; 
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .footer-socials a {
@@ -770,6 +776,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     gap: 15px;
     transition: color 0.3s ease;
     letter-spacing: 1px;
+    white-space: nowrap; /* Prevents text from ever breaking into two lines */
 }
 
 .footer-socials a i {
@@ -784,8 +791,11 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 50px 8vw;
+    flex-wrap: wrap; 
+    padding: 40px 8vw;
     background-color: #0d0d0d; 
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .footer-logo a {
@@ -796,6 +806,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     letter-spacing: 1px;
     display: flex;
     align-items: center;
+    white-space: nowrap; /* Locks logo onto a single line forever */
 }
 
 .footer-8 {
@@ -813,30 +824,12 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     gap: 10px;
     letter-spacing: 1px;
     transition: color 0.3s ease;
+    white-space: nowrap; 
 }
 
 .footer-email a:hover {
     color: #ffffff;
 }
-
-.footer-nav {
-    display: flex;
-    gap: 30px;
-}
-
-.footer-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    transition: color 0.3s ease;
-}
-
-.footer-nav a:hover {
-    color: #00ffcc;
-}
-
 /* ========================================= */
 /* --- MOBILE RESPONSIVENESS --- */
 /* ========================================= */
