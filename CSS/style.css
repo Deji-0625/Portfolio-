@@ -13,7 +13,7 @@ body {
     background-color: #050505; 
     color: #ffffff; 
     overflow-x: hidden; 
-    min-height: 100vh; /* Fixed the massive empty gap! */
+    min-height: 100vh; 
 }
 
 /* Removes the ugly default blue tap highlight on mobile browsers */
@@ -458,7 +458,7 @@ body.inner-page #nav-backdrop {
 }
 body.inner-page #main-content {
     margin-top: 120px; 
-    min-height: calc(100vh - 120px); /* Forces page to reach bottom edge */
+    min-height: calc(100vh - 120px);
 }
 
 body.inner-page #dynamic-logo {
@@ -816,12 +816,10 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 /* ========================================= */
 .sam-footer {
     width: 100vw; 
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%); 
+    margin-left: calc(-50vw + 50%); /* Bulletproof Breakout Formula */
     display: flex;
     flex-direction: column;
-    margin-top: auto; /* Magically fills empty space */
+    margin-top: auto; 
     padding-top: 80px; 
     box-sizing: border-box;
 }
@@ -1240,7 +1238,6 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 
     /* --- MOBILE: Minimalist Footer --- */
     .sam-footer {
-        margin-top: auto;
         padding-top: 40px;
     }
 
