@@ -793,12 +793,13 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 
 .project-media {
     width: 100%;
-    aspect-ratio: 4 / 5; /* THE FIX: Forces the image boxes to stay open! */
+    aspect-ratio: 4 / 5; /* THE FIX: Forces the browser to keep the image boxes open! */
     border-radius: 8px; 
     overflow: hidden;
     margin-bottom: 25px;
     background-color: #111111; 
     position: relative;
+    cursor: pointer;
 }
 
 .project-media img,
@@ -822,6 +823,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     padding: 0;
 }
 
+/* Removed text margins so the divider lines space everything evenly */
 .project-title {
     font-size: 1.5rem;
     color: #ffffff;
@@ -845,7 +847,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 .project-divider {
     height: 1px;
     background-color: rgba(255, 255, 255, 0.15); 
-    margin: 18px 0; 
+    margin: 18px 0; /* Creates perfect, uniform gaps between lines */
     width: 100%;
 }
 
@@ -985,7 +987,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     max-height: 80vh;
     border-radius: 12px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-    object-fit: contain; /* Ensures the whole flyer fits on screen without stretching */
+    object-fit: contain;
     transform: scale(0.9);
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -1140,32 +1142,33 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         transform: translateY(-50%); 
     }
     
+    /* --- REDUCED MOBILE HAMBURGER --- */
     .hamburger { 
         display: block; 
         background: transparent; 
         border: 1px solid rgba(255, 255, 255, 0.2); 
-        border-radius: 8px; 
-        padding: 10px; 
+        border-radius: 6px; 
+        padding: 8px; /* Reduced from 10px */
         cursor: pointer; 
         z-index: 105; 
     }
 
     .hamburger .line { 
         display: block; 
-        width: 18px; 
+        width: 15px; /* Reduced from 18px */
         height: 2px; 
-        margin: 5px 0; 
+        margin: 4px 0; /* Reduced from 5px */
         background-color: #ffffff; 
         transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
         transform-origin: center; 
     }
 
     .hamburger.active .line:nth-child(1) { 
-        transform: translateY(3.5px) rotate(45deg); 
+        transform: translateY(3px) rotate(45deg); /* Adjusted for thinner box */
     }
 
     .hamburger.active .line:nth-child(2) { 
-        transform: translateY(-3.5px) rotate(-45deg); 
+        transform: translateY(-3px) rotate(-45deg); /* Adjusted for thinner box */
     }
     
     .nav-links { 
