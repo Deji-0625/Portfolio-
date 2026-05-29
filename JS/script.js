@@ -108,3 +108,38 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+// --- 6. Video Logo "Play Once On Reveal" Engine ---
+document.addEventListener("DOMContentLoaded", function() {
+    const desktopVid = document.getElementById('vid-desktop');
+    const mobileVid = document.getElementById('vid-mobile');
+
+    let desktopPlayed = false;
+    let mobilePlayed = false;
+
+    const checkLogoVisibility = () => {
+        // Check Desktop Header Logo
+        if (desktopVid && !desktopPlayed) {
+            const desktopLogo = document.getElementById('desktop-header-logo');
+            if (desktopLogo && window.getComputedStyle(desktopLogo).opacity > 0) {
+                desktopVid.play().catch(e => console.log("Video autoplay prevented:", e));
+                desktopPlayed = true; // Locks it so it never plays again
+            }
+        }
+        
+        // Check Mobile Header Logo
+        if (mobileVid && !mobilePlayed) {
+            const mobileLogo = document.getElementById('mobile-stacked-logo');
+            if (mobileLogo && window.getComputedStyle(mobileLogo).opacity > 0) {
+                mobileVid.play().catch(e => console.log("Video autoplay prevented:", e));
+                mobilePlayed = true; // Locks it so it never plays again
+            }
+        }
+    };
+
+    // Check immediately (for inner pages where the nav is already visible)
+    setTimeout(checkLogoVisibility, 100);
+    
+    // Check continuously on scroll (for the homepage where it fades in)
+    window.addEventListener('scroll', checkLogoVisibility);
+});
