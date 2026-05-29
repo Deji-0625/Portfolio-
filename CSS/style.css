@@ -900,6 +900,72 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 }
 
 /* ========================================= */
+/* --- MASONRY GALLERY (DESIGNS PAGE)    --- */
+/* ========================================= */
+.masonry-gallery {
+    column-count: 2;
+    column-gap: 40px;
+    width: 100%;
+    margin-top: 40px;
+    padding-bottom: 80px;
+}
+
+.masonry-item {
+    position: relative;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    display: inline-block; /* Prevents images from splitting across columns */
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+    background-color: #111111;
+}
+
+/* Gives your images structured heights to create the staggered effect */
+.masonry-item.tall {
+    height: 600px;
+}
+
+.masonry-item.medium {
+    height: 400px;
+}
+
+.masonry-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+.item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 60px 30px 30px;
+    background: linear-gradient(to top, rgba(5,5,5,0.95), transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 2;
+}
+
+.project-category {
+    font-size: 0.85rem;
+    color: #00ffcc;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.item-overlay .project-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+/* ========================================= */
 /* --- MOBILE RESPONSIVENESS --- */
 /* ========================================= */
 @media (max-width: 768px) {
@@ -1234,6 +1300,19 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     
     .project-card:nth-child(even) {
         margin-top: 0; 
+    }
+
+    /* --- MOBILE: Masonry Grid --- */
+    .masonry-gallery {
+        column-count: 1;
+    }
+    
+    .masonry-item.tall { 
+        height: 450px; 
+    }
+    
+    .masonry-item.medium { 
+        height: 350px; 
     }
 
     /* --- MOBILE: Minimalist Footer --- */
