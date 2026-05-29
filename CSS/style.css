@@ -378,27 +378,6 @@ button:active,
     100% { transform: rotate(360deg); } 
 }
 
-/* --- Social Links --- */
-.social-links { 
-    display: flex; 
-    gap: 25px; 
-    flex-wrap: wrap; 
-    justify-content: flex-start; 
-    margin-top: 60px; 
-    margin-bottom: 50px; 
-}
-
-.social-links a { 
-    color: #888888; 
-    text-decoration: none; 
-    font-size: 0.95rem; 
-    transition: color 0.3s ease; 
-}
-
-.social-links a:hover { 
-    color: #00ffcc; 
-}
-
 /* --- Animations & Reveal --- */
 body.scrolled #nav-backdrop { 
     transform: translateY(0); 
@@ -764,6 +743,101 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 }
 
 /* ========================================= */
+/* --- MINIMALIST CINEMATIC FOOTER       --- */
+/* ========================================= */
+.sam-footer {
+    width: calc(100% + 16vw); 
+    margin-left: -8vw; 
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+}
+
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    padding: 100px 20px;
+    background-color: #050505; 
+}
+
+.footer-socials a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: color 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.footer-socials a i {
+    font-size: 1.8rem; 
+}
+
+.footer-socials a:hover {
+    color: #00ffcc;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 8vw;
+    background-color: #0d0d0d; 
+}
+
+.footer-logo a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-8 {
+    height: 24px;
+    margin: 0 -2px;
+    transform: translateY(-2px);
+}
+
+.footer-email a {
+    color: #888888;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.footer-email a:hover {
+    color: #ffffff;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: #00ffcc;
+}
+
+/* ========================================= */
 /* --- MOBILE RESPONSIVENESS --- */
 /* ========================================= */
 @media (max-width: 768px) {
@@ -1088,6 +1162,32 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     @keyframes pulseText {
         0%, 100% { opacity: 0.3; }
         50% { opacity: 1; }
+    }
+
+    /* --- MOBILE: Minimalist Footer --- */
+    .sam-footer {
+        margin-left: -24px;
+        width: calc(100% + 48px);
+    }
+
+    .footer-socials {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        padding: 60px 20px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 40px;
+        padding: 40px 24px;
+        text-align: center;
+    }
+
+    .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
     }
 
     /* --- 2. ABOUT: Premium Glassmorphism Cards --- */
