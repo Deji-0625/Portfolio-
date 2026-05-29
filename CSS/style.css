@@ -1238,21 +1238,29 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 
     /* --- MOBILE: Minimalist Footer --- */
     .sam-footer {
+        margin-top: auto;
         padding-top: 40px;
     }
 
     .footer-socials {
         flex-direction: column;
+        align-items: center; /* 1. Forces the social links to the center */
         gap: 40px;
         padding: 60px 20px;
     }
 
     .footer-bottom {
         flex-direction: column;
-        justify-content: center;
+        align-items: center; /* 2. Forces the logo and email blocks to the center */
         gap: 30px;
         padding: 40px 20px;
         text-align: center;
+    }
+
+    /* 3. Forces the icon and text inside the links to stay centered together */
+    .footer-logo a, 
+    .footer-email a {
+        justify-content: center; 
     }
 
     /* --- 2. ABOUT: Premium Glassmorphism Cards --- */
