@@ -3,13 +3,6 @@ window.addEventListener('scroll', () => {
     const body = document.body;
     if (window.scrollY > 50) {
         body.classList.add('scrolled');
-        
-        // NEW: Simply play the videos when the user scrolls down!
-        const dVid = document.getElementById('vid-desktop');
-        const mVid = document.getElementById('vid-mobile');
-        if (dVid) dVid.play().catch(e => {});
-        if (mVid) mVid.play().catch(e => {});
-        
     } else {
         body.classList.remove('scrolled');
     }
@@ -56,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (originalCards.length === 0) return;
 
         // 1. Build the Massive Track (Clone 14 times)
+        // This gives you massive runway in both directions
         for (let i = 0; i < 14; i++) {
             originalCards.forEach(card => {
                 const clone = card.cloneNode(true);
@@ -86,11 +80,14 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Wait 100ms for the browser to render the rigid CSS widths
         setTimeout(() => {
+            // Calculate exactly how many pixels wide ONE group of your projects is
             const cardWidth = originalCards[0].offsetWidth;
             const gapStyle = window.getComputedStyle(track).gap;
             const gap = parseFloat(gapStyle) || 0;
             oneSetWidth = (cardWidth + gap) * originalCards.length;
 
+            // Start the user exactly in the middle of the massive track (Set 7)
+            // This means you can immediately swipe left OR right!
             track.scrollLeft = oneSetWidth * 7;
         }, 100);
 
@@ -98,10 +95,14 @@ document.addEventListener("DOMContentLoaded", function() {
         track.addEventListener('scroll', () => {
             if (oneSetWidth === 0) return; // Guard until math is done
 
+            // If you swipe too close to the left edge...
             if (track.scrollLeft <= oneSetWidth * 2) {
+                // Invisibly teleport scroll position forward by 5 sets
                 track.scrollLeft += (oneSetWidth * 5);
             } 
+            // If you swipe too close to the right edge...
             else if (track.scrollLeft >= oneSetWidth * 11) {
+                // Invisibly teleport scroll position backward by 5 sets
                 track.scrollLeft -= (oneSetWidth * 5);
             }
         });
