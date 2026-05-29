@@ -16,10 +16,19 @@ body {
     min-height: 100vh; 
 }
 
-/* Removes the ugly default blue tap highlight on mobile browsers */
-a, button, input, select, textarea {
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
+/* Removes the ugly default blue tap highlight on EVERYTHING */
+* {
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Kills the desktop browser focus ring when you click links */
+a:focus, 
+a:active, 
+button:focus, 
+button:active,
+.dropdown-toggle:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 /* Kills the desktop browser focus ring when you click links */
