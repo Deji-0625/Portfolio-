@@ -58,4 +58,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Run every time the user scrolls
     window.addEventListener('scroll', revealOnScroll);
+
+// 5. FULLSCREEN LIGHTBOX FUNCTIONALITY
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    if (lightbox && projectCards.length > 0) {
+        // When any project card is clicked
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const img = card.querySelector('.project-media img');
+                const title = card.querySelector('.project-title').innerText;
+                
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightboxCaption.innerText = title;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Locks background scrolling
+                }
+            });
+        });
+
+        // Close lightbox when clicking the X
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Unlocks scrolling
+        });
+
+        // Close lightbox when clicking the dark background outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
 });
