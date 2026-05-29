@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Deji The Cre8or</title>
     <link rel="stylesheet" href="CSS/style.css">
+    <!-- Added FontAwesome so your footer icons show up on this page! -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="inner-page">
 
@@ -61,27 +63,37 @@
 
         <div class="contact-grid reveal">
             <div class="contact-form-container">
-                <form class="custom-form">
+                
+                <!-- === WEB3FORMS ENGINE ACTIVATED === -->
+                <form action="https://api.web3forms.com/submit" method="POST" class="custom-form">
+                    
+                    <input type="hidden" name="access_key" value="bb4b9a6c-6480-4d25-b11a-a55b5b452991">
+                    <input type="hidden" name="redirect" value="https://dejithecre8or.vercel.app/contact.html">
+
                     <div class="input-group">
-                        <input type="text" id="name" required placeholder=" ">
+                        <input type="text" name="Name" id="name" required placeholder=" ">
                         <label for="name">Your Name</label>
                     </div>
+                    
                     <div class="input-group">
-                        <input type="email" id="email" required placeholder=" ">
+                        <input type="email" name="Email" id="email" required placeholder=" ">
                         <label for="email">Email Address</label>
                     </div>
+                    
                     <div class="input-group">
-                        <select id="project-type" required>
-                            <option value="" disabled selected>Select Project Type</option>
-                            <option value="graphic-design">Graphic / Brand Design</option>
-                            <option value="video-editing">Video Editing / Videography</option>
-                            <option value="other">Other Inquiry</option>
+                        <select name="Inquiry_Type" id="project-type" required>
+                            <option value="" disabled selected hidden>Select Project Type</option>
+                            <option value="Graphic / Brand Design">Graphic / Brand Design</option>
+                            <option value="Video Editing / Videography">Video Editing / Videography</option>
+                            <option value="Other Inquiry">Other Inquiry</option>
                         </select>
                     </div>
+                    
                     <div class="input-group">
-                        <textarea id="message" rows="4" required placeholder=" "></textarea>
+                        <textarea name="Message" id="message" rows="4" required placeholder=" "></textarea>
                         <label for="message">Tell me about your project...</label>
                     </div>
+                    
                     <button type="submit" class="btn primary-btn" style="width: 100%;">Send Message</button>
                 </form>
             </div>
@@ -96,26 +108,17 @@
                     </a>
                 </div>
                 
+                <!-- Cleaned up the duplicate Socials block -->
                 <div class="info-block" style="margin-top: 40px;">
                     <h3 class="sub-heading">SOCIALS</h3>
                     <div class="social-links" style="margin-top: 15px;">
-                        <a href="https://instagram.com/DejiTheCre8or" target="_blank">Instagram</a>
-                        <a href="https://twitter.com/DejiTheCre8or" target="_blank">Twitter/X</a>
-                        
-                        </div>
-                </div>
-            </div>
-                
-                <div class="info-block" style="margin-top: 40px;">
-                    <h3 class="sub-heading">SOCIALS</h3>
-                    <div class="social-links" style="margin-top: 15px;">
-                        <a href="#">Instagram</a>
-                        <a href="#">Twitter/X</a>
-                        <a href="#">Behance</a>
+                        <a href="https://instagram.com/DejiTheCre8or" target="_blank" class="contact-link" style="display: block; margin-bottom: 10px;">Instagram</a>
+                        <a href="https://twitter.com/DejiTheCre8or" target="_blank" class="contact-link" style="display: block; margin-bottom: 10px;">Twitter/X</a>
                     </div>
                 </div>
             </div>
         </div>
+        
         <hr class="section-breaker reveal">
         
         <footer class="sam-footer reveal">
