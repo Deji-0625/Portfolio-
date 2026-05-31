@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navDropdown.classList.toggle('active');
         });
 
-        // Close dropdown when clicking outside of it
         document.addEventListener('click', (e) => {
             if (!navDropdown.contains(e.target)) {
                 navDropdown.classList.remove('active');
@@ -43,8 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const revealOnScroll = () => {
         const windowHeight = window.innerHeight;
-        const revealPoint = 100; // Triggers when element is 100px from the bottom
-
+        const revealPoint = 100; 
         revealElements.forEach((element) => {
             const elementTop = element.getBoundingClientRect().top;
             if (elementTop < windowHeight - revealPoint) {
@@ -53,18 +51,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    revealOnScroll(); // Run once on load
-    window.addEventListener('scroll', revealOnScroll); // Run on scroll
+    revealOnScroll(); 
+    window.addEventListener('scroll', revealOnScroll); 
 
 
-    // --- 5. TRUE INFINITE LOOP & DYNAMIC VIDEO PLAYER ---
+    // --- 5. TRUE INFINITE LOOP & DYNAMIC VIDEO PLAYER (Home Page) ---
     const tracks = document.querySelectorAll('.carousel-track');
 
     tracks.forEach(track => {
         const originalCards = Array.from(track.querySelectorAll('.carousel-card'));
         if (originalCards.length === 0) return;
 
-        // 1. Build the Massive Track (Clone 14 times)
         for (let i = 0; i < 14; i++) {
             originalCards.forEach(card => {
                 const clone = card.cloneNode(true);
@@ -74,31 +71,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const allCards = track.querySelectorAll('.carousel-card');
 
-        // 2. Center Detection & Dynamic YouTube Injection
         const carouselObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     
-                    // Step A: Turn ALL cards back to images (kills lag)
                     allCards.forEach(c => {
                         if (c.classList.contains('active')) {
                             c.classList.remove('active');
                             const vidId = c.getAttribute('data-video-id');
                             if (vidId) {
                                 const media = c.querySelector('.card-media');
-                                // Put the high-res thumbnail back
                                 media.innerHTML = `<img src="https://img.youtube.com/vi/${vidId}/hqdefault.jpg" alt="Thumbnail">`;
                             }
                         }
                     });
                     
-                    // Step B: Light up the new Center Card and Inject Video
                     entry.target.classList.add('active');
                     const activeVidId = entry.target.getAttribute('data-video-id');
                     
                     if (activeVidId) {
                         const activeMedia = entry.target.querySelector('.card-media');
-                        // Inject the silent, looping YouTube iframe only here!
                         activeMedia.innerHTML = `<iframe src="https://www.youtube.com/embed/${activeVidId}?autoplay=1&mute=1&loop=1&controls=0&modestbranding=1&rel=0&playsinline=1&playlist=${activeVidId}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
                     }
                 }
@@ -111,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         allCards.forEach(card => carouselObserver.observe(card));
 
-        // 3. The Seamless Teleportation Engine
         let oneSetWidth = 0;
         
         setTimeout(() => {
@@ -119,13 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const gapStyle = window.getComputedStyle(track).gap;
             const gap = parseFloat(gapStyle) || 0;
             oneSetWidth = (cardWidth + gap) * originalCards.length;
-
             track.scrollLeft = oneSetWidth * 7;
         }, 100);
 
         track.addEventListener('scroll', () => {
             if (oneSetWidth === 0) return; 
-
             if (track.scrollLeft <= oneSetWidth * 2) {
                 track.scrollLeft += (oneSetWidth * 5);
             } 
@@ -135,42 +124,83 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 6. FULLSCREEN LIGHTBOX FUNCTIONALITY (For Designs Page) ---
+    // --- 6. THE FUNNEL & THE LIGHTBOX ---
+
+    // A. HOME PAGE FUNNEL
+    const carouselCards = document.querySelectorAll('.carousel-card');
+    
+    carouselCards.forEach(card => {
+        card.addEventListener('click', () => {
+            if (card.classList.contains('active')) {
+                const isVideo = card.getAttribute('data-video-id');
+                if (isVideo) {
+                    window.location.href = 'visuals.html';
+                } else {
+                    window.location.href = 'designs.html';
+                }
+            }
+        });
+    });
+
+    // B. INNER PAGE LIGHTBOX
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxVideoContainer = document.getElementById('lightbox-video-container');
     const lightboxCaption = document.getElementById('lightbox-caption');
     const lightboxClose = document.querySelector('.lightbox-close');
     const projectCards = document.querySelectorAll('.project-card');
 
     if (lightbox && projectCards.length > 0) {
-        // When any project card is clicked
         projectCards.forEach(card => {
             card.addEventListener('click', () => {
-                const img = card.querySelector('.project-media img');
-                const title = card.querySelector('.project-title').innerText;
+                const titleEl = card.querySelector('h3, .project-title');
+                const title = titleEl ? titleEl.innerText : '';
+                if (lightboxCaption) lightboxCaption.innerText = title;
+
+                const videoId = card.getAttribute('data-video-id');
                 
-                if (img) {
-                    lightboxImg.src = img.src;
-                    lightboxCaption.innerText = title;
-                    lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden'; // Locks background scrolling
+                if (videoId) {
+                    // Inject and Play Video
+                    if(lightboxImg) lightboxImg.style.display = 'none';
+                    if(lightboxVideoContainer) {
+                        lightboxVideoContainer.style.display = 'block';
+                        lightboxVideoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+                    }
+                } else {
+                    // Show Image
+                    const img = card.querySelector('img');
+                    if (img) {
+                        if(lightboxVideoContainer) {
+                            lightboxVideoContainer.innerHTML = ''; 
+                            lightboxVideoContainer.style.display = 'none';
+                        }
+                        if(lightboxImg) {
+                            lightboxImg.src = img.src;
+                            lightboxImg.style.display = 'block';
+                        }
+                    }
                 }
+
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
             });
         });
 
-        // Close lightbox when clicking the X
-        lightboxClose.addEventListener('click', () => {
+        // The Close Function
+        const closeLightbox = () => {
             lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Unlocks scrolling
-        });
+            document.body.style.overflow = 'auto';
+            setTimeout(() => { 
+                if(lightboxVideoContainer) lightboxVideoContainer.innerHTML = ''; 
+            }, 300);
+        };
 
-        // Close lightbox when clicking the dark background outside the image
+        if(lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+        
         lightbox.addEventListener('click', (e) => {
-            if (e.target !== lightboxImg) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
+            if (e.target === lightbox || e.target.classList.contains('lightbox-content-wrapper')) {
+                closeLightbox();
             }
         });
     }
-
 });
