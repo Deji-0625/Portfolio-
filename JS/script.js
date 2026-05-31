@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', revealOnScroll); // Run on scroll
 
 
-    // --- 5. TRUE INFINITE LOOP CAROUSEL (Fixes the loop & darkness!) ---
+    // --- 5. TRUE INFINITE LOOP & DYNAMIC VIDEO PLAYER ---
     const tracks = document.querySelectorAll('.carousel-track');
 
     tracks.forEach(track => {
@@ -74,12 +74,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const allCards = track.querySelectorAll('.carousel-card');
 
-        // 2. Center Detection (Lights up the middle card)
+        // 2. Center Detection & Dynamic YouTube Injection
         const carouselObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    allCards.forEach(c => c.classList.remove('active'));
-                    entry.target.classList.add('active'); // Restores 100% brightness
+                    
+                    // Step A: Turn ALL cards back to images (kills lag)
+                    allCards.forEach(c => {
+                        if (c.classList.contains('active')) {
+                            c.classList.remove('active');
+                            const vidId = c.getAttribute('data-video-id');
+                            if (vidId) {
+                                const media = c.querySelector('.card-media');
+                                // Put the high-res thumbnail back
+                                media.innerHTML = `<img src="https://img.youtube.com/vi/${vidId}/hqdefault.jpg" alt="Thumbnail">`;
+                            }
+                        }
+                    });
+                    
+                    // Step B: Light up the new Center Card and Inject Video
+                    entry.target.classList.add('active');
+                    const activeVidId = entry.target.getAttribute('data-video-id');
+                    
+                    if (activeVidId) {
+                        const activeMedia = entry.target.querySelector('.card-media');
+                        // Inject the silent, looping YouTube iframe only here!
+                        activeMedia.innerHTML = `<iframe src="https://www.youtube.com/embed/${activeVidId}?autoplay=1&mute=1&loop=1&controls=0&modestbranding=1&rel=0&playsinline=1&playlist=${activeVidId}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+                    }
                 }
             });
         }, {
