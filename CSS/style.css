@@ -1032,16 +1032,17 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     box-shadow: 0 20px 60px rgba(0,0,0,0.8);
 }
 
-/* YouTube Video Settings */
+/* YouTube Video Settings (CRUSH-PROOF) */
 #lightbox-video-container {
     display: none;
-    width: 100%;
-    max-width: 450px; /* Perfect width for 9:16 vertical video on desktop */
-    aspect-ratio: 9 / 16;
+    height: 75vh; /* Locks the video height to 75% of the user's screen */
+    width: calc(75vh * (9 / 16)); /* Mathematically forces a perfect 9:16 vertical width */
+    max-width: 90vw; /* Safety net: stops it from overflowing on very skinny phones */
     background: #000;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    flex-shrink: 0; /* This is the magic line: it explicitly forbids the browser from crushing the box */
 }
 
 #lightbox-video-container iframe {
@@ -1049,7 +1050,6 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     height: 100%;
     border: none;
 }
-
 #lightbox-caption {
     margin-top: 25px;
     font-family: 'Bebas Neue', sans-serif;
