@@ -971,7 +971,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 }
 
 /* ========================================= */
-/* --- IMAGE LIGHTBOX (FULLSCREEN CLICK) --- */
+/* --- UNIVERSAL LIGHTBOX (IMAGES & VIDEO) --- */
 /* ========================================= */
 .lightbox {
     position: fixed;
@@ -982,7 +982,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     background-color: rgba(5, 5, 5, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    z-index: 1000;
+    z-index: 9999;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1006,35 +1006,90 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     font-weight: bold;
     cursor: pointer;
     transition: color 0.3s ease;
-    z-index: 1001;
+    z-index: 10000;
 }
 
 .lightbox-close:hover {
     color: #00ffcc;
 }
 
-.lightbox-content {
-    max-width: 90vw;
-    max-height: 80vh;
-    border-radius: 12px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-    object-fit: contain;
-    transform: scale(0.9);
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+.lightbox-content-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 90%;
+    max-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.lightbox.active .lightbox-content {
-    transform: scale(1);
+/* Graphic Design Image Settings */
+#lightbox-img {
+    max-width: 100%;
+    max-height: 85vh;
+    display: none;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+/* YouTube Video Settings */
+#lightbox-video-container {
+    display: none;
+    width: 100%;
+    max-width: 450px; /* Perfect width for 9:16 vertical video on desktop */
+    aspect-ratio: 9 / 16;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+#lightbox-video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 #lightbox-caption {
-    margin-top: 20px;
+    margin-top: 25px;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2.5rem;
     color: #fff;
     letter-spacing: 1px;
 }
 
+/* Makes it obvious the video cards can be clicked */
+.project-card {
+    cursor: pointer;
+}
+
+/* Styling for the new Software line */
+.project-software {
+    font-size: 0.85rem;
+    color: #00ffcc; /* Gives the software tags a cool neon pop */
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Optional: Adds a subtle play button overlay on video thumbnails */
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.7);
+    z-index: 10;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .play-overlay {
+    color: #00ffcc;
+    transform: translate(-50%, -50%) scale(1.1);
+}
 /* ========================================= */
 /* --- MOBILE RESPONSIVENESS --- */
 /* ========================================= */
