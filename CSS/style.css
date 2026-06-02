@@ -388,8 +388,10 @@ body.scrolled .scroll-prompt {
     padding: 20px 8vw; 
     display: flex; 
     flex-direction: column; 
+    
+    /* THE FIX: Locks the container so children cannot stretch it */
     width: 100%;
-    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .hero { 
@@ -995,13 +997,16 @@ body.scrolled .scroll-prompt {
 /* --- MINIMALIST CINEMATIC FOOTER       --- */
 /* ========================================= */
 .sam-footer {
-    width: calc(100% + 16vw); 
+    /* THE FIX: Natural full-bleed stretching with zero math */
+    align-self: stretch;
     margin-left: -8vw; 
+    margin-right: -8vw; 
+    width: auto;
+    
     display: flex;
     flex-direction: column;
     margin-top: auto; 
     padding-top: 80px; 
-    box-sizing: border-box;
 }
 
 .footer-socials {
