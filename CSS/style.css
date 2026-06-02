@@ -352,10 +352,6 @@ body.inner-page #nav-backdrop {
 body.inner-page #main-content {
     margin-top: 140px; 
     min-height: calc(100vh - 140px);
-    
-    /* THE FIX: Keeps inner pages perfectly centered */
-    margin-left: auto !important;
-    margin-right: auto !important;
 }
 body.inner-page #dynamic-logo {
     display: none !important;
@@ -397,17 +393,14 @@ body.scrolled .scroll-prompt {
     opacity: 0; 
 }
 
+/* FIX: Restored to full fluid width to fix the left shift */
 #main-content { 
     margin-top: 100vh; 
     padding: 20px 8vw; 
     display: flex; 
     flex-direction: column; 
-    
-    /* THE FIX: Locks the maximum size and forces it to the absolute center */
-    max-width: 1440px;
-    margin-left: auto !important;
-    margin-right: auto !important;
 }
+
 .hero { 
     display: flex; 
     flex-direction: column; 
@@ -537,11 +530,8 @@ body.scrolled .scroll-prompt {
     height: 1px; 
     background: linear-gradient(90deg, transparent, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff, transparent); 
     background-size: 200% auto;
-    
-    /* THE FIX: Drops opacity and forces a sub-pixel thickness */
     opacity: 0.2; 
     transform: scaleY(0.5); 
-    
     margin: 60px 0; 
     width: 100%; 
     animation: flowRainbow 4s linear infinite;
@@ -1012,9 +1002,10 @@ body.scrolled .scroll-prompt {
 /* ========================================= */
 /* --- MINIMALIST CINEMATIC FOOTER       --- */
 /* ========================================= */
+/* FIX: Restored to bulletproof math to fix the skew */
 .sam-footer {
-    width: 100vw; 
-    margin-left: calc(-50vw + 50%);
+    width: calc(100% + 16vw); 
+    margin-left: -8vw; 
     display: flex;
     flex-direction: column;
     margin-top: auto; 
@@ -1190,6 +1181,7 @@ body.scrolled .scroll-prompt {
     0% { background-position: 200% 0; }
     100% { background-position: -100% 0; }
 }
+
 #lightbox-caption {
     margin-top: 25px;
     font-family: 'Bebas Neue', sans-serif;
@@ -1369,7 +1361,6 @@ body.scrolled .scroll-prompt {
         transform: translateY(-3px) rotate(-45deg); 
     }
     
-    /* FIX: Added overflow: hidden to keep the line inside the box */
     .nav-links { 
         position: absolute; 
         top: 55px; 
@@ -1410,7 +1401,6 @@ body.scrolled .scroll-prompt {
         border-bottom: none; 
     }
 
-    /* FIX: Hover line perfectly flush to the bottom of the border */
     .nav-links a::after {
         display: block !important;
         bottom: 0 !important;
@@ -1429,7 +1419,6 @@ body.scrolled .scroll-prompt {
         transform: translateY(-1px); 
     }
     
-    /* FIX: Mobile "Software Tags" Stacking Grid */
     .hero .software-tags { 
         display: flex;
         flex-wrap: wrap; 
