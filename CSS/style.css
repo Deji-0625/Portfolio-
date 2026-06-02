@@ -399,6 +399,19 @@ body.scrolled .scroll-prompt {
     padding: 20px 8vw; 
     display: flex; 
     flex-direction: column; 
+    
+    /* THE FIX: Forces the container to stretch across the desktop, breaking the shrink-wrap */
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+body.inner-page #main-content {
+    margin-top: 140px; 
+    min-height: calc(100vh - 140px);
+    
+    /* Ensures inner pages also stretch perfectly */
+    width: 100%; 
+    box-sizing: border-box;
 }
 
 .hero { 
