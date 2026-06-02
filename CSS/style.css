@@ -16,15 +16,6 @@ body {
     min-height: 100vh; 
 }
 
-a:focus, 
-a:active, 
-button:focus, 
-button:active,
-.dropdown-toggle:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
 /* ========================================= */
 /* --- BACKGROUND & GLASS EFFECTS        --- */
 /* ========================================= */
