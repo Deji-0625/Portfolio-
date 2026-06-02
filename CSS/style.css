@@ -720,13 +720,16 @@ body.scrolled .scroll-prompt {
 /* --- CINEMATIC PROJECT CAROUSEL        --- */
 /* ========================================= */
 .carousel-container {
-    width: calc(100% + 16vw); 
+    /* THE FIX: Natural full-bleed stretching with zero math */
+    align-self: stretch;
     margin-left: -8vw; 
+    margin-right: -8vw; 
+    width: auto;
+    
     padding: 60px 0;
     position: relative;
     overflow: hidden;
 }
-
 .swipe-indicator { display: none; }
 
 .carousel-track {
