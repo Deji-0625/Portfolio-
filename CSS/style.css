@@ -379,10 +379,15 @@ body.scrolled .scroll-prompt {
     padding: 20px 8vw; 
     display: flex; 
     flex-direction: column; 
-    
-    /* THE FIX: Locks the container so children cannot stretch it */
     width: 100%;
-    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+body.inner-page #main-content {
+    margin-top: 140px; 
+    min-height: calc(100vh - 140px);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .hero { 
@@ -711,16 +716,15 @@ body.scrolled .scroll-prompt {
 /* --- CINEMATIC PROJECT CAROUSEL        --- */
 /* ========================================= */
 .carousel-container {
-    /* THE FIX: Natural full-bleed stretching with zero math */
+    width: auto !important;
     align-self: stretch;
     margin-left: -8vw; 
     margin-right: -8vw; 
-    width: auto;
-    
     padding: 60px 0;
     position: relative;
     overflow: hidden;
 }
+
 .swipe-indicator { display: none; }
 
 .carousel-track {
@@ -991,12 +995,10 @@ body.scrolled .scroll-prompt {
 /* --- MINIMALIST CINEMATIC FOOTER       --- */
 /* ========================================= */
 .sam-footer {
-    /* THE FIX: Natural full-bleed stretching with zero math */
+    width: auto !important;
     align-self: stretch;
     margin-left: -8vw; 
     margin-right: -8vw; 
-    width: auto;
-    
     display: flex;
     flex-direction: column;
     margin-top: auto; 
