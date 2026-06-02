@@ -530,12 +530,15 @@ body.scrolled .scroll-prompt {
     height: 1px; 
     background: linear-gradient(90deg, transparent, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff, transparent); 
     background-size: 200% auto;
-    opacity: 0.35;
+    
+    /* THE FIX: Drops opacity and forces a sub-pixel thickness */
+    opacity: 0.2; 
+    transform: scaleY(0.5); 
+    
     margin: 60px 0; 
     width: 100%; 
     animation: flowRainbow 4s linear infinite;
 }
-
 .sub-heading {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2.5rem;
