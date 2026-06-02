@@ -81,18 +81,15 @@ body.scrolled #glass-8 {
     z-index: 95; 
     border-radius: 50px; 
     
-    /* The Glassmorphism Base */
     background: rgba(12, 12, 12, 0.45); 
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     
-    /* Animation settings */
     transform: translateY(-150px); 
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
     box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
-/* The Razor-Thin Flowing Gradient Border Trick */
 #nav-backdrop::after {
     content: '';
     position: absolute;
@@ -109,7 +106,6 @@ body.scrolled #glass-8 {
     animation: flowRainbow 4s linear infinite; 
 }
 
-/* The Continuous Loop Animation */
 @keyframes flowRainbow {
     0% { background-position: 0% center; }
     100% { background-position: 200% center; }
@@ -189,13 +185,11 @@ body.scrolled #nav-backdrop {
     to { opacity: 1; } 
 }
 
-/* Desktop HOMEPAGE ONLY: Fade out the large center logo on scroll */
 body:not(.inner-page).scrolled #dynamic-logo { 
     opacity: 0; 
     pointer-events: none; 
 }
 
-/* Desktop: Setup the new header logo (Hidden by default) */
 #desktop-header-logo {
     position: fixed;
     top: 60px; 
@@ -220,7 +214,6 @@ body:not(.inner-page).scrolled #dynamic-logo {
     transform: translateY(-2px);
 }
 
-/* Desktop HOMEPAGE ONLY: Fade IN the new header logo on scroll */
 body:not(.inner-page).scrolled #desktop-header-logo {
     opacity: 1;
     pointer-events: auto;
@@ -268,7 +261,6 @@ body.scrolled #nav-menu {
     color: #ffffff; 
 }
 
-/* The flowing rainbow underline on hover */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -286,7 +278,6 @@ body.scrolled #nav-menu {
     width: 100%;
 }
 
-/* --- DESKTOP DROPDOWN MENU --- */
 .nav-dropdown { 
     position: relative; 
 }
@@ -348,7 +339,7 @@ body.scrolled #nav-menu {
 }
 
 .dropdown-menu a::after {
-    display: none; /* Disable rainbow underline for dropdown items */
+    display: none; 
 }
 
 /* ========================================= */
@@ -498,7 +489,6 @@ body.scrolled .scroll-prompt {
     overflow: hidden;
 }
 
-/* Primary Button - Glass/Rainbow Effect */
 .primary-btn { 
     background-color: #ffffff; 
     color: #111111; 
@@ -527,7 +517,6 @@ body.scrolled .scroll-prompt {
     opacity: 1;
 }
 
-/* Secondary Button - Glassmorphism style */
 .secondary-btn { 
     background: rgba(255, 255, 255, 0.03); 
     backdrop-filter: blur(10px);
@@ -661,7 +650,6 @@ body.scrolled .scroll-prompt {
     margin-top: 20px;
 }
 
-/* --- Premium Glass Contact Form --- */
 .custom-form { 
     display: flex; 
     flex-direction: column; 
@@ -699,7 +687,6 @@ body.scrolled .scroll-prompt {
     color: #ffffff; 
 }
 
-/* Floating Labels */
 .input-group label { 
     position: absolute; 
     top: 16px; 
@@ -710,7 +697,6 @@ body.scrolled .scroll-prompt {
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); 
 }
 
-/* Animation when typing */
 .input-group input:focus ~ label, 
 .input-group input:not(:placeholder-shown) ~ label, 
 .input-group textarea:focus ~ label, 
@@ -722,7 +708,6 @@ body.scrolled .scroll-prompt {
     font-weight: 600;
 }
 
-/* Rainbow Glow on Focus */
 .input-group input:focus, 
 .input-group textarea:focus, 
 .input-group select:focus { 
@@ -788,7 +773,6 @@ body.scrolled .scroll-prompt {
     box-shadow: 0 30px 60px rgba(0,0,0,0.8);
 }
 
-/* "Tap to View" Portal Indicator */
 .carousel-card::before {
     content: 'TAP TO VIEW';
     position: absolute;
@@ -839,7 +823,6 @@ body.scrolled .scroll-prompt {
     border: none;
 }
 
-/* YouTube super-zoom fix */
 .card-media iframe {
     top: 50%;
     left: 50%;
@@ -932,7 +915,6 @@ body.scrolled .scroll-prompt {
     transform: scale(1.05);
 }
 
-/* Glassmorphism Text Container */
 .project-details { 
     padding: 25px;
     background: rgba(255, 255, 255, 0.02);
@@ -981,7 +963,6 @@ body.scrolled .scroll-prompt {
     overflow: hidden;
 }
 
-/* The Rainbow sweeping effect on hover */
 .project-divider::after {
     content: '';
     position: absolute;
@@ -1164,7 +1145,6 @@ body.scrolled .scroll-prompt {
     align-items: center;
 }
 
-/* Graphic Design Image Settings */
 #lightbox-img {
     max-width: 100%;
     max-height: 85vh;
@@ -1173,7 +1153,6 @@ body.scrolled .scroll-prompt {
     box-shadow: 0 20px 60px rgba(0,0,0,0.8);
 }
 
-/* YouTube Video Settings (CRUSH-PROOF) */
 #lightbox-video-container {
     display: none;
     height: 75vh; 
@@ -1204,6 +1183,12 @@ body.scrolled .scroll-prompt {
 /* --- MOBILE RESPONSIVENESS             --- */
 /* ========================================= */
 @media (max-width: 768px) {
+    
+    /* FIX: Optimized mobile background for performance */
+    .bg-streaks {
+        background: linear-gradient(135deg, rgba(157, 0, 255, 0.05) 0%, rgba(204, 255, 0, 0.02) 50%, rgba(0, 204, 255, 0.05) 100%);
+    }
+    
     #main-content { 
         margin-top: 50vh; 
         padding: 20px 24px; 
@@ -1224,16 +1209,17 @@ body.scrolled .scroll-prompt {
         width: 100%;
         overflow-wrap: break-word; 
     }
+    
     .name-part { 
         letter-spacing: -4px; 
     }
     
-    /* Shrinking the pill for mobile screens */
     #nav-backdrop { 
         top: 15px; 
         height: 60px; 
         border-radius: 40px; 
     } 
+    
     #nav-backdrop::after {
         border-radius: 40px; 
     }
@@ -1364,6 +1350,7 @@ body.scrolled .scroll-prompt {
         transform: translateY(-3px) rotate(-45deg); 
     }
     
+    /* FIX: Added overflow: hidden to keep the line inside the box */
     .nav-links { 
         position: absolute; 
         top: 55px; 
@@ -1378,6 +1365,7 @@ body.scrolled .scroll-prompt {
         visibility: hidden; 
         transform: translateY(-15px); 
         transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); 
+        overflow: hidden; 
     }
 
     .nav-links.active { 
@@ -1403,8 +1391,13 @@ body.scrolled .scroll-prompt {
         border-bottom: none; 
     }
 
-    /* FIX: Hide rainbow pseudo-elements in mobile nav */
-    .nav-links a::after,
+    /* FIX: Hover line perfectly flush to the bottom of the border */
+    .nav-links a::after {
+        display: block !important;
+        bottom: 0 !important;
+        height: 2px !important;
+    }
+    
     .dropdown-menu a::after {
         display: none !important;
     }
@@ -1417,24 +1410,26 @@ body.scrolled .scroll-prompt {
         transform: translateY(-1px); 
     }
     
-    /* FIX: Mobile "Software Tags" Stacking */
-    .software-tags { 
+    /* FIX: Mobile "Software Tags" Stacking Grid */
+    .hero .software-tags { 
         display: flex;
         flex-wrap: wrap; 
-        justify-content: center; /* Center the tags horizontally */
+        justify-content: center; 
         gap: 10px;
+        width: 100%;
     }
 
-    .software-tags span {
-        flex: 1 1 calc(50% - 5px); /* Force 2 tags per row max on small screens */
+    .hero .software-tags span {
+        flex: 1 1 calc(50% - 10px); 
         text-align: center;
-        max-width: 48%; /* Ensure they don't stretch too wide */
+        max-width: 48%; 
+        padding: 8px 5px; 
+        font-size: 0.75rem; 
     }
 
-    /* Target the 3rd tag specifically to center it on the next line */
-    .software-tags span:nth-child(3) {
-        flex: 0 1 auto;
-        min-width: 60%; 
+    .hero .software-tags span:nth-child(3) {
+        flex: 0 0 calc(60%); 
+        max-width: 60%;
     }
     
     .button-group { 
@@ -1532,7 +1527,6 @@ body.scrolled .scroll-prompt {
 
     .carousel-card.active { transform: scale(1); }
 
-    /* Scale down the Tap to View button on mobile */
     .carousel-card::before {
         font-size: 1.1rem !important;
         padding: 8px 16px !important;
@@ -1605,12 +1599,11 @@ body.scrolled .scroll-prompt {
         gap: 40px;
     }
 
-    /* FIX: Optimized mobile blur for performance */
     .about-bio {
         background: rgba(255, 255, 255, 0.03); 
         backdrop-filter: blur(10px); 
         -webkit-backdrop-filter: blur(10px);
-        -webkit-transform: translateZ(0); /* Hardware acceleration for mobile scrolling */
+        -webkit-transform: translateZ(0); 
         border: 1px solid rgba(255, 255, 255, 0.08); 
         padding: 30px 25px;
         border-radius: 24px;
@@ -1621,6 +1614,10 @@ body.scrolled .scroll-prompt {
         font-size: 1.5rem;
         text-align: center;
     }
+    
+    .software-tags {
+        justify-content: center; 
+    }
 
     /* --- MOBILE CONTACT: Sleek App Interface --- */
     .contact-grid {
@@ -1629,14 +1626,13 @@ body.scrolled .scroll-prompt {
         gap: 40px;
     }
 
-    /* FIX: Optimized mobile blur for performance */
     .contact-info {
         display: flex;
         flex-direction: column;
         background: rgba(255, 255, 255, 0.03);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        -webkit-transform: translateZ(0); /* Hardware acceleration for mobile scrolling */
+        -webkit-transform: translateZ(0); 
         border: 1px solid rgba(255, 255, 255, 0.08);
         padding: 25px;
         border-radius: 24px;
