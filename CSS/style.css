@@ -1151,24 +1151,38 @@ body.scrolled .scroll-prompt {
     box-shadow: 0 20px 60px rgba(0,0,0,0.8);
 }
 
+/* YouTube Video Settings (With Rainbow Loading Shimmer) */
 #lightbox-video-container {
     display: none;
     height: 75vh; 
     width: calc(75vh * (9 / 16)); 
     max-width: 90vw; 
-    background: #000;
+    
+    /* The Animated Rainbow Loading Background */
+    background: linear-gradient(90deg, #050505, #111111, rgba(157, 0, 255, 0.15), rgba(0, 255, 204, 0.15), #111111, #050505);
+    background-size: 300% 100%;
+    animation: shimmerLoad 1.5s infinite linear;
+    
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.8);
     flex-shrink: 0; 
+    position: relative;
 }
 
 #lightbox-video-container iframe {
     width: 100%;
     height: 100%;
     border: none;
+    position: relative;
+    z-index: 2; /* Ensures the video paints OVER the rainbow loader */
 }
 
+/* The Shimmer Animation Engine */
+@keyframes shimmerLoad {
+    0% { background-position: 200% 0; }
+    100% { background-position: -100% 0; }
+}
 #lightbox-caption {
     margin-top: 25px;
     font-family: 'Bebas Neue', sans-serif;
