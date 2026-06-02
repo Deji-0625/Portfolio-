@@ -201,7 +201,7 @@ body:not(.inner-page).scrolled #dynamic-logo {
     top: 60px; 
     left: 7vw;
     transform: translateY(-50%);
-    font-size: 30px; 
+    font-size: 28px; 
     color: #ffffff;
     text-decoration: none;
     display: flex;
@@ -210,8 +210,8 @@ body:not(.inner-page).scrolled #dynamic-logo {
     opacity: 0; 
     pointer-events: none;
     transition: opacity 0.4s ease;
-    letter-spacing: -2px; 
-    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px; 
+    font-family: 'Bebas Neue', sans-serif !important;
 }
 
 .header-8 {
@@ -261,10 +261,29 @@ body.scrolled #nav-menu {
     font-size: 16px; 
     font-weight: 600; 
     transition: color 0.3s; 
+    position: relative;
 }
 
 .nav-links a:hover { 
-    color: #00ffcc; 
+    color: #ffffff; 
+}
+
+/* The flowing rainbow underline on hover */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background: linear-gradient(90deg, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff);
+    background-size: 200% auto;
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    animation: flowRainbow 4s linear infinite;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 /* --- DESKTOP DROPDOWN MENU --- */
@@ -324,9 +343,12 @@ body.scrolled #nav-menu {
 }
 
 .dropdown-menu a:hover { 
-    color: #00ffcc; 
     background-color: transparent !important; 
     outline: none;
+}
+
+.dropdown-menu a::after {
+    display: none; /* Disable rainbow underline for dropdown items */
 }
 
 /* ========================================= */
@@ -522,9 +544,12 @@ body.scrolled .scroll-prompt {
 .section-breaker { 
     border: 0; 
     height: 1px; 
-    background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent); 
+    background: linear-gradient(90deg, transparent, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff, transparent); 
+    background-size: 200% auto;
+    opacity: 0.35;
     margin: 60px 0; 
     width: 100%; 
+    animation: flowRainbow 4s linear infinite;
 }
 
 .sub-heading {
@@ -780,6 +805,7 @@ body.scrolled .scroll-prompt {
     font-size: 1.5rem;
     color: #fff;
     letter-spacing: 2px;
+    white-space: nowrap; 
     z-index: 10;
     opacity: 0;
     pointer-events: none;
@@ -1483,6 +1509,13 @@ body.scrolled .scroll-prompt {
     }
 
     .carousel-card.active { transform: scale(1); }
+
+    /* Scale down the Tap to View button on mobile */
+    .carousel-card::before {
+        font-size: 1.1rem !important;
+        padding: 8px 16px !important;
+        border-radius: 20px !important;
+    }
 
     .card-info {
         bottom: 25px;
