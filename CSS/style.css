@@ -5,7 +5,8 @@
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
-    font-family: 'Inter', 'Segoe UI', sans-serif; 
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    -webkit-tap-highlight-color: transparent !important;
 }
 
 body { 
@@ -15,12 +16,6 @@ body {
     min-height: 100vh; 
 }
 
-/* Removes the ugly default blue tap highlight on EVERYTHING */
-* {
-    -webkit-tap-highlight-color: transparent !important;
-}
-
-/* Kills the desktop browser focus ring when you click links */
 a:focus, 
 a:active, 
 button:focus, 
@@ -75,11 +70,9 @@ body.scrolled #glass-8 {
     height: 70px; 
     z-index: 95; 
     border-radius: 50px; 
-    
     background: rgba(12, 12, 12, 0.45); 
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    
     transform: translateY(-150px); 
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
     box-shadow: 0 15px 35px rgba(0,0,0,0.4);
@@ -350,29 +343,20 @@ body.inner-page #nav-backdrop {
     transform: translateY(0) !important; 
 }
 
-/* FIX: Ensure container stretches on inner pages */
 body.inner-page #main-content {
     margin-top: 140px; 
     min-height: calc(100vh - 140px);
-    width: 100%;
-    box-sizing: border-box;
 }
 
+/* display:none already suppresses animation & transition — no extra declarations needed */
 body.inner-page #dynamic-logo {
     display: none !important;
-    animation: none !important;
-    transition: none !important;
 }
 
 body.inner-page #desktop-header-logo {
     opacity: 1 !important; 
     pointer-events: auto !important; 
     transition: none !important; 
-}
-
-body.inner-page #nav-menu, 
-body.inner-page.scrolled.header-hidden #nav-menu { 
-    transform: translateY(-50%) !important; 
 }
 
 /* ========================================= */
@@ -399,7 +383,6 @@ body.scrolled .scroll-prompt {
     opacity: 0; 
 }
 
-/* FIX: Restored to full fluid width to fill the screen */
 #main-content { 
     margin-top: 100vh; 
     padding: 20px 8vw; 
@@ -887,7 +870,6 @@ body.scrolled .scroll-prompt {
     padding-bottom: 80px;
 }
 
-/* Restored masonry layout */
 .project-card:nth-child(even) {
     margin-top: 120px; 
 }
@@ -1012,7 +994,6 @@ body.scrolled .scroll-prompt {
 /* ========================================= */
 /* --- MINIMALIST CINEMATIC FOOTER       --- */
 /* ========================================= */
-/* FIX: Restored to bulletproof full-bleed */
 .sam-footer {
     width: calc(100% + 16vw); 
     margin-left: -8vw; 
@@ -1099,7 +1080,7 @@ body.scrolled .scroll-prompt {
 }
 
 /* ========================================= */
-/* --- UNIVERSAL LIGHTBOX (IMAGES & VIDEO) - */
+/* --- UNIVERSAL LIGHTBOX                --- */
 /* ========================================= */
 .lightbox {
     position: fixed;
@@ -1199,11 +1180,11 @@ body.scrolled .scroll-prompt {
 /* --- MOBILE RESPONSIVENESS             --- */
 /* ========================================= */
 @media (max-width: 768px) {
-    
+
     .bg-streaks {
         background: linear-gradient(135deg, rgba(157, 0, 255, 0.05) 0%, rgba(204, 255, 0, 0.02) 50%, rgba(0, 204, 255, 0.05) 100%);
     }
-    
+
     #main-content { 
         margin-top: 50vh; 
         padding: 20px 24px; 
@@ -1216,7 +1197,7 @@ body.scrolled .scroll-prompt {
         width: 100%;
         max-width: 100%;
     }
-    
+
     .main-title { 
         font-size: clamp(3rem, 14vw, 5rem); 
         line-height: 0.8; 
@@ -1224,17 +1205,17 @@ body.scrolled .scroll-prompt {
         width: 100%;
         overflow-wrap: break-word; 
     }
-    
+
     .name-part { 
         letter-spacing: -4px; 
     }
-    
+
     #nav-backdrop { 
         top: 15px; 
         height: 60px; 
         border-radius: 40px; 
-    } 
-    
+    }
+
     #nav-backdrop::after {
         border-radius: 40px; 
     }
@@ -1247,7 +1228,7 @@ body.scrolled .scroll-prompt {
     #desktop-header-logo {
         display: none !important;
     }
-    
+
     #dynamic-logo { 
         top: 35px; 
         left: 15px; 
@@ -1263,7 +1244,7 @@ body.scrolled .scroll-prompt {
         animation: none !important; 
         pointer-events: none !important; 
     }
-    
+
     #mobile-stacked-logo { 
         display: flex; 
         flex-direction: column; 
@@ -1286,7 +1267,7 @@ body.scrolled .scroll-prompt {
         opacity: 1; 
         pointer-events: auto; 
     }
-    
+
     .stack-top { 
         letter-spacing: -2px; 
         color: #ffffff; 
@@ -1295,7 +1276,7 @@ body.scrolled .scroll-prompt {
     .stack-bottom { 
         letter-spacing: 1.5px; 
         color: #ffffff; 
-    } 
+    }
 
     .stack-8 { 
         display: inline-block; 
@@ -1309,34 +1290,26 @@ body.scrolled .scroll-prompt {
         transform: translateY(-1px); 
     }
 
-    body.inner-page #mobile-stacked-logo,
-    body.inner-page.scrolled.header-hidden #mobile-stacked-logo {
+    /* Inner page: logo & nav always visible, no transition needed */
+    body.inner-page #mobile-stacked-logo {
         opacity: 1 !important; 
         pointer-events: auto !important;
         transition: none !important;
     }
-    
-    body.inner-page #nav-menu,
-    body.inner-page.scrolled.header-hidden #nav-menu {
+
+    body.inner-page #nav-menu {
         top: 45px !important;
         transform: translateY(-50%) !important;
     }
-    
+
     #nav-menu { 
         top: 45px; 
         right: 6vw; 
-        left: auto; 
         transform: translateY(-50%); 
         opacity: 1; 
         pointer-events: auto; 
     }
 
-    body.scrolled #nav-menu { 
-        top: 45px; 
-        right: 6vw; 
-        transform: translateY(-50%); 
-    }
-    
     .hamburger { 
         display: block; 
         background: transparent; 
@@ -1364,7 +1337,7 @@ body.scrolled .scroll-prompt {
     .hamburger.active .line:nth-child(2) { 
         transform: translateY(-3px) rotate(-45deg); 
     }
-    
+
     .nav-links { 
         position: absolute; 
         top: 55px; 
@@ -1410,11 +1383,11 @@ body.scrolled .scroll-prompt {
         bottom: 0 !important;
         height: 2px !important;
     }
-    
+
     .dropdown-menu a::after {
         display: none !important;
     }
-    
+
     .crystal-8 { 
         height: 120%; 
         max-height: 28px; 
@@ -1422,7 +1395,7 @@ body.scrolled .scroll-prompt {
         margin-right: -4px; 
         transform: translateY(-1px); 
     }
-    
+
     .hero .software-tags { 
         display: flex;
         flex-wrap: wrap; 
@@ -1443,7 +1416,7 @@ body.scrolled .scroll-prompt {
         flex: 0 0 calc(60%); 
         max-width: 60%;
     }
-    
+
     .button-group { 
         flex-direction: row; 
         justify-content: flex-start; 
@@ -1573,12 +1546,12 @@ body.scrolled .scroll-prompt {
         grid-template-columns: 1fr;
         gap: 50px;
     }
-    
+
     .project-card:nth-child(even) {
         margin-top: 0; 
     }
 
-    /* --- MOBILE: Minimalist Footer --- */
+    /* --- MOBILE: Footer --- */
     .sam-footer {
         margin-top: auto;
         padding-top: 40px;
@@ -1604,7 +1577,7 @@ body.scrolled .scroll-prompt {
         justify-content: center; 
     }
 
-    /* --- MOBILE ABOUT: Premium Glassmorphism Cards --- */
+    /* --- MOBILE: About --- */
     .about-grid {
         display: flex !important;
         flex-direction: column !important;
@@ -1626,12 +1599,12 @@ body.scrolled .scroll-prompt {
         font-size: 1.5rem;
         text-align: center;
     }
-    
+
     .software-tags {
         justify-content: center; 
     }
 
-    /* --- MOBILE CONTACT: Sleek App Interface --- */
+    /* --- MOBILE: Contact --- */
     .contact-grid {
         display: flex !important;
         flex-direction: column-reverse !important; 
