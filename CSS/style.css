@@ -1402,6 +1402,12 @@ body.scrolled .scroll-prompt {
     .nav-links li:last-child a { 
         border-bottom: none; 
     }
+
+    /* FIX: Hide rainbow pseudo-elements in mobile nav */
+    .nav-links a::after,
+    .dropdown-menu a::after {
+        display: none !important;
+    }
     
     .crystal-8 { 
         height: 120%; 
@@ -1411,8 +1417,24 @@ body.scrolled .scroll-prompt {
         transform: translateY(-1px); 
     }
     
+    /* FIX: Mobile "Software Tags" Stacking */
     .software-tags { 
+        display: flex;
         flex-wrap: wrap; 
+        justify-content: center; /* Center the tags horizontally */
+        gap: 10px;
+    }
+
+    .software-tags span {
+        flex: 1 1 calc(50% - 5px); /* Force 2 tags per row max on small screens */
+        text-align: center;
+        max-width: 48%; /* Ensure they don't stretch too wide */
+    }
+
+    /* Target the 3rd tag specifically to center it on the next line */
+    .software-tags span:nth-child(3) {
+        flex: 0 1 auto;
+        min-width: 60%; 
     }
     
     .button-group { 
@@ -1583,10 +1605,12 @@ body.scrolled .scroll-prompt {
         gap: 40px;
     }
 
+    /* FIX: Optimized mobile blur for performance */
     .about-bio {
         background: rgba(255, 255, 255, 0.03); 
-        backdrop-filter: blur(15px); 
-        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(10px); 
+        -webkit-backdrop-filter: blur(10px);
+        -webkit-transform: translateZ(0); /* Hardware acceleration for mobile scrolling */
         border: 1px solid rgba(255, 255, 255, 0.08); 
         padding: 30px 25px;
         border-radius: 24px;
@@ -1597,10 +1621,6 @@ body.scrolled .scroll-prompt {
         font-size: 1.5rem;
         text-align: center;
     }
-    
-    .software-tags {
-        justify-content: center; 
-    }
 
     /* --- MOBILE CONTACT: Sleek App Interface --- */
     .contact-grid {
@@ -1609,12 +1629,14 @@ body.scrolled .scroll-prompt {
         gap: 40px;
     }
 
+    /* FIX: Optimized mobile blur for performance */
     .contact-info {
         display: flex;
         flex-direction: column;
         background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        -webkit-transform: translateZ(0); /* Hardware acceleration for mobile scrolling */
         border: 1px solid rgba(255, 255, 255, 0.08);
         padding: 25px;
         border-radius: 24px;
