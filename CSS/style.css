@@ -1,12 +1,16 @@
-/* --- Import Premium Font --- */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+/* ========================================= */
+/* --- IMPORT PREMIUM FONTS              --- */
+/* ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap');
 
-/* --- Global Settings --- */
+/* ========================================= */
+/* --- GLOBAL SETTINGS                   --- */
+/* ========================================= */
 * { 
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
-    font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif; 
+    font-family: 'Inter', 'Segoe UI', sans-serif; 
 }
 
 body { 
@@ -31,15 +35,9 @@ button:active,
     box-shadow: none !important;
 }
 
-/* Kills the desktop browser focus ring when you click links */
-a:focus, 
-a:active, 
-button:focus, 
-button:active,
-.dropdown-toggle:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
+/* ========================================= */
+/* --- BACKGROUND & GLASS EFFECTS        --- */
+/* ========================================= */
 .bg-streaks {
     position: fixed; 
     top: 0; 
@@ -64,6 +62,11 @@ button:active,
     z-index: 90; 
     pointer-events: none; 
     transition: opacity 0.8s ease, transform 0.8s ease; 
+}
+
+body.scrolled #glass-8 { 
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(4); 
 }
 
 /* ========================================= */
@@ -95,15 +98,15 @@ button:active,
     position: absolute;
     inset: 0;
     border-radius: 50px;
-    padding: 0.5px; /* Sub-pixel rendering for an ultra-thin line */
+    padding: 0.5px; 
     background: linear-gradient(90deg, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff, #9d00ff);
-    background-size: 200% auto; /* Stretches gradient for smooth animation */
+    background-size: 200% auto; 
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
-    opacity: 0.65; /* Lower opacity kills the glowing halo effect, making it look thinner */
-    animation: flowRainbow 4s linear infinite; /* The flowing liquid light animation */
+    opacity: 0.65; 
+    animation: flowRainbow 4s linear infinite; 
 }
 
 /* The Continuous Loop Animation */
@@ -116,7 +119,9 @@ body.scrolled #nav-backdrop {
     transform: translateY(0); 
 }
 
-/* --- Logos --- */
+/* ========================================= */
+/* --- LOGOS                             --- */
+/* ========================================= */
 #dynamic-logo { 
     position: fixed; 
     top: 45%; 
@@ -184,7 +189,182 @@ body.scrolled #nav-backdrop {
     to { opacity: 1; } 
 }
 
-/* --- Scroll Prompt --- */
+/* Desktop HOMEPAGE ONLY: Fade out the large center logo on scroll */
+body:not(.inner-page).scrolled #dynamic-logo { 
+    opacity: 0; 
+    pointer-events: none; 
+}
+
+/* Desktop: Setup the new header logo (Hidden by default) */
+#desktop-header-logo {
+    position: fixed;
+    top: 60px; 
+    left: 7vw;
+    transform: translateY(-50%);
+    font-size: 30px; 
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    opacity: 0; 
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    letter-spacing: -2px; 
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.header-8 {
+    height: 28px;
+    margin: 0 -3px; 
+    transform: translateY(-2px);
+}
+
+/* Desktop HOMEPAGE ONLY: Fade IN the new header logo on scroll */
+body:not(.inner-page).scrolled #desktop-header-logo {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ========================================= */
+/* --- DESKTOP NAVIGATION                --- */
+/* ========================================= */
+#nav-menu { 
+    position: fixed; 
+    top: 60px; 
+    right: 8vw; 
+    transform: translateY(-50%); 
+    opacity: 0; 
+    pointer-events: none; 
+    z-index: 99; 
+    transition: opacity 0.8s ease; 
+}
+
+body.scrolled #nav-menu { 
+    opacity: 1; 
+    pointer-events: auto; 
+}
+
+.hamburger { 
+    display: none; 
+}
+
+.nav-links { 
+    list-style: none; 
+    display: flex; 
+    gap: 35px; 
+}
+
+.nav-links a { 
+    color: #ffffff; 
+    text-decoration: none; 
+    font-size: 16px; 
+    font-weight: 600; 
+    transition: color 0.3s; 
+}
+
+.nav-links a:hover { 
+    color: #00ffcc; 
+}
+
+/* --- DESKTOP DROPDOWN MENU --- */
+.nav-dropdown { 
+    position: relative; 
+}
+
+.dropdown-toggle { 
+    display: flex; 
+    align-items: center; 
+    gap: 6px; 
+    cursor: pointer; 
+}
+
+.arrow { 
+    font-size: 0.6rem; 
+    transition: transform 0.3s ease; 
+}
+
+.dropdown-menu { 
+    position: absolute; 
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%) translateY(10px);
+    background-color: #0d0d0d; 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 12px; 
+    padding: 8px 0; 
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0; 
+    visibility: hidden; 
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-dropdown.active .dropdown-menu { 
+    opacity: 1; 
+    visibility: visible; 
+    transform: translateX(-50%) translateY(0); 
+}
+
+.nav-dropdown.active .arrow { 
+    transform: rotate(180deg); 
+}
+
+.dropdown-menu li { 
+    list-style: none; 
+}
+
+.dropdown-menu a { 
+    padding: 12px 40px; 
+    font-size: 14px; 
+    text-align: center; 
+    color: #ccc; 
+    transition: background 0.2s; 
+}
+
+.dropdown-menu a:hover { 
+    color: #00ffcc; 
+    background-color: transparent !important; 
+    outline: none;
+}
+
+/* ========================================= */
+/* --- PERMANENT HEADER FOR INNER PAGES  --- */
+/* ========================================= */
+body.inner-page #nav-menu { 
+    opacity: 1; 
+    pointer-events: auto; 
+    transform: translateY(-50%) !important; 
+}
+
+body.inner-page #nav-backdrop { 
+    transform: translateY(0) !important; 
+}
+body.inner-page #main-content {
+    margin-top: 140px; 
+    min-height: calc(100vh - 140px);
+}
+
+body.inner-page #dynamic-logo {
+    display: none !important;
+    animation: none !important;
+    transition: none !important;
+}
+
+body.inner-page #desktop-header-logo {
+    opacity: 1 !important; 
+    pointer-events: auto !important; 
+    transition: none !important; 
+}
+body.inner-page #nav-menu, 
+body.inner-page.scrolled.header-hidden #nav-menu { 
+    transform: translateY(-50%) !important; 
+}
+
+/* ========================================= */
+/* --- MAIN CONTENT & HERO               --- */
+/* ========================================= */
 .scroll-prompt { 
     position: absolute; 
     bottom: 5%; 
@@ -202,41 +382,10 @@ body.scrolled #nav-backdrop {
     50% { transform: translate(-50%, 10px); } 
 }
 
-/* --- Desktop Menu --- */
-#nav-menu { 
-    position: fixed; 
-    top: 60px; /* Perfectly centered within the 70px pill */
-    right: 8vw; 
-    transform: translateY(-50%); 
+body.scrolled .scroll-prompt { 
     opacity: 0; 
-    pointer-events: none; 
-    z-index: 99; 
-    transition: opacity 0.8s ease; 
 }
 
-.hamburger { 
-    display: none; 
-}
-
-.nav-links { 
-    list-style: none; 
-    display: flex; 
-    gap: 35px; 
-}
-
-.nav-links a { 
-    color: #ffffff; 
-    text-decoration: none; 
-    font-size: 16px; 
-    font-weight: bold; 
-    transition: color 0.3s; 
-}
-
-.nav-links a:hover { 
-    color: #00ffcc; 
-}
-
-/* --- Main Content Layout --- */
 #main-content { 
     margin-top: 100vh; 
     padding: 20px 8vw; 
@@ -305,7 +454,9 @@ body.scrolled #nav-backdrop {
     margin-top: 10px; 
 }
 
-/* --- Buttons & Breaker --- */
+/* ========================================= */
+/* --- BUTTONS & DIVIDERS                --- */
+/* ========================================= */
 .button-group { 
     display: flex; 
     gap: 16px; 
@@ -317,13 +468,15 @@ body.scrolled #nav-backdrop {
     position: relative; 
     padding: 16px 32px; 
     text-decoration: none; 
-    font-weight: bold; 
+    font-weight: 600; 
     font-size: 1.1rem; 
     border-radius: 50px; 
     z-index: 1; 
-    transition: background-color 0.2s ease, transform 0.1s ease; 
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
+/* Primary Button - Glass/Rainbow Effect */
 .primary-btn { 
     background-color: #ffffff; 
     color: #111111; 
@@ -331,29 +484,60 @@ body.scrolled #nav-backdrop {
 }
 
 .primary-btn:hover { 
-    background-color: #e2e2e2; 
+    color: #ffffff;
+    background-color: transparent;
+    box-shadow: 0 10px 20px rgba(157, 0, 255, 0.2);
 }
 
+.primary-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, #9d00ff, #ff007f, #ffaa00, #ccff00, #00ffaa, #00ccff, #9d00ff);
+    background-size: 200% auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: flowRainbow 4s linear infinite;
+}
+
+.primary-btn:hover::before {
+    opacity: 1;
+}
+
+/* Secondary Button - Glassmorphism style */
 .secondary-btn { 
-    background-color: transparent; 
+    background: rgba(255, 255, 255, 0.03); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: #ffffff; 
-    border: 1px solid #444; 
-    border-radius: 50px; 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
 }
 
 .secondary-btn:hover { 
-    background-color: rgba(255, 255, 255, 0.1); 
+    background: rgba(255, 255, 255, 0.1); 
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .section-breaker { 
     border: 0; 
     height: 1px; 
-    background: linear-gradient(to right, transparent, #333, transparent); 
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent); 
     margin: 60px 0; 
     width: 100%; 
 }
 
-/* --- Cinematic Showreel --- */
+.sub-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+/* ========================================= */
+/* --- SHOWREEL SECTION                  --- */
+/* ========================================= */
 #showreel-section { 
     position: relative; 
     width: 100%; 
@@ -421,180 +605,23 @@ body.scrolled #nav-backdrop {
     100% { transform: rotate(360deg); } 
 }
 
-/* --- Animations & Reveal --- */
-body.scrolled #glass-8 { 
-    opacity: 0; 
-    transform: translate(-50%, -50%) scale(4); 
-}
-
-/* 1. Desktop HOMEPAGE ONLY: Fade out the large center logo on scroll */
-body:not(.inner-page).scrolled #dynamic-logo { 
-    opacity: 0; 
-    pointer-events: none; 
-}
-
-/* 2. Desktop: Setup the new header logo (Hidden by default) */
-#desktop-header-logo {
-    position: fixed;
-    top: 60px; /* Perfectly centered within the pill */
-    left: 7vw;
-    transform: translateY(-50%);
-    font-size: 30px; 
-    color: #ffffff;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    z-index: 100;
-    opacity: 0; 
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-    letter-spacing: -2px; 
-}
-
-.header-8 {
-    height: 28px;
-    margin: 0 -3px; 
-    transform: translateY(-2px);
-}
-
-/* 3. Desktop HOMEPAGE ONLY: Fade IN the new header logo on scroll */
-body:not(.inner-page).scrolled #desktop-header-logo {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-body.scrolled #nav-menu { 
-    opacity: 1; 
-    pointer-events: auto; 
-}
-
-body.scrolled .scroll-prompt { 
-    opacity: 0; 
-}
-
-/* The invisible class for animations */
+/* ========================================= */
+/* --- ANIMATIONS & REVEAL               --- */
+/* ========================================= */
 .reveal { 
     opacity: 0; 
     transform: translateY(30px); 
     transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
 }
 
-/* Javascript adds this class as you scroll */
 .reveal.active { 
     opacity: 1; 
     transform: translateY(0); 
 }
 
 /* ========================================= */
-/* --- PERMANENT HEADER FOR INNER PAGES  --- */
-/* ========================================= */
-body.inner-page #nav-menu { 
-    opacity: 1; 
-    pointer-events: auto; 
-    transform: translateY(-50%) !important; 
-}
-
-body.inner-page #nav-backdrop { 
-    transform: translateY(0) !important; 
-}
-body.inner-page #main-content {
-    margin-top: 140px; 
-    min-height: calc(100vh - 140px);
-}
-
-body.inner-page #dynamic-logo {
-    display: none !important;
-    animation: none !important;
-    transition: none !important;
-}
-
-body.inner-page #desktop-header-logo {
-    opacity: 1 !important; 
-    pointer-events: auto !important; 
-    transition: none !important; 
-}
-body.inner-page #nav-menu, 
-body.inner-page.scrolled.header-hidden #nav-menu { 
-    transform: translateY(-50%) !important; 
-}
-
-/* ========================================= */
-/* --- DESKTOP DROPDOWN MENU --- */
-/* ========================================= */
-.nav-dropdown { 
-    position: relative; 
-}
-
-.dropdown-toggle { 
-    display: flex; 
-    align-items: center; 
-    gap: 6px; 
-    cursor: pointer; 
-}
-
-.arrow { 
-    font-size: 0.6rem; 
-    transition: transform 0.3s ease; 
-}
-
-.dropdown-menu { 
-    position: absolute; 
-    top: 100%; 
-    left: 50%; 
-    transform: translateX(-50%) translateY(10px);
-    background-color: #0d0d0d; 
-    border: 1px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 12px; 
-    padding: 8px 0; 
-    min-width: 140px;
-    display: flex;
-    flex-direction: column;
-    opacity: 0; 
-    visibility: hidden; 
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.nav-dropdown.active .dropdown-menu { 
-    opacity: 1; 
-    visibility: visible; 
-    transform: translateX(-50%) translateY(0); 
-}
-
-.nav-dropdown.active .arrow { 
-    transform: rotate(180deg); 
-}
-
-.dropdown-menu li { 
-    list-style: none; 
-}
-
-.dropdown-menu a { 
-    padding: 12px 40px; 
-    font-size: 14px; 
-    text-align: centre; 
-    color: #ccc; 
-    transition: background 0.2s; 
-}
-
-.dropdown-menu a:hover { 
-    color: #00ffcc; 
-    background-color: transparent !important; 
-    outline: none;
-}
-
-/* ========================================= */
 /* --- ABOUT & CONTACT PAGE LAYOUTS      --- */
 /* ========================================= */
-
-.sub-heading {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    color: #ffffff;
-}
-
-/* --- About Grid --- */
 .about-grid {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
@@ -602,7 +629,6 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     margin-top: 20px;
 }
 
-/* --- Contact Grid --- */
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -610,75 +636,85 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     margin-top: 20px;
 }
 
-/* --- Premium Contact Form --- */
-.custom-form {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+/* --- Premium Glass Contact Form --- */
+.custom-form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 30px; 
 }
 
-.input-group {
-    position: relative;
+.input-group { 
+    position: relative; 
 }
 
-.input-group input,
-.input-group textarea,
-.input-group select {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #444;
-    padding: 10px 0;
-    font-size: 1rem;
-    color: #ffffff;
-    transition: border-color 0.3s ease;
-    outline: none;
+.input-group input, 
+.input-group textarea, 
+.input-group select { 
+    width: 100%; 
+    background: rgba(255, 255, 255, 0.03); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    border-radius: 12px;
+    padding: 16px 20px; 
+    font-size: 1rem; 
+    color: #ffffff; 
+    transition: all 0.3s ease; 
+    outline: none; 
 }
 
-.input-group select {
-    color: #888;
-    cursor: pointer;
+.input-group select { 
+    color: #888; 
+    cursor: pointer; 
+    appearance: none;
 }
 
-.input-group select option {
-    background-color: #050505;
-    color: #ffffff;
+.input-group select option { 
+    background-color: #0d0d0d; 
+    color: #ffffff; 
 }
 
-.input-group label {
-    position: absolute;
-    top: 10px;
-    left: 0;
-    font-size: 1rem;
-    color: #888;
-    pointer-events: none;
-    transition: all 0.3s ease;
+/* Floating Labels */
+.input-group label { 
+    position: absolute; 
+    top: 16px; 
+    left: 20px; 
+    font-size: 1rem; 
+    color: #666; 
+    pointer-events: none; 
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); 
 }
 
-.input-group input:focus ~ label,
-.input-group input:not(:placeholder-shown) ~ label,
-.input-group textarea:focus ~ label,
-.input-group textarea:not(:placeholder-shown) ~ label {
-    top: -20px;
-    font-size: 0.8rem;
+/* Animation when typing */
+.input-group input:focus ~ label, 
+.input-group input:not(:placeholder-shown) ~ label, 
+.input-group textarea:focus ~ label, 
+.input-group textarea:not(:placeholder-shown) ~ label { 
+    top: -24px; 
+    left: 5px;
+    font-size: 0.85rem; 
     color: #00ffcc; 
+    font-weight: 600;
 }
 
-.input-group input:focus,
-.input-group textarea:focus,
-.input-group select:focus {
-    border-bottom: 1px solid #00ffcc;
+/* Rainbow Glow on Focus */
+.input-group input:focus, 
+.input-group textarea:focus, 
+.input-group select:focus { 
+    background: rgba(255, 255, 255, 0.05);
+    border-color: transparent;
+    box-shadow: 0 0 0 2px rgba(157, 0, 255, 0.5), 0 0 15px rgba(0, 204, 255, 0.3);
 }
 
-.contact-link {
-    color: #ffffff;
-    font-size: 1.2rem;
-    text-decoration: none;
-    transition: color 0.3s ease;
+.contact-link { 
+    color: #ffffff; 
+    font-size: 1.2rem; 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
 }
 
-.contact-link:hover {
-    color: #00ffcc;
+.contact-link:hover { 
+    color: #00ffcc; 
 }
 
 /* ========================================= */
@@ -727,6 +763,34 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     box-shadow: 0 30px 60px rgba(0,0,0,0.8);
 }
 
+/* "Tap to View" Portal Indicator */
+.carousel-card::before {
+    content: 'TAP TO VIEW';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: rgba(12, 12, 12, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+    letter-spacing: 2px;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.carousel-card.active:hover::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
 .card-media {
     width: 100%;
     height: 100%;
@@ -734,7 +798,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     top: 0;
     left: 0;
     z-index: 1;
-    overflow: hidden; /* This acts like a clipping mask so the zoomed video doesn't bleed out */
+    overflow: hidden; 
 }
 
 .card-media img,
@@ -749,20 +813,12 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     border: none;
 }
 
-/* THE FIX: Super-zoom the YouTube player to kill black bars and logos */
+/* YouTube super-zoom fix */
 .card-media iframe {
     top: 50%;
     left: 50%;
-    /* 1.85 zoom perfectly forces a skinny 9:16 video to fill a wider 4:5 card */
     transform: translate(-50%, -50%) scale(1.85); 
-    pointer-events: none; /* Keeps swiping smooth */
-}
-
-.card-media img,
-.card-media video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
+    pointer-events: none; 
 }
 
 .card-media::after {
@@ -807,7 +863,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 }
 
 /* ========================================= */
-/* --- CINEMATIC PROJECT GRID (SAM KOLDER) --- */
+/* --- CINEMATIC PROJECT GRID            --- */
 /* ========================================= */
 .project-grid {
     display: grid;
@@ -824,7 +880,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 
 .project-media {
     width: 100%;
-    aspect-ratio: 4 / 5; /* THE FIX: Forces the browser to keep the image boxes open! */
+    aspect-ratio: 4 / 5; 
     border-radius: 8px; 
     overflow: hidden;
     margin-bottom: 25px;
@@ -850,36 +906,95 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     transform: scale(1.05);
 }
 
-.project-details {
-    padding: 0;
+/* Glassmorphism Text Container */
+.project-details { 
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    transform: translateY(-20px); 
+    transition: all 0.4s ease;
 }
 
-/* Removed text margins so the divider lines space everything evenly */
-.project-title {
-    font-size: 1.5rem;
-    color: #ffffff;
+.project-card:hover .project-details {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    transform: translateY(-25px);
+}
+
+.project-title { 
+    font-size: 1.6rem; 
+    color: #ffffff; 
     margin: 0; 
-    letter-spacing: 0.5px;
+    letter-spacing: 0.5px; 
+    font-family: 'Bebas Neue', sans-serif;
 }
 
-.project-role {
-    font-size: 1rem;
+.project-role { 
+    font-size: 0.9rem; 
     color: #aaaaaa; 
-    margin: 0;
+    margin: 0; 
 }
 
-.project-description {
-    font-size: 0.95rem;
-    color: #888888;
-    line-height: 1.5;
-    margin: 0;
+.project-description { 
+    font-size: 0.95rem; 
+    color: #888888; 
+    line-height: 1.6; 
+    margin: 0; 
 }
 
-.project-divider {
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.15); 
-    margin: 18px 0; /* Creates perfect, uniform gaps between lines */
+.project-divider { 
+    height: 1px; 
+    background-color: rgba(255, 255, 255, 0.1); 
+    margin: 18px 0; 
+    width: 100%; 
+    position: relative;
+    overflow: hidden;
+}
+
+/* The Rainbow sweeping effect on hover */
+.project-divider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
     width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #00ffcc, #9d00ff, transparent);
+    transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.project-card:hover .project-divider::after {
+    left: 100%;
+}
+
+.project-software {
+    font-size: 0.85rem;
+    color: #00ffcc; 
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.7);
+    z-index: 10;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .play-overlay {
+    color: #00ffcc;
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 /* ========================================= */
@@ -971,7 +1086,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 }
 
 /* ========================================= */
-/* --- UNIVERSAL LIGHTBOX (IMAGES & VIDEO) --- */
+/* --- UNIVERSAL LIGHTBOX (IMAGES & VIDEO) - */
 /* ========================================= */
 .lightbox {
     position: fixed;
@@ -1035,14 +1150,14 @@ body.inner-page.scrolled.header-hidden #nav-menu {
 /* YouTube Video Settings (CRUSH-PROOF) */
 #lightbox-video-container {
     display: none;
-    height: 75vh; /* Locks the video height to 75% of the user's screen */
-    width: calc(75vh * (9 / 16)); /* Mathematically forces a perfect 9:16 vertical width */
-    max-width: 90vw; /* Safety net: stops it from overflowing on very skinny phones */
+    height: 75vh; 
+    width: calc(75vh * (9 / 16)); 
+    max-width: 90vw; 
     background: #000;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-    flex-shrink: 0; /* This is the magic line: it explicitly forbids the browser from crushing the box */
+    flex-shrink: 0; 
 }
 
 #lightbox-video-container iframe {
@@ -1050,6 +1165,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     height: 100%;
     border: none;
 }
+
 #lightbox-caption {
     margin-top: 25px;
     font-family: 'Bebas Neue', sans-serif;
@@ -1058,40 +1174,8 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     letter-spacing: 1px;
 }
 
-/* Makes it obvious the video cards can be clicked */
-.project-card {
-    cursor: pointer;
-}
-
-/* Styling for the new Software line */
-.project-software {
-    font-size: 0.85rem;
-    color: #00ffcc; /* Gives the software tags a cool neon pop */
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin: 0;
-    text-transform: uppercase;
-}
-
-/* Optional: Adds a subtle play button overlay on video thumbnails */
-.play-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3rem;
-    color: rgba(255, 255, 255, 0.7);
-    z-index: 10;
-    pointer-events: none;
-    transition: all 0.3s ease;
-}
-
-.project-card:hover .play-overlay {
-    color: #00ffcc;
-    transform: translate(-50%, -50%) scale(1.1);
-}
 /* ========================================= */
-/* --- MOBILE RESPONSIVENESS --- */
+/* --- MOBILE RESPONSIVENESS             --- */
 /* ========================================= */
 @media (max-width: 768px) {
     #main-content { 
@@ -1153,7 +1237,6 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         pointer-events: none !important; 
     }
     
-    /* Vertically centering the mobile logo inside the 60px pill */
     #mobile-stacked-logo { 
         display: flex; 
         flex-direction: column; 
@@ -1212,7 +1295,6 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         transform: translateY(-50%) !important;
     }
     
-    /* Vertically centering the hamburger inside the 60px pill */
     #nav-menu { 
         top: 45px; 
         right: 6vw; 
@@ -1228,33 +1310,32 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         transform: translateY(-50%); 
     }
     
-    /* --- REDUCED MOBILE HAMBURGER --- */
     .hamburger { 
         display: block; 
         background: transparent; 
         border: 1px solid rgba(255, 255, 255, 0.2); 
         border-radius: 6px; 
-        padding: 8px; /* Reduced from 10px */
+        padding: 8px; 
         cursor: pointer; 
         z-index: 105; 
     }
 
     .hamburger .line { 
         display: block; 
-        width: 15px; /* Reduced from 18px */
+        width: 15px; 
         height: 2px; 
-        margin: 4px 0; /* Reduced from 5px */
+        margin: 4px 0; 
         background-color: #ffffff; 
         transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
         transform-origin: center; 
     }
 
     .hamburger.active .line:nth-child(1) { 
-        transform: translateY(3px) rotate(45deg); /* Adjusted for thinner box */
+        transform: translateY(3px) rotate(45deg); 
     }
 
     .hamburger.active .line:nth-child(2) { 
-        transform: translateY(-3px) rotate(-45deg); /* Adjusted for thinner box */
+        transform: translateY(-3px) rotate(-45deg); 
     }
     
     .nav-links { 
@@ -1462,7 +1543,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         justify-content: center; 
     }
 
-    /* --- 2. ABOUT: Premium Glassmorphism Cards --- */
+    /* --- MOBILE ABOUT: Premium Glassmorphism Cards --- */
     .about-grid {
         display: flex !important;
         flex-direction: column !important;
@@ -1488,7 +1569,7 @@ body.inner-page.scrolled.header-hidden #nav-menu {
         justify-content: center; 
     }
 
-    /* --- 3. CONTACT: Sleek App Interface --- */
+    /* --- MOBILE CONTACT: Sleek App Interface --- */
     .contact-grid {
         display: flex !important;
         flex-direction: column-reverse !important; 
@@ -1526,6 +1607,6 @@ body.inner-page.scrolled.header-hidden #nav-menu {
     .input-group textarea,
     .input-group select {
         font-size: 16px; 
-        padding: 12px 0;
+        padding: 14px 16px; 
     }
 }
