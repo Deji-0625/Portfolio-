@@ -349,10 +349,15 @@ body.inner-page #nav-menu {
 body.inner-page #nav-backdrop { 
     transform: translateY(0) !important; 
 }
+
+/* FIX: Ensure container stretches on inner pages */
 body.inner-page #main-content {
     margin-top: 140px; 
     min-height: calc(100vh - 140px);
+    width: 100%;
+    box-sizing: border-box;
 }
+
 body.inner-page #dynamic-logo {
     display: none !important;
     animation: none !important;
@@ -364,6 +369,7 @@ body.inner-page #desktop-header-logo {
     pointer-events: auto !important; 
     transition: none !important; 
 }
+
 body.inner-page #nav-menu, 
 body.inner-page.scrolled.header-hidden #nav-menu { 
     transform: translateY(-50%) !important; 
@@ -393,24 +399,13 @@ body.scrolled .scroll-prompt {
     opacity: 0; 
 }
 
-/* FIX: Restored to full fluid width to fix the left shift */
+/* FIX: Restored to full fluid width to fill the screen */
 #main-content { 
     margin-top: 100vh; 
     padding: 20px 8vw; 
     display: flex; 
     flex-direction: column; 
-    
-    /* THE FIX: Forces the container to stretch across the desktop, breaking the shrink-wrap */
-    width: 100%; 
-    box-sizing: border-box;
-}
-
-body.inner-page #main-content {
-    margin-top: 140px; 
-    min-height: calc(100vh - 140px);
-    
-    /* Ensures inner pages also stretch perfectly */
-    width: 100%; 
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -549,6 +544,7 @@ body.inner-page #main-content {
     width: 100%; 
     animation: flowRainbow 4s linear infinite;
 }
+
 .sub-heading {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2.5rem;
@@ -891,6 +887,7 @@ body.inner-page #main-content {
     padding-bottom: 80px;
 }
 
+/* Restored masonry layout */
 .project-card:nth-child(even) {
     margin-top: 120px; 
 }
@@ -1015,7 +1012,7 @@ body.inner-page #main-content {
 /* ========================================= */
 /* --- MINIMALIST CINEMATIC FOOTER       --- */
 /* ========================================= */
-/* FIX: Restored to bulletproof math to fix the skew */
+/* FIX: Restored to bulletproof full-bleed */
 .sam-footer {
     width: calc(100% + 16vw); 
     margin-left: -8vw; 
@@ -1162,18 +1159,14 @@ body.inner-page #main-content {
     box-shadow: 0 20px 60px rgba(0,0,0,0.8);
 }
 
-/* YouTube Video Settings (With Rainbow Loading Shimmer) */
 #lightbox-video-container {
     display: none;
     height: 75vh; 
     width: calc(75vh * (9 / 16)); 
     max-width: 90vw; 
-    
-    /* The Animated Rainbow Loading Background */
     background: linear-gradient(90deg, #050505, #111111, rgba(157, 0, 255, 0.15), rgba(0, 255, 204, 0.15), #111111, #050505);
     background-size: 300% 100%;
     animation: shimmerLoad 1.5s infinite linear;
-    
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.8);
@@ -1186,10 +1179,9 @@ body.inner-page #main-content {
     height: 100%;
     border: none;
     position: relative;
-    z-index: 2; /* Ensures the video paints OVER the rainbow loader */
+    z-index: 2; 
 }
 
-/* The Shimmer Animation Engine */
 @keyframes shimmerLoad {
     0% { background-position: 200% 0; }
     100% { background-position: -100% 0; }
@@ -1208,7 +1200,6 @@ body.inner-page #main-content {
 /* ========================================= */
 @media (max-width: 768px) {
     
-    /* FIX: Optimized mobile background for performance */
     .bg-streaks {
         background: linear-gradient(135deg, rgba(157, 0, 255, 0.05) 0%, rgba(204, 255, 0, 0.02) 50%, rgba(0, 204, 255, 0.05) 100%);
     }
